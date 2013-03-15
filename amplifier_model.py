@@ -8,22 +8,11 @@ from scipy.optimize import leastsq
 # App 
 import signal_generator as generator
 
-def real_relation(v, x):
-    """ Известная зависимость 
-    
-    Args: 
-        Параметры кривой
-        Ось Ox
-    
-    Returns:
-        Массив отсчетов y = real_relation(v, x)
-    """
-    y = v[0]*v[1]*sin(v[2]*x)
-    return  y 
+
 
 def e(v, x, y):
     """ Error function. Очень важная. """
-    return (real_relation(v,x)-y)
+    return (generator.real_relation(v,x)-y)
 
 
 
@@ -57,11 +46,11 @@ def e(v, x, y):
 
 def plot_ht():
     """ """
-    T1 = 10
+    T1 = 15
     T2 = 20.0
     
     num_points = 1000
-    sigma = 0.005
+    sigma = 0.03
     minmax = [0, 100]
     
     # Begin()    
@@ -72,10 +61,23 @@ def plot_ht():
     
     # Смотрим что вышло
     plot(ox, metro_signal,'b')
-    grid()
-    show()
+
     
     # Нужно найти точку нулевого приближения
+    # Выделим некотороые отсчеты
+    def decimate_ox(ox, metro_signal):
+        result_x = []
+        result_y = []
+        for i in range(len(ox)): 
+            if i%100 == 0:
+                result_x.append(ox[i])
+                result_y.append(metro_signal[i])
+        return  result_x, result_y  
+    
+    decimated_x, decimated_y = decimate_ox(ox, metro_signal)
+    plot(decimated_x, decimated_y,'rv')
+    grid()
+    show()      
 
 if __name__=="__main__":
     #main()

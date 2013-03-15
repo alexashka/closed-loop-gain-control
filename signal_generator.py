@@ -18,6 +18,19 @@ def get_gauss_noise(sigma, num_points):
     """ Белый гауссовский центрированный шум с заданной сигмой."""
     noise = random.normal(0, sigma, size=num_points)
     return noise
+
+def real_relation(v, x):
+    """ Известная зависимость 
+    
+    Args: 
+        Параметры кривой
+        Ось Ox
+    
+    Returns:
+        Массив отсчетов y = real_relation(v, x)
+    """
+    y = v[0]*v[1]*sin(v[2]*x)
+    return  y 
     
 if __name__=="__main__":
     #main()
