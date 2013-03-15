@@ -53,23 +53,25 @@ def decimate_ox(ox, metro_signal):
     result_x = []
     result_y = []
     for i in range(len(ox)): 
-        if i%100 == 0:
+        if i%90 == 0:
             result_x.append(ox[i])
             result_y.append(metro_signal[i])
     return  result_x, result_y
 
-def lin_interpol_fan_curve(x, y):
-    """ linear interp. air curve"""
-    # Линейная
-    f = interpolators.interp1d(x, y, kind='cubic')
-
-    # Новая ось
-    xDataSrc = linspace(1, x[-1], x[-1])
-    yDataSrc = f(xDataSrc)
-   
-    return xDataSrc,  yDataSrc     
+  
 
 def plot_ht():
+    def lin_interpol_fan_curve(x, y):
+        """ linear interp. air curve"""
+        # Линейная
+        f = interpolators.interp1d(x, y, kind='cubic')
+    
+        # Новая ось
+        #generator.get_ox(num_points, minmax)
+        xDataSrc = linspace(0, x[-1], num_points)
+        yDataSrc = f(xDataSrc)
+       
+        return xDataSrc,  yDataSrc   
     """ """
     T1 = 15
     T2 = 20.0
@@ -79,30 +81,31 @@ def plot_ht():
     minmax = [0, 100]
     
     # Begin()    
-    ox = generator.get_ox(num_points, minmax)
-    ht = generator.ht_2level(ox, T1, T2)
+    main_x_axis = generator.get_ox(num_points, minmax)
+    ht = generator.ht_2level(main_x_axis, T1, T2)
+    plot(main_x_axis, ht, color='#000000', lw=4)
     noise = generator.get_gauss_noise(sigma, num_points)
     metro_signal = ht+noise  # Как бы померенный сигнал
     
     # Смотрим что вышло
-    #plot(ox, metro_signal,'b')
+    plot(main_x_axis, metro_signal,'b')
 
     
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
-    decimated_x, decimated_y = decimate_ox(ox, metro_signal)
-    #plot(decimated_x, decimated_y,'rv')
+    decimated_x, decimated_y = decimate_ox(main_x_axis, metro_signal)
+    plot(decimated_x, decimated_y,'rv')
     
     # Сгладить
     xDataSrc, yDataSrc = lin_interpol_fan_curve(decimated_x, decimated_y)  
-    #plot(xDataSrc, yDataSrc,'r')
+    plot(xDataSrc, yDataSrc,'r')
     
     # Продиффиренцировать
     diff_first_order = diff(yDataSrc)
-    plot(xDataSrc[:-1], diff_first_order,'r^')
+    #plot(xDataSrc[:-1], diff_first_order,'r^')
     
     diff_two_order = diff(diff_first_order)
-    plot(xDataSrc[:-2], diff_two_order,'bv')
+    #plot(xDataSrc[:-2], diff_two_order,'bv')
     
     roots_d_two = []
     # Если меняется знак - первое корень
@@ -115,6 +118,19 @@ def plot_ht():
     print roots_d_two  
     for at in roots_d_two:    
         plot(xDataSrc[at], 0,'go')
+        
+    # Находим параметы кривой производной
+    k_tan_alpha = []
+    x0 = []
+    y0 = []
+    for at in roots_d_two:
+        k_tan_alpha.append(diff_first_order[at])
+        x0.append(main_x_axis[at])
+        y0.append(yDataSrc[at])
+        
+   #tanget_line =  k_tan_alpha*ox
+    print k_tan_alpha
+    plot(x0, y0,'go')
     
 
 if __name__=="__main__":
