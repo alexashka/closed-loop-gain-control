@@ -1,9 +1,14 @@
 # coding: utf8
+"""
+
+  TODO(?): что будет есть характеристика колебательная?
+"""
 
 # Other
 from pylab import *
 from numpy import *
 from scipy.optimize import leastsq
+import scipy.interpolate as interpolators
 
 # App 
 import signal_generator as generator
@@ -43,6 +48,26 @@ def e(v, x, y):
     
     #
     show()"""
+    
+def decimate_ox(ox, metro_signal):
+    result_x = []
+    result_y = []
+    for i in range(len(ox)): 
+        if i%100 == 0:
+            result_x.append(ox[i])
+            result_y.append(metro_signal[i])
+    return  result_x, result_y
+
+def lin_interpol_fan_curve(x, y):
+    """ linear interp. air curve"""
+    # Линейная
+    f = interpolators.interp1d(x, y, kind='cubic')
+
+    # Новая ось
+    xDataSrc = linspace(1, x[-1], x[-1])
+    yDataSrc = f(xDataSrc)
+   
+    return xDataSrc,  yDataSrc     
 
 def plot_ht():
     """ """
@@ -60,27 +85,43 @@ def plot_ht():
     metro_signal = ht+noise  # Как бы померенный сигнал
     
     # Смотрим что вышло
-    plot(ox, metro_signal,'b')
+    #plot(ox, metro_signal,'b')
 
     
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
-    def decimate_ox(ox, metro_signal):
-        result_x = []
-        result_y = []
-        for i in range(len(ox)): 
-            if i%100 == 0:
-                result_x.append(ox[i])
-                result_y.append(metro_signal[i])
-        return  result_x, result_y  
-    
     decimated_x, decimated_y = decimate_ox(ox, metro_signal)
-    plot(decimated_x, decimated_y,'rv')
-    grid()
-    show()      
+    #plot(decimated_x, decimated_y,'rv')
+    
+    # Сгладить
+    xDataSrc, yDataSrc = lin_interpol_fan_curve(decimated_x, decimated_y)  
+    #plot(xDataSrc, yDataSrc,'r')
+    
+    # Продиффиренцировать
+    diff_first_order = diff(yDataSrc)
+    plot(xDataSrc[:-1], diff_first_order,'r^')
+    
+    diff_two_order = diff(diff_first_order)
+    plot(xDataSrc[:-2], diff_two_order,'bv')
+    
+    roots_d_two = []
+    # Если меняется знак - первое корень
+    for j in range(len(diff_two_order)):
+        if j < len(diff_two_order)-1:
+            mult_ = diff_two_order[j]*diff_two_order[j+1]*1e+12
+            if mult_ < 0:
+                roots_d_two.append(j)
+       
+    print roots_d_two  
+    for at in roots_d_two:    
+        plot(xDataSrc[at], 0,'go')
+    
 
 if __name__=="__main__":
     #main()
-    plot_ht()
+    for at in range(1):
+        plot_ht()
+    grid(); show() 
+
 
 
