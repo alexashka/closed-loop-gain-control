@@ -58,7 +58,9 @@ def decimate_ox(ox, metro_signal):
             result_y.append(metro_signal[i])
     return  result_x, result_y
 
-  
+def lin_line(x, k, b):
+    y = k*x+b
+    return y
 
 def plot_ht():
     def lin_interpol_fan_curve(x, y):
@@ -101,10 +103,10 @@ def plot_ht():
     plot(xDataSrc, yDataSrc,'r')
     
     # Продиффиренцировать
-    diff_first_order = diff(yDataSrc)
+    diff_first_order = diff(yDataSrc)#/*num_points
     #plot(xDataSrc[:-1], diff_first_order,'r^')
     
-    diff_two_order = diff(diff_first_order)
+    diff_two_order = diff(diff_first_order)#/num_points
     #plot(xDataSrc[:-2], diff_two_order,'bv')
     
     roots_d_two = []
@@ -115,22 +117,32 @@ def plot_ht():
             if mult_ < 0:
                 roots_d_two.append(j)
        
-    print roots_d_two  
+    #print roots_d_two  
     for at in roots_d_two:    
         plot(xDataSrc[at], 0,'go')
+        pass
         
     # Находим параметы кривой производной
     k_tan_alpha = []
     x0 = []
     y0 = []
     for at in roots_d_two:
-        k_tan_alpha.append(diff_first_order[at])
+        k_tan_alpha.append(diff_first_order[at]*15)
         x0.append(main_x_axis[at])
         y0.append(yDataSrc[at])
         
-   #tanget_line =  k_tan_alpha*ox
     print k_tan_alpha
     plot(x0, y0,'go')
+    
+    # Поиск Bi
+    b = []
+    for i in range(len(x0)):
+       b.append(y0[i]-k_tan_alpha[i]*x0[i])
+    print b
+    for i in range(len(x0)):
+        y = lin_line(main_x_axis, k_tan_alpha[i], b[i])
+        #print y[:10], main_x_axis[:10]
+        plot(main_x_axis, y ,'r')
     
 
 if __name__=="__main__":
