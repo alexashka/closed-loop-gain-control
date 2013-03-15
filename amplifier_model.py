@@ -22,8 +22,8 @@ def e(v, x, y):
 
 def get_ox(num_points):
     n = num_points
-    xmin = 0.1
-    xmax = 5
+    xmin = 0.5
+    xmax = 100
     x = linspace(xmin,xmax,n)
     return x
 
@@ -55,8 +55,27 @@ def main():
     #
     show()
 
+def plot_ht():
+    """ """
+    T1 = 10
+    T2 = 20.0
+    d = T1/T2
+    def h(t):
+        return 1+d/(1-d)*exp(-t/T1)-1/(1-d)*exp(-t/T2)
+    
+    num_points = 1000
+    ox = get_ox(num_points)
+    ht = h(ox)
+    sigma = 0.05
+    noise = random.normal(0, sigma, size=num_points)
+    plot(ox, ht+noise,'b')
+    grid()
+    show()
+    
+    # Нужно найти точку нулевого приближения
+
 if __name__=="__main__":
-    main()
-    pass
+    #main()
+    plot_ht()
 
 
