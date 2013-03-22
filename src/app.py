@@ -63,6 +63,30 @@ def lin_line(x, k, b):
     y = k*x+b
     return y
 
+def cut_tangent(y):
+    ymax = 1
+    y_result = []
+    
+    for yi in y:
+        if yi < 0:
+            y_result.append(0)
+        elif yi > ymax:
+            y_result.append(1)
+        else:
+            y_result.append(yi)
+            
+    return y_result
+    
+def find_roots(diff_two_order):
+    roots_d_two = []
+    for j in range(len(diff_two_order)):
+        if j < len(diff_two_order)-1:
+            mult_ = diff_two_order[j]*diff_two_order[j+1]*1e+12
+            if mult_ < 0:
+                roots_d_two.append(j)
+                
+    return roots_d_two
+
 def plot_ht():
     def lin_interpol_fan_curve(x, y, x_main):
         """ linear interp. air curve"""
@@ -115,13 +139,9 @@ def plot_ht():
     #plot(x[:-2], diff_two_order,'bv')
     
     #"""
-    roots_d_two = []
+    roots_d_two = find_roots(diff_two_order)
     # Если меняется знак - первое корень
-    for j in range(len(diff_two_order)):
-        if j < len(diff_two_order)-1:
-            mult_ = diff_two_order[j]*diff_two_order[j+1]*1e+12
-            if mult_ < 0:
-                roots_d_two.append(j)
+
        
     #print roots_d_two  
     for at in roots_d_two:    
@@ -150,7 +170,7 @@ def plot_ht():
     print b
     for i in range(len(x0)):
         y = lin_line(x, k_tan_alpha[i], b[i])
-        plot(x, y ,'r')#
+        plot(x, cut_tangent(y) ,'b')#
     
 
 if __name__=="__main__":
