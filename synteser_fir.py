@@ -44,7 +44,7 @@ def main():
     v_real = [1.5, 0.1, 2.]  # Реальная наша функция
     #v0 = v_real  # TODO(you): взять поближеа
     
-    # Зашупленная функция
+    # Зашумленная функция
     for i in range(10):
         sigma = 0.01
         noise = random.normal(0, sigma, size=n)

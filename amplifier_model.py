@@ -70,7 +70,7 @@ def plot_ht():
     
         # Новая ось
         #generator.get_ox(num_points, minmax)
-        xDataSrc = linspace(0, x[-1], num_points)
+        xDataSrc = linspace(0, x[-1], num_points+1)
         yDataSrc = f(xDataSrc)
        
         return xDataSrc,  yDataSrc   
