@@ -1,14 +1,8 @@
 # coding: utf8
-from pylab import *
-from numpy import *
+from numpy import random
+from numpy import exp
+from numpy import sin
 from scipy.optimize import leastsq
-
-def get_ox(num_points, minmax):
-    """ Генератор осей Ох """
-    xmin = minmax[0]
-    xmax = minmax[1]
-    x = linspace(xmin, xmax, num_points)
-    return x
 
 def wrapper_for_finding_2l(v, x):
     return ht_2level(x, v[0], v[1])

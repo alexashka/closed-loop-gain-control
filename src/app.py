@@ -16,6 +16,7 @@ from app_math.simple_math_operators import XAxis
 
 
 
+
 def e(v, x, y):
     """ Error function. Очень важная. """
     return (generator.real_relation(v,x)-y)
@@ -90,11 +91,11 @@ def find_roots(diff_two_order):
     return roots_d_two
 
 def get_metro_and_axis():
-    T1 = 15
+    T1 = 5
     T2 = 20.0
     
     num_points = 1000
-    sigma = 0.01  # вообще нужно бы ограничить
+    sigma = 0.05  # вообще нужно бы ограничить
     frequency = 10.0  # Hz
     dx = 1/frequency
     x_obj = XAxis(num_points, dx)
@@ -105,7 +106,7 @@ def get_metro_and_axis():
     #plot(x, ht, color='#000000', lw=4)
     noise = generator.get_gauss_noise(sigma, num_points)
     metro_signal = ht+noise  # Как бы померенный сигнал
-    return metro_signal, x_obj, x
+    return metro_signal, x_obj, x, ht 
 
 def plot_ht():
     def lin_interpol_fan_curve(x, y, x_main):
@@ -119,7 +120,7 @@ def plot_ht():
         return yDataSrc   
     """ """
     
-    metro_signal, x_obj, x = get_metro_and_axis()
+    metro_signal, x_obj, x, i = get_metro_and_axis()
     # Смотрим что вышло
     plot(x, metro_signal,'b')
 
