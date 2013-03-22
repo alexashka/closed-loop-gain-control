@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/app.py=utf8
+encoding//src/dsp_modules/signal_generator.py=utf8
+encoding//src/trash/synteser_fir.py=utf8
 encoding/<project>=UTF-8

@@ -11,7 +11,7 @@ from scipy.optimize import leastsq
 import scipy.interpolate as interpolators
 
 # App 
-import signal_generator as generator
+import dsp_modules.signal_generator as generator
 from app_math.simple_math_operators import XAxis
 
 
