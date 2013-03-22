@@ -12,6 +12,7 @@ import scipy.interpolate as interpolators
 
 # App 
 import signal_generator as generator
+from app_math.simple_math_operators import XAxis
 
 
 
@@ -80,19 +81,21 @@ def plot_ht():
     
     num_points = 1000
     sigma = 0.03
-    minmax = [0, 100]
+    frequency = 10.0  # Hz
+    dx = 1/frequency
+    x_obj = XAxis(num_points, dx)
     
     # Begin()    
-    main_x_axis = generator.get_ox(num_points, minmax)
-    ht = generator.ht_2level(main_x_axis, T1, T2)
-    plot(main_x_axis, ht, color='#000000', lw=4)
+    x = x_obj.get_axis()
+    ht = generator.ht_2level(x, T1, T2)
+    plot(x, ht, color='#000000', lw=4)
     noise = generator.get_gauss_noise(sigma, num_points)
     metro_signal = ht+noise  # Как бы померенный сигнал
     
     # Смотрим что вышло
-    plot(main_x_axis, metro_signal,'b')
+    plot(x, metro_signal,'b')
 
-    
+    """
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
     decimated_x, decimated_y = decimate_ox(main_x_axis, metro_signal)
@@ -103,10 +106,10 @@ def plot_ht():
     plot(xDataSrc, yDataSrc,'r')
     
     # Продиффиренцировать
-    diff_first_order = diff(yDataSrc)#/*num_points
+    diff_first_order = calc_diff(yDataSrc)#/*num_points
     #plot(xDataSrc[:-1], diff_first_order,'r^')
     
-    diff_two_order = diff(diff_first_order)#/num_points
+    diff_two_order = calc_diff(diff_first_order)#/num_points
     #plot(xDataSrc[:-2], diff_two_order,'bv')
     
     roots_d_two = []
@@ -142,7 +145,7 @@ def plot_ht():
     for i in range(len(x0)):
         y = lin_line(main_x_axis, k_tan_alpha[i], b[i])
         #print y[:10], main_x_axis[:10]
-        plot(main_x_axis, y ,'r')
+        plot(main_x_axis, y ,'r')"""
     
 
 if __name__=="__main__":
