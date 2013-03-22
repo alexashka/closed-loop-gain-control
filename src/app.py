@@ -95,12 +95,13 @@ def plot_ht():
     # Смотрим что вышло
     plot(x, metro_signal,'b')
 
-    """
+    
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
-    decimated_x, decimated_y = decimate_ox(main_x_axis, metro_signal)
+    decimated_x, decimated_y = decimate_ox(x, metro_signal)
     plot(decimated_x, decimated_y,'rv')
     
+    """
     # Сгладить
     xDataSrc, yDataSrc = lin_interpol_fan_curve(decimated_x, decimated_y)  
     plot(xDataSrc, yDataSrc,'r')
