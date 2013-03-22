@@ -66,16 +66,18 @@ def lin_line(x, k, b):
 def cut_tangent(y):
     ymax = 1
     y_result = []
+    yes = False
     
     for yi in y:
         if yi < 0:
             y_result.append(0)
+            yes = True
         elif yi > ymax:
             y_result.append(1)
         else:
             y_result.append(yi)
             
-    return y_result
+    return y_result, yes
     
 def find_roots(diff_two_order):
     roots_d_two = []
@@ -102,7 +104,7 @@ def plot_ht():
     T2 = 20.0
     
     num_points = 1000
-    sigma = 0.01
+    sigma = 0.1  # вообще нужно бы ограничить
     frequency = 10.0  # Hz
     dx = 1/frequency
     x_obj = XAxis(num_points, dx)
@@ -115,7 +117,7 @@ def plot_ht():
     metro_signal = ht+noise  # Как бы померенный сигнал
     
     # Смотрим что вышло
-    #plot(x, metro_signal,'b')
+    plot(x, metro_signal,'b')
 
     
     # Нужно найти точку нулевого приближения
@@ -154,7 +156,7 @@ def plot_ht():
     k_tan_alpha = []
     x0 = []
     y0 = []
-    for at in roots_d_two[:1]:
+    for at in roots_d_two:
         k_tan_alpha.append(diff_first_order[at])
         x0.append(x[at])
         y0.append(y_smooth[at])
@@ -169,9 +171,12 @@ def plot_ht():
         b.append(y0[i]-k_tan_alpha[i]*x0[i])
     print b
     for i in range(len(x0)):
-        y = lin_line(x, k_tan_alpha[i], b[i])
-        plot(x, cut_tangent(y) ,'b')#
-    
+        if k_tan_alpha[i] > 0:
+            y = lin_line(x, k_tan_alpha[i], b[i])
+            y, yes = cut_tangent(y)
+            if yes:
+                plot(x, y ,'b')#
+        
 
 if __name__=="__main__":
     #main()
