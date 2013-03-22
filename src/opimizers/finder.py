@@ -3,6 +3,9 @@ from pylab import *
 from numpy import *
 from scipy.optimize import leastsq
 
+# App
+import app
+
 def real_relation(v, x):
     """ Известная зависимость 
     

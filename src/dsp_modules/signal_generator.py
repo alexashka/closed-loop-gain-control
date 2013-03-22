@@ -10,6 +10,9 @@ def get_ox(num_points, minmax):
     x = linspace(xmin, xmax, num_points)
     return x
 
+def wrapper_for_finding_2l(v, x):
+    return ht_2level(x, v[0], v[1])
+    
 def ht_2level(t, T1, T2):
     d = T1/T2
     return 1+d/(1-d)*exp(-t/T1)-1/(1-d)*exp(-t/T2)
