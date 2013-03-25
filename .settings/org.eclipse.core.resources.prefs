@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/app-cleaner.py=utf8
 encoding//src/app.py=utf8
 encoding//src/app_math/simple_math_operators.py=utf8
 encoding//src/dsp_modules/signal_generator.py=utf8

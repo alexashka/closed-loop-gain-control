@@ -1,8 +1,3 @@
-'''
-Created on 22.03.2013
-
-@author: 29613
-'''
 from numpy import log
 from numpy import ndarray
 from numpy import arange
