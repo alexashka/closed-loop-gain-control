@@ -1,18 +1,5 @@
 # coding: utf-8
 
-from pylab import plot
-from pylab import subplot
-from pylab import show
-from pylab import grid
-
-from numpy import ndarray
-from numpy import arange
-from numpy import angle
-from numpy import conj
-from numpy import real
-from numpy import imag
-from numpy import exp
-from numpy import pi
 
 T = 1
 
