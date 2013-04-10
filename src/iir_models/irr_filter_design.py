@@ -46,14 +46,23 @@ def impz(b,a=1):
     
 #Bandpass IIR
 
-b,a = signal.iirdesign(wp = [0.05, 0.3], ws= [0.02, 0.35], gstop= 60, gpass=1, ftype='ellip')
+b,a = signal.iirdesign(wp = [0.03, 0.3], ws= [0.02, 0.35], gstop= 60, gpass=1, ftype='ellip')
 
 mfreqz(b,a)
 
 figure(2)
 
 impz(b,a)
-"""
+
+
+"""b,a = signal.iirdesign(wp = [0.05, 0.3], ws= [0.02, 0.35], gstop= 60, gpass=1, ftype='ellip')
+
+mfreqz(b,a)
+
+figure(2)
+
+impz(b,a)
+
 def h(z):
     y = z+1/(z-0.7071)
     return y
