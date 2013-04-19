@@ -1,14 +1,14 @@
 import numpy as np
 from scipy import signal
 from numpy import exp
-
 from pylab import *
 
 def mfreqz(b,a):
     w, h = signal.freqz(b,a)
-    
     h_dB = 20 * log10 (abs(h))
     h_dB = abs(h)
+    
+    # Plot
     subplot(211)
     plot(w, h_dB)
     print min(h_dB), max(h_dB)
@@ -16,6 +16,8 @@ def mfreqz(b,a):
     ylabel('Magnitude (db)')
     xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
     title(r'Frequency response')
+    
+    # Plot
     subplot(212)
     h_Phase = unwrap(arctan2(imag(h),real(h)))
     plot(w/max(w),h_Phase)
@@ -24,6 +26,7 @@ def mfreqz(b,a):
     xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
     title(r'Phase response')
     subplots_adjust(hspace=0.5)
+    
     grid()
     show()
     
@@ -44,4 +47,9 @@ def impz(b,a=1):
     title(r'Step response')
     subplots_adjust(hspace=0.5)
     show()
+    
+    
+def plot_normalize_analog(T1, w_complex, Fs):
+    
+    pass
     

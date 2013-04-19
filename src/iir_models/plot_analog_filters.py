@@ -19,26 +19,29 @@ from numpy import pi
 from iir_models import plot_AFC
 from iir_models import plot_PFC
 
-
-def run(T1, w):
+def run(tau, freq, freq_sampling):
+    freq_sampling = float(freq_sampling)
+    w = 2*pi*freq  
+    w_complex = 1j*w
+    
     # Abs
-    y1 = plot_AFC(w, T1)  
+    y1 = plot_AFC(w_complex, tau)  
     subplot(2, 1, 1); 
-    plot(imag(w), y1); grid()
+    plot(imag(w_complex)/freq_sampling, y1); grid()
     
     # Angle
-    y2 = plot_PFC(w, T1)
-    subplot(2, 1, 2); plot(imag(w), y2); 
-    grid();
+    y2 = plot_PFC(w_complex, tau)
+    subplot(2, 1, 2); plot(imag(w_complex)/freq_sampling, y2); 
+    
+    grid()
     show()  
 
 if __name__ == "__main__":
-    F = arange(1000) # Hz 
-    w = 2*pi*F  
-    w_complex = 1j*w
-    T1 = .001
-    #K = 1
-    run(T1, w_complex)
+    freq = arange(1000) # Hz 
+    tau = .01
+    freq_sampling = 500  # Hz
+
+    run(tau, freq, freq_sampling)
     
     
     
