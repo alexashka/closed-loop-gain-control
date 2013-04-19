@@ -1,16 +1,8 @@
-# coding: utf-8
-
-"""
-
-Характеристики для цифрового фильтра
-
-"""
 import numpy as np
 from scipy import signal
 from numpy import exp
 
 from pylab import *
-
 
 def mfreqz(b,a):
     w, h = signal.freqz(b,a)
@@ -35,7 +27,7 @@ def mfreqz(b,a):
     grid()
     show()
     
-"""def impz(b,a=1):
+def impz(b,a=1):
     impulse = repeat(0.,50); impulse[0] =1.
     x = arange(0,50)
     response = signal.lfilter(b,a,impulse)
@@ -51,23 +43,5 @@ def mfreqz(b,a):
     xlabel(r'n (samples)')
     title(r'Step response')
     subplots_adjust(hspace=0.5)
-    show()"""
-
-
-"""Fd = 440.0
-T1 = 0.005
-a1 = -exp(-1/T1/Fd)
-print a1"""
-
-#a = [1.0, a1]
-#b = [1.0*(1+a1)]
-
-B = np.array([1.0]) 
-A = np.array([3.0, 1.0]) 
-b, a = signal.bilinear(B, A)
-
-#impz(b, a)
-mfreqz(b, a)
-
-
+    show()
     

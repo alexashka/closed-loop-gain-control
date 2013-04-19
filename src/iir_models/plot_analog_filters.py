@@ -10,24 +10,17 @@ from pylab import show
 from pylab import grid
 from numpy import ndarray
 from numpy import arange
-from numpy import angle
-from numpy import conj
-from numpy import real
+
 from numpy import imag
 from numpy import exp
 from numpy import pi
 
-def plot_AFC(w, T1):
-    y = 1/(1+w*T1)
-    y = real(conj(y)*y)**0.5
-    return y
+# App
+from iir_models import plot_AFC
+from iir_models import plot_PFC
 
-def plot_PFC(w, T1):
-    h = 1/(1+T1*w)
-    y = angle(h, deg=True) 
-    return y
 
-def main(T1, K, w):
+def run(T1, w):
     # Abs
     y1 = plot_AFC(w, T1)  
     subplot(2, 1, 1); 
@@ -44,8 +37,8 @@ if __name__ == "__main__":
     w = 2*pi*F  
     w_complex = 1j*w
     T1 = .001
-    K = 1
-    main(T1, K, w_complex)
+    #K = 1
+    run(T1, w_complex)
     
     
     
