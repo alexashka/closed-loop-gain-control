@@ -4,40 +4,40 @@ test_iir_filters
 
 '''
 # coding: utf8
-from pylab import plot
-from pylab import subplot
-from pylab import show
-from pylab import grid
 
-from numpy import ndarray
-from numpy import arange
-from numpy import angle
-from numpy import conj
-from numpy import real
-from numpy import imag
-from numpy import exp
-from numpy import pi
+from scipy import signal
+from pylab import *
+import numpy as np
 
-def plot_AFC(w, T1):
-      y = 
-    return y
 
-def plot_PFC(w, T1):
-    y = angle(1/(1+T1*w), deg=True) 
-    #y = angle((w), deg=True)
-    return y
-    # pass
+
+def plot_AFC(t):
+    y, x = 1/(1+(t)**2)**0.5
+     
+    x_dB = 20 * log10 (abs(x))
+    x_dB = abs(x)
+    subplot(211)
+    plot(y, x_dB)
+    print min(x_dB), max(x_dB)
+    ylim(min(x_dB), max(x_dB))
+    ylabel('Magnitude (db)')
+    xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
+    title(r'Frequency response')
+    subplot(212)
+    x_Phase = unwrap(arctan2(imag(x),real(x)))
+    plot(y/max(y),x_Phase)
+    grid()
+    ylabel('Phase (radians)')
+    xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
+    title(r'Phase response')
+    subplots_adjust(hspace=0.5)
+    grid()
+    show()
 
 #run   
-T1 = .01
-K = 1#0
-x = arange(100)/100.0
-y1 = plot_AFC(x, T1)  
-subplot(2, 1, 1); plot(x, y1); grid()
-y2 = plot_PFC(x, T1)
-subplot(2, 1, 2); plot(x, y2); grid()
-show()  
-
+B = np.array([1.0]) 
+A = np.array([3.0, 1.0]) 
+t=0.01
 # Ось должна быть e(-jwT)
  
-
+plot_AFC(t)

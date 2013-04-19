@@ -10,33 +10,11 @@ from scipy import signal
 from numpy import exp
 
 from pylab import *
-""""h, w = signal.freqz(a,b)
 
-import matplotlib.pyplot as plt
-fig = plt.figure()
-plt.title('Digital filter frequency response')
-ax1 = fig.add_subplot(111)
-
-plt.semilogy(w, np.abs(h), 'b')
-plt.ylabel('Amplitude (dB)', color='b')
-plt.xlabel('Frequency (rad/sample)')
-plt.grid()
-plt.legend()
-
-ax2 = ax1.twinx()
-angles = np.unwrap(np.angle(h))
-plt.plot(w, angles, 'g')
-plt.ylabel('Angle (radians)', color='g')
-plt.show()"""
 
 def mfreqz(b,a):
     w, h = signal.freqz(b,a)
     
-    #plot(w, abs(h))
-    
-    #print w, h
-    
-    #print h, w
     h_dB = 20 * log10 (abs(h))
     h_dB = abs(h)
     subplot(211)
@@ -57,7 +35,7 @@ def mfreqz(b,a):
     grid()
     show()
     
-def impz(b,a=1):
+"""def impz(b,a=1):
     impulse = repeat(0.,50); impulse[0] =1.
     x = arange(0,50)
     response = signal.lfilter(b,a,impulse)
@@ -73,44 +51,23 @@ def impz(b,a=1):
     xlabel(r'n (samples)')
     title(r'Step response')
     subplots_adjust(hspace=0.5)
-    show()
+    show()"""
 
-#a = exp(-0.0039)
-Fd = 440.0
-T1 = 0.01
+
+"""Fd = 440.0
+T1 = 0.005
 a1 = -exp(-1/T1/Fd)
-print a1
+print a1"""
 
+#a = [1.0, a1]
+#b = [1.0*(1+a1)]
 
-#print a
-a = [1.0, a1]
-b = [1.0*(1+a1)]
+B = np.array([1.0]) 
+A = np.array([3.0, 1.0]) 
+b, a = signal.bilinear(B, A)
 
-impz(b, a)
+#impz(b, a)
 mfreqz(b, a)
-
-'''
-h, w = signal.freqz(b,a)
-
-import matplotlib.pyplot as plt
-fig = plt.figure()
-plt.title('Digital filter frequency response')
-ax1 = fig.add_subplot(111)
-
-#plt.semilogy(w, np.abs(h), 'b')
-plt.plot(w, np.abs(h), 'b')
-plt.ylabel('Amplitude (dB)', color='b')
-plt.xlabel('Frequency (rad/sample)')
-plt.grid()
-plt.legend()
-
-ax2 = ax1.twinx()
-angles = np.unwrap(np.angle(h))
-plt.plot(w, angles, 'g')
-plt.ylabel('Angle (radians)', color='g')
-plt.show()'''
-
-
 
 
     
