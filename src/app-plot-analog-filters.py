@@ -16,18 +16,22 @@ from numpy import exp
 from numpy import pi
 
 # App
-from iir_models import plot_AFC
-from iir_models import plot_PFC
+from iir_models import af_order1
+from iir_models import af_order2_sym
 from visualisers import plot_normalize_analog
      
 
 if __name__ == "__main__":
     freq = arange(1000) # Hz 
-    tau = (.01)
+    settings = (.01)
     freq_sampling = 500  # Hz
+    af_function = af_order1
 
-    plot_normalize_analog(tau, freq, freq_sampling,
-                          plot_AFC, plot_PFC)
+    plot_normalize_analog(settings, af_function, freq, freq_sampling)
+    
+    af_function = af_order2_sym
+    plot_normalize_analog(settings, af_function, freq, freq_sampling)
+    grid()
     show() 
     print 'Done'
     

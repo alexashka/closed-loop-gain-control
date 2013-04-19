@@ -10,7 +10,13 @@ from app_math import to_dB
 
 def mfreqz(b,a):
     w, h = signal.freqz(b,a, worN=1000, whole=False)
+    _plotter_angle_and_abs(h, w)
 
+def mfreqz_2():
+    pass
+   
+    
+def _plotter_angle_and_abs(h, w):
     h_dB = to_dB(h)
     
     # Plot
@@ -52,22 +58,32 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(coeff_tuple, freq, freq_sampling, afc_cb, pfc_cb):
+def plot_normalize_analog(settings, af_cb, freq, freq_sampling):
 
     freq_sampling = float(freq_sampling)
     w = 2*pi*freq  
     w_complex = 1j*w
     
     # Abs
-    y1 = afc_cb(w_complex, coeff_tuple)
-    y_dB = to_dB(y1)
-    subplot(2, 1, 1); 
+    y1 = _plot_AFC(w_complex, settings, af_cb)
+    y_dB = to_dB(y1*y1)
+    subplot(2, 1, 1); grid()
     plot(imag(w_complex)/freq_sampling, y_dB); grid()
     xlim(0, pi)
     
     # Angle
-    y2 = pfc_cb(w_complex, coeff_tuple)
-    subplot(2, 1, 2); plot(imag(w_complex)/freq_sampling, y2); 
+    y2 = _plot_PFC(w_complex, settings, af_cb)
+    subplot(2, 1, 2); grid()
+    plot(imag(w_complex)/freq_sampling, y2); 
     xlim(0, pi)
-    grid()
+
+def _plot_AFC(w, settings, af_cb):
+    y = af_cb(w, settings)
+    y = real(conj(y)*y)**0.5
+    return y
+
+def _plot_PFC(w, settings, af_cb):
+    h = af_cb(w, settings)
+    y = angle(h, deg=False) 
+    return y
     

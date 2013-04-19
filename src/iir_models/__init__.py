@@ -2,20 +2,11 @@ from numpy import angle
 from numpy import conj
 from numpy import real
 
-def plot_AFC(w, T1):
-    T1 = float(T1)
-    """ 
-    H(s) = 1/(1+tau*s)
-    """
-    y = 1/(1+w*T1)
-    y = real(conj(y)*y)**0.5
+def af_order1(w_complex, settings_tuple):
+    T = float(settings_tuple)
+    y = 1/(1+w_complex*T)
     return y
 
-def plot_PFC(w, T1):
-    """ 
-    H(s) = 1/(1+tau*s)
-    """
-    T1 = float(T1)
-    h = 1/(1+T1*w)
-    y = angle(h, deg=False) 
+def af_order2_sym(w_complex, settings_tuple):
+    y = af_order1(w_complex, settings_tuple)*af_order1(w_complex, settings_tuple)
     return y
