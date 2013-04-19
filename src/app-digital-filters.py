@@ -27,9 +27,7 @@ if __name__=='__main__':
     freq = arange(10000)*0.01 # Hz 
     freq_sampling = 5  # Hz
 
-    plot_normalize_analog(tau, freq, freq_sampling,
-                          plot_AFC, plot_PFC)
-    
+    plot_normalize_analog(tau, freq, freq_sampling, plot_AFC, plot_PFC)
     
     # Синтез цифрового фильта
     b_analog = np.array([1.0]) 

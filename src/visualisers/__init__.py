@@ -3,13 +3,15 @@ from scipy import signal
 from numpy import exp
 from pylab import *
 
+# App
+from app_math import to_dB
+
 
 
 def mfreqz(b,a):
     w, h = signal.freqz(b,a, worN=1000, whole=False)
 
-    #h_dB = 20 * log10 (abs(h))
-    h_dB = abs(h)
+    h_dB = to_dB(h)
     
     # Plot
     subplot(211)
@@ -57,12 +59,15 @@ def plot_normalize_analog(coeff_tuple, freq, freq_sampling, afc_cb, pfc_cb):
     w_complex = 1j*w
     
     # Abs
-    y1 = afc_cb(w_complex, coeff_tuple)  
+    y1 = afc_cb(w_complex, coeff_tuple)
+    y_dB = to_dB(y1)
     subplot(2, 1, 1); 
-    plot(imag(w_complex)/freq_sampling, y1); grid()
+    plot(imag(w_complex)/freq_sampling, y_dB); grid()
+    xlim(0, pi)
     
     # Angle
     y2 = pfc_cb(w_complex, coeff_tuple)
     subplot(2, 1, 2); plot(imag(w_complex)/freq_sampling, y2); 
+    xlim(0, pi)
     grid()
     
