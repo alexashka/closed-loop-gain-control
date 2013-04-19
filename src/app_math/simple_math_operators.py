@@ -8,9 +8,11 @@ import numpy
 class XAxis(object):
     _dx = None
     _axis = None
+    _num_points = None
     def __init__(self, num_points, dx):
         self._dx = dx
         self._axis = numpy.arange(num_points)*self._dx
+        self._num_points = num_points
         
     def get_dx(self):
         return self._dx
@@ -20,6 +22,9 @@ class XAxis(object):
     
     def calc_diff(self, y):
         return numpy.diff(y, 1)/self.get_dx()
+    
+    def get_num_points(self):
+        return self._num_points
     
     
 def main():

@@ -11,8 +11,9 @@ from scipy.optimize import leastsq
 import scipy.interpolate as interpolators
 
 # App 
-import signal_generator as generator
+import dsp_modules.signal_generator as generator
 from app_math.simple_math_operators import XAxis
+
 
 
 
@@ -63,24 +64,38 @@ def lin_line(x, k, b):
     y = k*x+b
     return y
 
-def plot_ht():
-    def lin_interpol_fan_curve(x, y):
-        """ linear interp. air curve"""
-        # Линейная
-        f = interpolators.interp1d(x, y, kind='cubic')
+def cut_tangent(y):
+    ymax = 1
+    y_result = []
+    yes = False
     
-        # Новая ось
-        #generator.get_ox(num_points, minmax)
-        xDataSrc = linspace(0, x[-1], num_points+1)
-        yDataSrc = f(xDataSrc)
-       
-        return xDataSrc,  yDataSrc   
-    """ """
-    T1 = 15
+    for yi in y:
+        if yi < 0:
+            y_result.append(0)
+            yes = True
+        elif yi > ymax:
+            y_result.append(1)
+        else:
+            y_result.append(yi)
+            
+    return y_result, yes
+    
+def find_roots(diff_two_order):
+    roots_d_two = []
+    for j in range(len(diff_two_order)):
+        if j < len(diff_two_order)-1:
+            mult_ = diff_two_order[j]*diff_two_order[j+1]*1e+12
+            if mult_ < 0:
+                roots_d_two.append(j)
+                
+    return roots_d_two
+
+def get_metro_and_axis():
+    T1 = 5
     T2 = 20.0
     
     num_points = 1000
-    sigma = 0.03
+    sigma = 0.05  # вообще нужно бы ограничить
     frequency = 10.0  # Hz
     dx = 1/frequency
     x_obj = XAxis(num_points, dx)
@@ -88,65 +103,85 @@ def plot_ht():
     # Begin()    
     x = x_obj.get_axis()
     ht = generator.ht_2level(x, T1, T2)
-    plot(x, ht, color='#000000', lw=4)
+    #plot(x, ht, color='#000000', lw=4)
     noise = generator.get_gauss_noise(sigma, num_points)
     metro_signal = ht+noise  # Как бы померенный сигнал
+    return metro_signal, x_obj, x, ht 
+
+def plot_ht():
+    def lin_interpol_fan_curve(x, y, x_main):
+        """ linear interp. air curve"""
+        # Линейная
+        f = interpolators.interp1d(x, y, kind='cubic')
     
+        # Новая ось
+        yDataSrc = f(x_main)
+       
+        return yDataSrc   
+    """ """
+    
+    metro_signal, x_obj, x, i = get_metro_and_axis()
     # Смотрим что вышло
     plot(x, metro_signal,'b')
 
-    """
+    
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
-    decimated_x, decimated_y = decimate_ox(main_x_axis, metro_signal)
-    plot(decimated_x, decimated_y,'rv')
+    decimated_x, decimated_y = decimate_ox(x, metro_signal)
+    decimated_x.append(x[-1])
+    decimated_y.append(metro_signal[-1])
+    #plot(decimated_x, decimated_y,'rv')
+    
     
     # Сгладить
-    xDataSrc, yDataSrc = lin_interpol_fan_curve(decimated_x, decimated_y)  
-    plot(xDataSrc, yDataSrc,'r')
+    y_smooth = lin_interpol_fan_curve(decimated_x, decimated_y, x)  
+    plot(x, y_smooth,'r')
+    
     
     # Продиффиренцировать
-    diff_first_order = calc_diff(yDataSrc)#/*num_points
-    #plot(xDataSrc[:-1], diff_first_order,'r^')
+    diff_first_order = x_obj.calc_diff(y_smooth)
+    #plot(x[:-1], diff_first_order,'r^')
     
-    diff_two_order = calc_diff(diff_first_order)#/num_points
-    #plot(xDataSrc[:-2], diff_two_order,'bv')
+    diff_two_order = x_obj.calc_diff(diff_first_order)
+    #plot(x[:-2], diff_two_order,'bv')
     
-    roots_d_two = []
+    #"""
+    roots_d_two = find_roots(diff_two_order)
     # Если меняется знак - первое корень
-    for j in range(len(diff_two_order)):
-        if j < len(diff_two_order)-1:
-            mult_ = diff_two_order[j]*diff_two_order[j+1]*1e+12
-            if mult_ < 0:
-                roots_d_two.append(j)
+
        
     #print roots_d_two  
     for at in roots_d_two:    
-        plot(xDataSrc[at], 0,'go')
+        plot(x[at], 0,'go')
         pass
-        
+     
+    #
+      
     # Находим параметы кривой производной
     k_tan_alpha = []
     x0 = []
     y0 = []
     for at in roots_d_two:
-        k_tan_alpha.append(diff_first_order[at]*15)
-        x0.append(main_x_axis[at])
-        y0.append(yDataSrc[at])
+        k_tan_alpha.append(diff_first_order[at])
+        x0.append(x[at])
+        y0.append(y_smooth[at])
         
     print k_tan_alpha
     plot(x0, y0,'go')
     
+     
     # Поиск Bi
     b = []
     for i in range(len(x0)):
-       b.append(y0[i]-k_tan_alpha[i]*x0[i])
+        b.append(y0[i]-k_tan_alpha[i]*x0[i])
     print b
     for i in range(len(x0)):
-        y = lin_line(main_x_axis, k_tan_alpha[i], b[i])
-        #print y[:10], main_x_axis[:10]
-        plot(main_x_axis, y ,'r')"""
-    
+        if k_tan_alpha[i] > 0:
+            y = lin_line(x, k_tan_alpha[i], b[i])
+            y, yes = cut_tangent(y)
+            if yes:
+                plot(x, y ,'b')#
+        
 
 if __name__=="__main__":
     #main()
