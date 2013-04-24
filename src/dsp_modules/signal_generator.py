@@ -9,7 +9,7 @@ def wrapper_for_finding_2l(v, x):
     
 def ht_2level(t, T1, T2):
     d = T1/T2
-    return 1+d/(1-d)*exp(-t/T1)-1/(1-d)*exp(-t/T2)
+    return 1-d/(1-d)*exp(-t/T1)+1/(1-d)*exp(-t/T2)
     
 def get_gauss_noise(sigma, num_points):
     """ Белый гауссовский центрированный шум с заданной сигмой."""
