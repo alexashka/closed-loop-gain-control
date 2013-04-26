@@ -40,7 +40,7 @@ if __name__=='__main__':
     # TODO(): перемножение полиномов
     
     b, a = signal.bilinear(b_analog, a_analog, fs=freq_sampling)
-    #print b, a
+    print  a
     
     #impz(b, a)
     mfreqz(b, a)

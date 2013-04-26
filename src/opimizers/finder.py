@@ -23,7 +23,7 @@ def main():
     T2 = 20.0
     v0 = [T1, T2]  # Initial parameter value
     #v_real = [1.5, 0.1]  # Реальная наша функция
-    #v0 = v_real  # TODO(you): взять поближеа
+    #v0 = v_real  # TODO(you): взять поближе
     
     # Зашумленная функция
     y = metro_signal
