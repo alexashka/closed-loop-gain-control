@@ -21,13 +21,16 @@ from iir_models import af_order2_sym
 from visualisers import plot_normalize_analog
      
 
-if __name__ == "__main__":
+
+def analog_filter_plot():
+    
     freq = arange(1000) # Hz 
-    settings = (.01)
+    settings = (0.007, 0.002)
     freq_sampling = 500  # Hz
     af_function = af_order1
-
-    plot_normalize_analog(settings, af_function, freq, freq_sampling)
+    
+    plot_normalize_analog(settings[0], af_function, freq, freq_sampling)
+    plot_normalize_analog(settings[1], af_function, freq, freq_sampling)
     
     af_function = af_order2_sym
     plot_normalize_analog(settings, af_function, freq, freq_sampling)
@@ -35,6 +38,8 @@ if __name__ == "__main__":
     show() 
     print 'Done'
     
+if __name__ == "__main__":
     
-    
+    analog_filter_plot()
+    pass
     
