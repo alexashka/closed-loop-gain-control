@@ -1,22 +1,60 @@
 # coding: utf8
 
-#from pylab import plot
-#from pylab import show
+from pylab import plot
+from pylab import show
+from pylab import grid
+
+
+# Other
+import dals.os_io.io_wrapper as dal
+
+# App
 import dsp_modules.signal_generator as gen
 
-import uasio.os_io.io_wrapper as dal
-
 if __name__=='__main__':
+    # rpt
+    #coeff_decimation = 10;
+    #num_column_in_rpt = 20;
+    #rpt = []
+    
+    #
+    voltage_agc_ref = 1.2  # V - AGC - auto gain control
+    dv_ref = 0.1  # V - тестовый скачек
+    temperature_ref = 60  # oC
+    
     # Задаем начальные параметры
-    num_column_in_rpt = 20;
-    rpt = []
-    Fs = 1.0  # Hz
-    count_metro = 10
-    sigma = 0.05
-    num_points = num_column_in_rpt
+    # Постоянные времени измеряются секундами, поэтому частота дискретизации
+    #   должна быть в районе одного Гц. Применим oversampling пусть частота будет 100 Гц.
+    #
+    # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
+    # время 3tau = 3*5
+    window_metro = 15.0  # sec.
+    
+    
+    Fs = 100.0  # freq. sampling - Hz ; with oversampling
+    sigma = 0.1
+    num_points = window_metro*Fs
+    print "num_points: ", num_points
+    count_iteration_metro = 2
+    
+    for metro in range(count_iteration_metro):
+        dt = 0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        max_dtemperature = 3  # фиктивный       
+        
+        T1 = 1.4  # sec.
+        T2 = 2.0  # sec.
+        t = gen.get_axis(Fs, num_points)
+        curve = gen.ht_2level(t, T1, T2)*max_dtemperature
+
+        # Добавляем шум
+        curve += gen.get_gauss_noise(sigma, num_points)
+        plot(t, curve)
+    show()
+    grid()
     
     # Рассчитываем незашумленную кривую
     
+    """
     # Для каждого из опытов
     sum = ''
     first_line_rpt = ''
@@ -49,7 +87,7 @@ if __name__=='__main__':
      
     def printer(msg):
         print msg
-    map(printer, rpt)
+    #map(printer, rpt)
     
     sets = {}
     #dal.
@@ -58,5 +96,5 @@ if __name__=='__main__':
     sets['coding'] = 'utf8'
     dal.list2file(sets, rpt)
         
-    
+    """
     print 'Done'

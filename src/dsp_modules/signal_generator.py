@@ -2,6 +2,7 @@
 from numpy import random
 from numpy import exp
 from numpy import sin
+from numpy import arange
 from scipy.optimize import leastsq
 
 def wrapper_for_finding_2l(v, x):
@@ -28,6 +29,11 @@ def real_relation(v, x):
     """
     y = v[0]*v[1]*sin(v[2]*x)
     return  y 
+
+def get_axis(Fs, num_points):
+    Fs *= 1.0
+    x = arange(0,num_points)
+    return x*1.0/Fs
     
 if __name__=="__main__":
     #main()
