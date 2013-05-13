@@ -11,6 +11,19 @@ def wrapper_for_finding_2l(v, x):
 def ht_2level(t, T1, T2):
     d = T1/T2
     return 1+d/(1-d)*exp(-t/T1)-1/(1-d)*exp(-t/T2)
+
+def ht_2level_del(t, T1, T2, dt=0.0):
+    dt *= 1.0
+    d = T1/T2
+    y = 1+d/(1-d)*exp(-(t-dt)/T1)-1/(1-d)*exp(-(t-dt)/T2)
+    ptr = 0
+    while True:
+        if t[ptr]-dt > 0.0:
+            break
+        y[ptr] = 0
+        ptr += 1
+        
+    return y
     
 def get_gauss_noise(sigma, num_points):
     """ Белый гауссовский центрированный шум с заданной сигмой."""

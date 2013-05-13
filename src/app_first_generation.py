@@ -32,25 +32,27 @@ if __name__=='__main__':
     
     
     Fs = 100.0  # freq. sampling - Hz ; with oversampling
-    sigma = 0.1
+    
     num_points = window_metro*Fs
     print "num_points: ", num_points
-    count_iteration_metro = 2
+    count_iteration_metro = 5
+    sigma = 0.1  # зашумленность сигнала
     
     for metro in range(count_iteration_metro):
-        dt = 0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        dt = metro  # рандомное реально, но сперва нужно проверить алгоритм оценивания
         max_dtemperature = 3  # фиктивный       
         
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
         t = gen.get_axis(Fs, num_points)
-        curve = gen.ht_2level(t, T1, T2)*max_dtemperature
+        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature
 
         # Добавляем шум
-        curve += gen.get_gauss_noise(sigma, num_points)
+        curve += gen.get_gauss_noise(sigma, num_points)+temperature_ref
         plot(t, curve)
-    show()
     grid()
+    show()
+    
     
     # Рассчитываем незашумленную кривую
     
