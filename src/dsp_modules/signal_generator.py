@@ -5,7 +5,7 @@ from numpy import sin
 from numpy import arange
 from scipy.optimize import leastsq
 
-def ht_2level_del_full(t, T1, T2, dt=0.0, k=1.0):
+def ht_2level_del_full(t, T1, T2, dt=0.0, k=1.0, dy=0.0):
     k *= 1.0
     dt *= 1.0
     d = T1/T2
@@ -16,7 +16,7 @@ def ht_2level_del_full(t, T1, T2, dt=0.0, k=1.0):
             break
         y[ptr] = 0
         ptr += 1
-    return y*k
+    return y*k+dy
 
     
 def wrapper_for_finding_2l(v, x):
@@ -26,7 +26,7 @@ def wrapper_for_finding_2l_del(v, x):
     return ht_2level_del_full(x, v[0], v[1], v[2])
 
 def wrapper_for_finding_2l_del_full(v, x):
-    return ht_2level_del_full(x, v[0], v[1], v[2], v[3])
+    return ht_2level_del_full(x, v[0], v[1], v[2], v[3], v[4])
 
     
 def ht_2level(t, T1, T2, dt=0):

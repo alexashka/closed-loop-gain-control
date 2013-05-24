@@ -20,7 +20,7 @@ def get_list_curves(
                     axis, 
                     noise, 
                     count_iteration_metro):
-    temperature_ref = 0  # DEVELOP
+    temperature_ref = 70  # DEVELOP
     curves = []
     for metro in range(count_iteration_metro):
         dt = 2.0*(metro+1)  # рандомное реально, но сперва нужно проверить алгоритм оценивания
@@ -77,7 +77,7 @@ if __name__=='__main__':
             T1 = 5.0
             T2 = 1.0
             dt = 0.0
-            v0 = [T1, T2, dt, 3.0]  # Initial parameter value
+            v0 = [T1, T2, dt, 3.0, 70.0]  # Initial parameter value
             v_result = run_approximation(metro_signal, axis, v0, e_del_full)
             print v_result
             
