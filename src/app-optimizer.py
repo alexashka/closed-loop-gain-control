@@ -14,43 +14,10 @@ import scipy.interpolate as interpolators
 import dsp_modules.signal_generator as generator
 from app_math.simple_math_operators import XAxis
 
-
-
-
 def e(v, x, y):
     """ Error function. Очень важная. """
     return (generator.real_relation(v,x)-y)
-
-
-
-""""def main():
-    # Plot
-    def plot_fit(nun_points):
-        print 'Estimater parameters: ', v
-        print 'Real parameters: ', v_real
-        x_precise = get_ox(nun_points)
-        plot(x, y,'ro', x_precise, real_relation(v, x_precise))
-    
-    # Поучаем ось
-    n = 50
-    x = get_ox(n)
-    
-    # Параметры функции и начальная точка поиска
-    v0 = [1.5, .1, 2.3]  # Initial parameter value
-    v_real = [1.5, 0.1, 2.]  # Реальная наша функция
-    #v0 = v_real  # TODO(you): взять поближеа
-    
-    # Зашупленная функция
-    for i in range(10):
-        sigma = 0.01
-        noise = random.normal(0, sigma, size=n)
-        y = real_relation(v_real, x)+noise
-        v, success = leastsq(e, v0, args=(x,y), maxfev=10000)
-        plot_fit(n*5)
-    
-    #
-    show()"""
-    
+   
 def decimate_ox(ox, metro_signal):
     result_x = []
     result_y = []
@@ -123,7 +90,7 @@ def plot_ht():
     metro_signal, x_obj, x, i = get_metro_and_axis()
     # Смотрим что вышло
     plot(x, metro_signal,'b')
-
+    return
     
     # Нужно найти точку нулевого приближения
     # Выделим некотороые отсчеты
