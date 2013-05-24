@@ -5,12 +5,28 @@ from numpy import sin
 from numpy import arange
 from scipy.optimize import leastsq
 
+def ht_2level_del_full(t, T1, T2, dt=0.0, k=1.0, dy=0.0):
+    k *= 1.0
+    dt *= 1.0
+    d = T1/T2
+    y = (1+d/(1-d)*exp(-(t-dt)/T1)-1/(1-d)*exp(-(t-dt)/T2))
+    ptr = 0
+    while True:
+        if t[ptr]-dt > 0.0:
+            break
+        y[ptr] = 0
+        ptr += 1
+    return y*k+dy
+
+    
 def wrapper_for_finding_2l(v, x):
     return ht_2level(x, v[0], v[1])
 
-def wrapper_for_finding_2l_full(v, x):
-    #return ht_2level_full(x, v[0], v[1], v[2], v[3])
-    return ht_2level(x, v[0], v[1], v[2])
+def wrapper_for_finding_2l_del(v, x):
+    return ht_2level_del_full(x, v[0], v[1], v[2])
+
+def wrapper_for_finding_2l_del_full(v, x):
+    return ht_2level_del_full(x, v[0], v[1], v[2], v[3], v[4])
 
     
 def ht_2level(t, T1, T2, dt=0):
@@ -30,20 +46,7 @@ def ht_2level_del(t, T1, T2, dt=0.0):
         
     return y
 
-def ht_2level_del_full(t, T1, T2, dt=0.0, k=1.0):
-    k *= 0
-    dt *= 1.0
-    d = T1/T2
-    y = 1+d/(1-d)*exp(-(t-dt)/T1)-1/(1-d)*exp(-(t-dt)/T2)
-    ptr = 0
-    while True:
-        if t[ptr]-dt > 0.0:
-            break
-        y[ptr] = 0
-        ptr += 1
-        
-    return y
-    #return 1+d/(1-d)*exp(-(t-dt)/T1)-1/(1-d)*exp(-(t-dt)/T2)
+
 
     
 def get_gauss_noise(sigma, num_points):
@@ -73,6 +76,12 @@ def get_axis(Fs, num_points):
 def e(v, x, y):
     """ Error function. Очень важная. """
     return (wrapper_for_finding_2l(v,x)-y)
+
+def e_del(v, x, y):
+    return (wrapper_for_finding_2l_del(v, x)-y)
+
+def e_del_full(v, x, y):
+    return (wrapper_for_finding_2l_del_full(v, x)-y)
     
 if __name__=="__main__":
     #main()
