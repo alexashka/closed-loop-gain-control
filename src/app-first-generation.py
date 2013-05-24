@@ -10,7 +10,28 @@ import dals.os_io.io_wrapper as dal
 
 # App
 import dsp_modules.signal_generator as gen
+from app_math.simple_math_operators import XAxis
 
+def get_list_curves(axis):
+    curves = []
+    for metro in range(count_iteration_metro):
+        dt = 2*metro*0.5  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        max_dtemperature = 3  # фиктивный       
+        
+        T1 = 1.4  # sec.
+        T2 = 2.0  # sec.
+        t = axis.get_axis()
+        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature
+
+        # Добавляем шум
+        curve += gen.get_gauss_noise(sigma, num_points)+temperature_ref
+        
+        curves.append(curve)
+        #plot(t, curve)
+    #grid()
+    #show()
+    
+    
 if __name__=='__main__':
     # rpt
     #coeff_decimation = 10;
@@ -30,32 +51,19 @@ if __name__=='__main__':
     # время 3tau = 3*5
     tau = 5.0  # оценочное врем переходный процессов
     window_metro = tau*3  # sec.
-    
-    
     Fs = 100.0  # freq. sampling - Hz ; with oversampling
-    
+
     num_points = window_metro*Fs
     print "num_points: ", num_points
     count_iteration_metro = 2
     sigma = 0.1  # зашумленность сигнала
-    curves = []
     
-    for metro in range(count_iteration_metro):
-        dt = 2*metro*0.5  # рандомное реально, но сперва нужно проверить алгоритм оценивания
-        max_dtemperature = 3  # фиктивный       
-        
-        T1 = 1.4  # sec.
-        T2 = 2.0  # sec.
-        t = gen.get_axis(Fs, num_points)
-        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature
+    axis = XAxis(num_points, 1/Fs)
+    curves = get_list_curves(axis)
+    
+    # Обрабатываем одну кривую
+    
 
-        # Добавляем шум
-        curve += gen.get_gauss_noise(sigma, num_points)+temperature_ref
-        
-        curves.append(curve)
-        plot(t, curve)
-    grid()
-    show()
     
     """
     for curve in curves:

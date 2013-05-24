@@ -57,23 +57,7 @@ def find_roots(diff_two_order):
                 
     return roots_d_two
 
-def get_metro_and_axis():
-    T1 = 5
-    T2 = 20.0
-    
-    num_points = 1000
-    sigma = 0.05  # вообще нужно бы ограничить
-    frequency = 10.0  # Hz
-    dx = 1/frequency
-    x_obj = XAxis(num_points, dx)
-    
-    # Begin()    
-    x = x_obj.get_axis()
-    ht = generator.ht_2level(x, T1, T2)
-    #plot(x, ht, color='#000000', lw=4)
-    noise = generator.get_gauss_noise(sigma, num_points)
-    metro_signal = ht+noise  # Как бы померенный сигнал
-    return metro_signal, x_obj, x, ht 
+
 
 def plot_ht():
     def lin_interpol_fan_curve(x, y, x_main):
@@ -87,7 +71,7 @@ def plot_ht():
         return yDataSrc   
     """ """
     
-    metro_signal, x_obj, x, i = get_metro_and_axis()
+    metro_signal, x_obj, x, ideal = get_metro_and_axis()
     # Смотрим что вышло
     plot(x, metro_signal,'b')
     return

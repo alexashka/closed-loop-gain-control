@@ -1,12 +1,13 @@
 # coding: utf8
 from pylab import plot
 from pylab import show
+from pylab import grid
 from numpy import random
 from scipy.optimize import leastsq
 
 # App
-import app
 from dsp_modules.signal_generator import wrapper_for_finding_2l
+from dsp_modules.signal_templates import get_metro_and_axis
 
 def e(v, x, y):
     """ Error function. Очень важная. """
@@ -15,7 +16,8 @@ def e(v, x, y):
 
 def main():  
     # Поучаем ось
-    metro_signal, x_obj, x, real = app.get_metro_and_axis()
+    metro_signal, x_obj, ideal = get_metro_and_axis()
+    x = x_obj.get_axis()
     n = x_obj.get_num_points()
     
     # Параметры функции и начальная точка поиска
@@ -27,15 +29,16 @@ def main():
     
     # Зашумленная функция
     y = metro_signal
-    plot(x, y,'b')
-    plot(x, wrapper_for_finding_2l(v0, x),'r')
-    plot(x, real,'y')
     v, success = leastsq(e, v0, args=(x,y), maxfev=10000)
+    
     print v
+    plot(x, y,'b')
+    #plot(x, wrapper_for_finding_2l(v0, x),'r')
+    plot(x, ideal,'y')
     plot(x, wrapper_for_finding_2l(v, x),'g')
 
     #
-    show()
+    show(); grid()
 
 if __name__=="__main__":
     main()
