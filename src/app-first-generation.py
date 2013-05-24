@@ -11,9 +11,9 @@ import dals.os_io.io_wrapper as dal
 # App
 import dsp_modules.signal_generator as gen
 from app_math.simple_math_operators import XAxis
-from dsp_modules.signal_generator import wrapper_for_finding_2l
+from dsp_modules.signal_generator import wrapper_for_finding_2l_del_full
 from dsp_modules.signal_templates import get_metro_and_axis
-from dsp_modules.signal_generator import e
+from dsp_modules.signal_generator import e_del_full
 from opimizers import run_approximation
 
 def get_list_curves(
@@ -23,8 +23,8 @@ def get_list_curves(
     temperature_ref = 0  # DEVELOP
     curves = []
     for metro in range(count_iteration_metro):
-        dt = 2*metro*0.5  # рандомное реально, но сперва нужно проверить алгоритм оценивания
-        max_dtemperature = 1#3  # фиктивный       
+        dt = 2.0*(metro+1)  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        max_dtemperature = 3  # фиктивный       
         
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
@@ -36,7 +36,7 @@ def get_list_curves(
 
         # Сохраняем кривую
         curves.append(curve)
-        return curves
+    return curves
  
     
 if __name__=='__main__':
@@ -57,13 +57,13 @@ if __name__=='__main__':
         #
         # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
         # время 3tau = 3*5
-        tau = 5.0  # оценочное врем переходный процессов
+        tau = 8.0  # оценочное врем переходный процессов
         window_metro = tau*3  # sec.
         Fs = 100.0  # freq. sampling - Hz ; with oversampling
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 1#2
+        count_iteration_metro = 2
         sigma = 0.05  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
@@ -72,17 +72,20 @@ if __name__=='__main__':
         
         # Обрабатываем одну кривую
         # Поучаем ось
-        metro_signal, ideal = curves[0], None
-        T1 = 5.0
-        T2 = 1.0
-        v0 = [T1, T2]  # Initial parameter value
-        v_result = run_approximation(metro_signal, axis, v0, e)
-        print v_result
+        for curve in curves:
+            metro_signal, ideal = curve, None
+            T1 = 5.0
+            T2 = 1.0
+            dt = 0.0
+            v0 = [T1, T2, dt, 3.0]  # Initial parameter value
+            v_result = run_approximation(metro_signal, axis, v0, e_del_full)
+            print v_result
+            
+            # Plotting
+            x = axis.get_axis()
+            plot(x, metro_signal,'b')
+            plot(x, wrapper_for_finding_2l_del_full(v_result, x),'g')
         
-        # Plotting
-        x = axis.get_axis()
-        plot(x, metro_signal,'b')
-        plot(x, wrapper_for_finding_2l(v_result, x),'g')
         grid(); show()
     
         
