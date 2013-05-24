@@ -58,7 +58,7 @@ if __name__=='__main__':
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 2
+        count_iteration_metro = 1#2
         sigma = 0.05  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
