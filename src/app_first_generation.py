@@ -28,7 +28,8 @@ if __name__=='__main__':
     #
     # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
     # время 3tau = 3*5
-    window_metro = 15.0  # sec.
+    tau = 5.0  # оценочное врем переходный процессов
+    window_metro = tau*3  # sec.
     
     
     Fs = 100.0  # freq. sampling - Hz ; with oversampling
@@ -37,9 +38,10 @@ if __name__=='__main__':
     print "num_points: ", num_points
     count_iteration_metro = 5
     sigma = 0.1  # зашумленность сигнала
+    curves = []
     
     for metro in range(count_iteration_metro):
-        dt = metro  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        dt = metro*0.5  # рандомное реально, но сперва нужно проверить алгоритм оценивания
         max_dtemperature = 3  # фиктивный       
         
         T1 = 1.4  # sec.
@@ -49,9 +51,18 @@ if __name__=='__main__':
 
         # Добавляем шум
         curve += gen.get_gauss_noise(sigma, num_points)+temperature_ref
-        plot(t, curve)
-    grid()
-    show()
+        
+        curves.append(curve)
+        #plot(t, curve)
+    #grid()
+    #show()
+    
+    for curve in curves:
+        curve -= temperature_ref
+        # Оценка начального уровня его придется как-то отдельно
+        # берем время в 1tau
+        num_points = tau*Fs
+        curves[-num_points]
     
     
     # Рассчитываем незашумленную кривую
