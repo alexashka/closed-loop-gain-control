@@ -11,6 +11,10 @@ import dals.os_io.io_wrapper as dal
 # App
 import dsp_modules.signal_generator as gen
 from app_math.simple_math_operators import XAxis
+from dsp_modules.signal_generator import wrapper_for_finding_2l
+from dsp_modules.signal_templates import get_metro_and_axis
+from dsp_modules.signal_generator import e
+from opimizers import run_approximation
 
 def get_list_curves(
                     axis, 
@@ -29,9 +33,10 @@ def get_list_curves(
 
         # Добавляем шум
         curve += noise+temperature_ref
-        
+
+        # Сохраняем кривую
         curves.append(curve)
-        plot(t, curve)  # DEVELOP
+        return curves
  
     
 if __name__=='__main__':
@@ -64,11 +69,21 @@ if __name__=='__main__':
         axis = XAxis(num_points, 1/Fs)
         noise = gen.get_gauss_noise(sigma, num_points)
         curves = get_list_curves(axis, noise, count_iteration_metro)
-        grid()
-        show()
         
         # Обрабатываем одну кривую
+        # Поучаем ось
+        metro_signal, ideal = curves[0], None
+        T1 = 5.0
+        T2 = 1.0
+        v0 = [T1, T2]  # Initial parameter value
+        v_result = run_approximation(metro_signal, axis, v0, e)
+        print v_result
         
+        # Plotting
+        x = axis.get_axis()
+        plot(x, metro_signal,'b')
+        plot(x, wrapper_for_finding_2l(v_result, x),'g')
+        grid(); show()
     
         
         """

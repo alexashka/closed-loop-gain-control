@@ -68,6 +68,11 @@ def get_axis(Fs, num_points):
     Fs *= 1.0
     x = arange(0,num_points)
     return x*1.0/Fs
+
+""" Функыии ошибок для оптимизации """
+def e(v, x, y):
+    """ Error function. Очень важная. """
+    return (wrapper_for_finding_2l(v,x)-y)
     
 if __name__=="__main__":
     #main()
