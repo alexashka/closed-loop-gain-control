@@ -37,7 +37,20 @@ def get_list_curves(
         # Сохраняем кривую
         curves.append(curve)
     return curves
- 
+
+def get_notes(curves, axis):
+    params = []
+    for curve in curves:
+        T1 = 5.0
+        T2 = 1.0
+        dt = 0.0
+        k = 3.0
+        t0 = 70.0
+        v0 = [T1, T2, dt, k, t0]  # Initial parameter value
+        v_result = run_approximation(curve, axis, v0, e_del_full)
+        print v_result
+        params.append(v_result)
+    return params
     
 if __name__=='__main__':
     def main():
@@ -70,33 +83,18 @@ if __name__=='__main__':
         noise = gen.get_gauss_noise(sigma, num_points)
         curves = get_list_curves(axis, noise, count_iteration_metro)
         
-        # Обрабатываем одну кривую
-        # Поучаем ось
-        for curve in curves:
-            metro_signal, ideal = curve, None
-            T1 = 5.0
-            T2 = 1.0
-            dt = 0.0
-            v0 = [T1, T2, dt, 3.0, 70.0]  # Initial parameter value
-            v_result = run_approximation(metro_signal, axis, v0, e_del_full)
-            print v_result
-            
-            # Plotting
-            x = axis.get_axis()
-            plot(x, metro_signal,'b')
-            plot(x, wrapper_for_finding_2l_del_full(v_result, x),'g')
+        # Оцениваем все параметры кривых
+        params = get_notes(curves, axis)
         
+        # DEVELOP
+        x = axis.get_axis()
+        for curve in curves:
+            plot(x, curve,'b')
+        for record in params:    
+            plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
         grid(); show()
     
-        
-        """
-        for curve in curves:
-            curve -= temperature_ref
-            # Оценка начального уровня его придется как-то отдельно
-            # берем время в 1tau
-            num_points = tau*Fs
-            curves[-num_points]"""
-        
+           
         
         # Рассчитываем незашумленную кривую
         
