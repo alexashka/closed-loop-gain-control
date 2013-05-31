@@ -4,6 +4,9 @@ from pylab import plot
 from pylab import show
 from pylab import grid
 
+from numpy import random
+import json
+
 
 # Other
 import dals.os_io.io_wrapper as dal
@@ -20,19 +23,25 @@ def get_list_curves(
                     axis, 
                     noise, 
                     count_iteration_metro):
-    temperature_ref = 70  # DEVELOP
     curves = []
     for metro in range(count_iteration_metro):
-        dt = 2.0*(metro+1)  # рандомное реально, но сперва нужно проверить алгоритм оценивания
-        max_dtemperature = 3  # фиктивный       
+        t = axis.get_axis()
         
+        # Params
+        k = 0.03
+        num_points = 1
+        max_dtemperature = 3  # фиктивный 
+        temperature_ref = 70  # DEVELOP
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
-        t = axis.get_axis()
-        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature
+        dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
+        dt +=  random.normal(0, dt*k*5, size=num_points)
+        max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
+        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature+temperature_ref
 
         # Добавляем шум
-        curve += noise+temperature_ref
+        curve += noise
 
         # Сохраняем кривую
         curves.append(curve)
@@ -76,8 +85,8 @@ if __name__=='__main__':
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 2
-        sigma = 0.05  # зашумленность сигнала
+        count_iteration_metro = 5
+        sigma = 0.03  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
         noise = gen.get_gauss_noise(sigma, num_points)
@@ -86,13 +95,30 @@ if __name__=='__main__':
         # Оцениваем все параметры кривых
         params = get_notes(curves, axis)
         
+        curves_save = []
+      
+        #string_json = json.dumps(curves)
+        #print string_json
+        
         # DEVELOP
         x = axis.get_axis()
         for curve in curves:
             plot(x, curve,'b')
+            tmp = []
+            for at in curve:
+                tmp.append(at)
+                
+            curves_save.append(list(tmp))
+            
+        metro_data = {'measure':curves_save}#, 'axis': list(axis.get_axis())}
+        #print metro_data
+        string_json = json.dumps(curves, indent=4)
+        print string_json
+        
         for record in params:    
-            plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
-        grid(); show()
+            #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
+            pass
+        #grid(); show()
     
            
         
