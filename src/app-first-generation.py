@@ -36,7 +36,7 @@ def get_list_curves(
         T2 = 2.0  # sec.
         dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
         temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
-        dt +=  random.normal(0, dt*k*5, size=num_points)
+        dt +=  random.normal(0, dt*k*2, size=num_points)
         max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
         curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature+temperature_ref
 
@@ -85,7 +85,7 @@ if __name__=='__main__':
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 5
+        count_iteration_metro = 2
         sigma = 0.03  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
@@ -94,33 +94,27 @@ if __name__=='__main__':
         
         # Оцениваем все параметры кривых
         params = get_notes(curves, axis)
-        
-        curves_save = []
-      
-        #string_json = json.dumps(curves)
-        #print string_json
-        
         # DEVELOP
         x = axis.get_axis()
         for curve in curves:
             plot(x, curve,'b')
-            tmp = []
-            for at in curve:
-                tmp.append(at)
-                
-            curves_save.append(list(tmp))
             
-        metro_data = {'measure':curves_save}#, 'axis': list(axis.get_axis())}
+        #metro_data = {'measure':curves_save}#, 'axis': list(axis.get_axis())}
         #print metro_data
-        string_json = json.dumps(curves, indent=4)
-        print string_json
+        #string_json = json.dumps(curves, indent=4)
+        #print string_json
         
         for record in params:    
-            #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
-            pass
+            plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
         #grid(); show()
+        
+        def mean_list_lists(list_lists):
+            result = list_lists[0]
+            for list_values in list_lists:
+                result += list_values
+            return result
     
-           
+        print mean_list_lists(params)    
         
         # Рассчитываем незашумленную кривую
         
