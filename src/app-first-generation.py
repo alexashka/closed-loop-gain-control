@@ -5,6 +5,10 @@ from pylab import show
 from pylab import grid
 
 from numpy import random
+from numpy import array
+from numpy import append
+from numpy import concatenate
+from numpy import zeros
 import json
 
 
@@ -24,17 +28,20 @@ def get_list_curves(
                     noise, 
                     count_iteration_metro):
     curves = []
+    max_dtemperature = 3  # фиктивный 
+    temperature_ref = 70  # DEVELOP
+    T1 = 1.4  # sec.
+    print 'T1', T1
+    T2 = 2.0  # sec.
+    print 'T2', T2
+    dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
     for metro in range(count_iteration_metro):
         t = axis.get_axis()
         
         # Params
-        k = 0.03
+        k = 0.03/10000.0
         num_points = 1
-        max_dtemperature = 3  # фиктивный 
-        temperature_ref = 70  # DEVELOP
-        T1 = 1.4  # sec.
-        T2 = 2.0  # sec.
-        dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        
         temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
         dt +=  random.normal(0, dt*k*2, size=num_points)
         max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
@@ -85,7 +92,7 @@ if __name__=='__main__':
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 2
+        count_iteration_metro = 20
         sigma = 0.03  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
@@ -106,13 +113,21 @@ if __name__=='__main__':
         
         for record in params:    
             plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
-        #grid(); show()
+        grid(); show()
         
         def mean_list_lists(list_lists):
-            result = list_lists[0]
+            count_lists = len(list_lists)
+            result = zeros(len(list_lists[0]))
             for list_values in list_lists:
+                
                 result += list_values
-            return result
+            
+            summary = [] 
+            
+            for value in result:
+                print value/count_lists, count_lists, value
+                summary.append(value/count_lists)
+            return array(summary)
     
         print mean_list_lists(params)    
         
