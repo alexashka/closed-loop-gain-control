@@ -90,23 +90,25 @@ if __name__=='__main__':
         
         axis = XAxis(num_points, 1/Fs)
         noise = gen.get_gauss_noise(sigma, num_points)
-        max_dtemperature = 3  # фиктивный 
-        temperature_ref = 70  # DEVELOP
+        
+        # Базовые параметры
+        max_dtemperature = 3  # высота ступеньки
+        temperature_ref = 70  # смещение кривой по оси Оy
         T1 = 1.4  # sec.
-        print 'T1', T1
         T2 = 2.0  # sec.
-        print 'T2', T2
-        dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+        dt = 4.0  # фазовый сдвиг кривой
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
+        print 'T1', T1
+        print 'T2', T2
         curves = get_list_curves(axis, noise, count_iteration_metro, base_params)
         
         # Оцениваем все параметры кривых
         T1 = 5.0
         T2 = 1.0
         dt = 0.0
-        k = 3.0
-        t0 = 70.0
-        zero_point = (T1, T2, dt, k, t0)
+        max_dtemperature = 3.0
+        temperature_ref = 70.0
+        zero_point = (T1, T2, dt, max_dtemperature, temperature_ref)
         params = get_notes(curves, axis, zero_point)
         
         # DEVELOP
