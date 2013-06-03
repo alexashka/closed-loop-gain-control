@@ -39,7 +39,7 @@ def get_list_curves(
         t = axis.get_axis()
         
         # Params
-        k = 0.03/10000.0
+        k = 0.03#/10000.0
         num_points = 1
         
         temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
@@ -119,17 +119,13 @@ if __name__=='__main__':
             count_lists = len(list_lists)
             result = zeros(len(list_lists[0]))
             for list_values in list_lists:
-                
                 result += list_values
-            
             summary = [] 
-            
             for value in result:
-                print value/count_lists, count_lists, value
                 summary.append(value/count_lists)
             return array(summary)
     
-        print mean_list_lists(params)    
+        print 'mean', mean_list_lists(params)    
         
         # Рассчитываем незашумленную кривую
         
