@@ -13,6 +13,7 @@ import scipy.interpolate as interpolators
 # App 
 import dsp_modules.signal_generator as generator
 from app_math.simple_math_operators import XAxis
+from dsp_modules.signal_templates import get_metro_and_axis
 
 def e(v, x, y):
     """ Error function. Очень важная. """

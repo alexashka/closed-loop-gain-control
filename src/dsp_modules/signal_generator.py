@@ -86,6 +86,7 @@ def e_del_full(v, x, y):
 if __name__=="__main__":
     #main()
     #plot_ht()
+    print 'Done'
     pass
 
 

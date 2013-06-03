@@ -133,7 +133,7 @@ if __name__=='__main__':
         
         # Рассчитываем незашумленную кривую
         
-        """
+        
         # Для каждого из опытов
         sum = ''
         first_line_rpt = ''
@@ -175,7 +175,7 @@ if __name__=='__main__':
         sets['coding'] = 'utf8'
         dal.list2file(sets, rpt)
             
-        """
+       
         
     main()
     print 'Done'
