@@ -64,22 +64,20 @@ def plot_normalize_analog(settings, af_cb, freq_axis, freq_sampling):
     w_complex = 1j*w
     
     # Abs
-    #y = af_cb(w, settings)
-    #y1 = real(conj(y)*y)**0.5
-    y1 = _plot_AFC(w_complex, settings, af_cb)
-    y_dB = y1#to_dB(y1*y1)
-    #subplot(2, 1, 1); grid()
-    
-    axis = freq_axis*2*pi#imag(w_complex)
+    h = _plot_AFC(w_complex, settings, af_cb)
+    y_dB = to_dB(h)
+    subplot(2, 1, 1) 
+    grid()   
+    axis = freq_axis/freq_sampling#imag(w_complex)
     plot(axis, y_dB)
-    grid()
-    xlim(0, freq_sampling)
+    xlim(0, freq_sampling/freq_sampling*0.5)
     
     # Angle
-    y2 = _plot_PFC(w_complex, settings, af_cb)
-    #subplot(2, 1, 2); grid()
-    #plot(imag(w_complex)/freq_sampling, y2); 
-    #xlim(0, pi)
+    phi = _plot_PFC(w_complex, settings, af_cb)
+    subplot(2, 1, 2)
+    grid()
+    plot(axis, phi)
+    xlim(0, freq_sampling/freq_sampling*0.5)
 
 def _plot_AFC(w, settings, af_cb):
     y = af_cb(w, settings)
@@ -88,6 +86,6 @@ def _plot_AFC(w, settings, af_cb):
 
 def _plot_PFC(w, settings, af_cb):
     h = af_cb(w, settings)
-    y = angle(h, deg=False) 
+    y = angle(h, deg=True) 
     return y
     
