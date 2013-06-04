@@ -59,15 +59,13 @@ def impz(b,a=1):
     show()
     
 def plot_normalize_analog(params, af_action, freq_axis, freq_sampling):
-    (h, phi) = calc_analog_filter_curves(params, freq_axis, af_action)
-    
     # Abs
     y_dB = to_dB(h)
     subplot(2, 1, 1)
     ylabel('K, 20*log(...)')
     xlabel('Norm. freq. f/fs')
     grid()   
-    axis = freq_axis/freq_sampling#imag(w_complex)
+    axis = freq_axis/freq_sampling
     plot(axis, y_dB)
     xlim(0, 0.5)
     
@@ -80,18 +78,3 @@ def plot_normalize_analog(params, af_action, freq_axis, freq_sampling):
     xlim(0, 0.5)
     return h, phi
 
-def calc_analog_filter_curves(params, freq_axis, af_action):
-    w_complex = 1j*2*pi*freq_axis 
-    h, phi = calc_afc(w_complex, params, af_action), calc_pfc(w_complex, params, af_action)
-    return (h, phi)
-
-def calc_afc(w, params, af_action):
-    y = af_action(w, params)
-    y = real(conj(y)*y)**0.5
-    return y
-
-def calc_pfc(w, params, af_action):
-    h = af_action(w, params)
-    y = angle(h, deg=True) 
-    return y
-    
