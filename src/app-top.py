@@ -23,6 +23,14 @@ from dsp_modules.signal_templates import get_metro_and_axis
 from dsp_modules.signal_generator import e_del_full
 from opimizers import run_approximation
 
+# App
+from iir_models import get_cut_position
+from iir_models import af_order2_asym_delay
+from iir_models import calc_analog_filter_curves
+
+from visualisers import plot_normalize_analog
+from visualisers import calc_half_fs_axis
+
 def get_list_curves(
                     axis, 
                     noise, 
@@ -92,11 +100,11 @@ if __name__=='__main__':
         noise = gen.get_gauss_noise(sigma, num_points)
         
         # Базовые параметры
-        max_dtemperature = 3  # высота ступеньки
+        max_dtemperature = 2.0  # высота ступеньки
         temperature_ref = 70  # смещение кривой по оси Оy
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
-        dt = 4.0  # фазовый сдвиг кривой
+        dt = 1.0  # фазовый сдвиг кривой
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
         print 'T1', T1
         print 'T2', T2
@@ -143,6 +151,22 @@ if __name__=='__main__':
         # Рассчитываем незашумленную кривую
         # Рисуем аналоговые характеристики
         T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+        freq_sampling = 4.0  # Hz
+        num_points = 1024
+        freq_axis = calc_half_fs_axis(num_points, freq_sampling)
+        dVoltage = 0.2  # V
+        params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
+    
+        h, phi, freq_axis, h_db = calc_analog_filter_curves(
+                                                            params, 
+                                                            freq_axis, 
+                                                            af_order2_asym_delay)
+        cut_position = get_cut_position(h_db)
+            
+        # Рисуем
+        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
+        plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+        show()
         
         """
         # Для каждого из опытов

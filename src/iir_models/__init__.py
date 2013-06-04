@@ -51,6 +51,14 @@ def calc_analog_filter_curves(params, freq_axis, af_action):
         
     return (h, phi_copy, freq_axis, to_dB(h))
 
+def get_cut_position(h_db):
+    cut_position = 0
+    for i in range(len(h_db)-1):
+        cut_position += 1
+        if h_db[i]*h_db[i+1] < 0:
+            break
+    return cut_position
+
 def calc_afc(w, params, af_action):
     y = af_action(w, params)
     y = real(conj(y)*y)**0.5
