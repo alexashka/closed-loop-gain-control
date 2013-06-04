@@ -58,16 +58,21 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(settings, af_cb, freq, freq_sampling):
+def plot_normalize_analog(settings, af_cb, freq_axis, freq_sampling):
     freq_sampling = float(freq_sampling)
-    w = 2*pi*freq/freq_sampling  
+    w = 2*pi*freq_axis  
     w_complex = 1j*w
     
     # Abs
+    #y = af_cb(w, settings)
+    #y1 = real(conj(y)*y)**0.5
     y1 = _plot_AFC(w_complex, settings, af_cb)
     y_dB = y1#to_dB(y1*y1)
     #subplot(2, 1, 1); grid()
-    plot(imag(w_complex)/(2*pi*freq_sampling/freq_sampling), y_dB); grid()
+    
+    axis = freq_axis*2*pi#imag(w_complex)
+    plot(axis, y_dB)
+    grid()
     xlim(0, freq_sampling)
     
     # Angle
