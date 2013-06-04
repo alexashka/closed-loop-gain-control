@@ -133,13 +133,16 @@ if __name__=='__main__':
                 summary.append(value/count_lists)
             return array(summary)
     
-        print 'mean', mean_list_lists(params)  
+        mean_params = mean_list_lists(params)  
+        print 'mean', mean_params 
         
         # Генерируем зашумленные данные 
         
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
+        # Рисуем аналоговые характеристики
+        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
         
         """
         # Для каждого из опытов
