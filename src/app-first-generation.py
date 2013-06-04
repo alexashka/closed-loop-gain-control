@@ -26,25 +26,23 @@ from opimizers import run_approximation
 def get_list_curves(
                     axis, 
                     noise, 
-                    count_iteration_metro):
+                    count_iteration_metro, add_multiplicate_noise=True,
+                    base_params=None):
     curves = []
-    max_dtemperature = 3  # фиктивный 
-    temperature_ref = 70  # DEVELOP
-    T1 = 1.4  # sec.
-    print 'T1', T1
-    T2 = 2.0  # sec.
-    print 'T2', T2
-    dt = 4.0  # рандомное реально, но сперва нужно проверить алгоритм оценивания
+    (T1, T2, dt, max_dtemperature, t0) = base_params
     for metro in range(count_iteration_metro):
         t = axis.get_axis()
         
         # Params
-        k = 0.03#/10000.0
+        if add_multiplicate_noise:
+            k = 0.000003
+        else:
+            k = 0.003
         num_points = 1
         
-        temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
+        temperature_ref += random.normal(0, temperature_ref*k/50, size=num_points)
         dt +=  random.normal(0, dt*k*2, size=num_points)
-        max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
+        #max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
         curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature+temperature_ref
 
         # Добавляем шум
@@ -54,15 +52,10 @@ def get_list_curves(
         curves.append(curve)
     return curves
 
-def get_notes(curves, axis):
+def get_notes(curves, axis, zero_point=None):
     params = []
     for curve in curves:
-        T1 = 5.0
-        T2 = 1.0
-        dt = 0.0
-        k = 3.0
-        t0 = 70.0
-        v0 = [T1, T2, dt, k, t0]  # Initial parameter value
+        v0 = zero_point  # Initial parameter value
         v_result = run_approximation(curve, axis, v0, e_del_full)
         print v_result
         params.append(v_result)
@@ -97,10 +90,27 @@ if __name__=='__main__':
         
         axis = XAxis(num_points, 1/Fs)
         noise = gen.get_gauss_noise(sigma, num_points)
-        curves = get_list_curves(axis, noise, count_iteration_metro)
+        
+        # Базовые параметры
+        max_dtemperature = 3  # высота ступеньки
+        temperature_ref = 70  # смещение кривой по оси Оy
+        T1 = 1.4  # sec.
+        T2 = 2.0  # sec.
+        dt = 4.0  # фазовый сдвиг кривой
+        base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
+        print 'T1', T1
+        print 'T2', T2
+        curves = get_list_curves(axis, noise, count_iteration_metro, base_params)
         
         # Оцениваем все параметры кривых
-        params = get_notes(curves, axis)
+        T1 = 5.0
+        T2 = 1.0
+        dt = 0.0
+        max_dtemperature = 3.0
+        temperature_ref = 70.0
+        zero_point = (T1, T2, dt, max_dtemperature, temperature_ref)
+        params = get_notes(curves, axis, zero_point)
+        
         # DEVELOP
         x = axis.get_axis()
         for curve in curves:
@@ -125,7 +135,11 @@ if __name__=='__main__':
                 summary.append(value/count_lists)
             return array(summary)
     
-        print 'mean', mean_list_lists(params)    
+        print 'mean', mean_list_lists(params)  
+        
+        # Генерируем зашумленные данные 
+        
+        #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
         
