@@ -104,7 +104,7 @@ if __name__=='__main__':
         temperature_ref = 70  # смещение кривой по оси Оy
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
-        dt = 1.0  # фазовый сдвиг кривой
+        dt = 0.1  # фазовый сдвиг кривой
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
         print 'T1', T1
         print 'T2', T2
