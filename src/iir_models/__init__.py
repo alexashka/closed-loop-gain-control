@@ -2,6 +2,8 @@
 from numpy import angle
 from numpy import conj
 from numpy import real
+from numpy import exp
+from numpy import abs
 
 from pylab import *
 
@@ -29,13 +31,23 @@ def af_order2_asym_delay(w_complex, settings_tuple):
     T2 = settings_tuple[1]
     t0 = settings_tuple[2]  # фазовый сдвиг
     K = settings_tuple[3]  # Коэффициент усиления
-    y = K*af_order1(w_complex, T1)*af_order1(w_complex, T2)
+    y = K*af_order1(w_complex, T1)*af_order1(w_complex, T2)*exp(-w_complex*t0)
     return y
 
 def calc_analog_filter_curves(params, freq_axis, af_action):
+    total_samples = len(freq_axis)
     w_complex = 1j*2*pi*freq_axis 
     h, phi = calc_afc(w_complex, params, af_action), calc_pfc(w_complex, params, af_action)
-    return (h, phi, freq_axis)
+    # Нужно подправить ФЧХ
+    phi_copy = arange(total_samples)
+    adder = 0
+    
+    for i in range(total_samples-1):
+        if abs(phi[i]-phi[i+1]) > 180:
+            adder += abs(phi[i]-phi[i+1])
+        phi_copy[i+1] = phi[i+1]-adder
+    
+    return (h, phi_copy, freq_axis)
 
 def calc_afc(w, params, af_action):
     y = af_action(w, params)
