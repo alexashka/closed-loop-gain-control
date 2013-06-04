@@ -1,3 +1,4 @@
+# coding: utf-8
 import numpy as np
 from scipy import signal
 from numpy import exp
@@ -58,7 +59,7 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(params, af_action, freq_axis, freq_sampling):
+def plot_normalize_analog(h, phi, freq_axis, freq_sampling):
     # Abs
     y_dB = to_dB(h)
     subplot(2, 1, 1)
@@ -76,5 +77,11 @@ def plot_normalize_analog(params, af_action, freq_axis, freq_sampling):
     xlabel('Norm. freq. f/fs')
     plot(axis, phi)
     xlim(0, 0.5)
-    return h, phi
-
+    
+def calc_half_fs_axis(total_points, fs):
+    """ Геренирует ось до половины частоты дискр. с числом
+    точек равным заданному
+    """
+    freq_axis = arange(total_points)*fs/2/total_points # Hz до половины fs
+    return freq_axis
+    
