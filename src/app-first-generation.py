@@ -29,7 +29,7 @@ def get_list_curves(
                     count_iteration_metro, add_multiplicate_noise=True,
                     base_params=None):
     curves = []
-    (T1, T2, dt, max_dtemperature, t0) = base_params
+    T1, T2, dt, max_dtemperature, temperature_ref = base_params
     for metro in range(count_iteration_metro):
         t = axis.get_axis()
         
@@ -100,7 +100,7 @@ if __name__=='__main__':
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
         print 'T1', T1
         print 'T2', T2
-        curves = get_list_curves(axis, noise, count_iteration_metro, base_params)
+        curves = get_list_curves(axis, noise, count_iteration_metro, True, base_params)
         
         # Оцениваем все параметры кривых
         T1 = 5.0
@@ -114,16 +114,14 @@ if __name__=='__main__':
         # DEVELOP
         x = axis.get_axis()
         for curve in curves:
-            plot(x, curve,'b')
+            #plot(x, curve,'b')
+            pass
             
-        #metro_data = {'measure':curves_save}#, 'axis': list(axis.get_axis())}
-        #print metro_data
-        #string_json = json.dumps(curves, indent=4)
-        #print string_json
-        
-        for record in params:    
-            plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
-        grid(); show()
+       
+        for record in params: 
+            pass   
+            #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
+        #grid(); show()
         
         def mean_list_lists(list_lists):
             count_lists = len(list_lists)
