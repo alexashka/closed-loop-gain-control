@@ -19,8 +19,8 @@ from visualisers import plot_normalize_analog
 def analog_filter_plot():
     freq_sampling = 3.0  # Hz
     num_points = 1024
-    freq = arange(num_points)*freq_sampling/2/num_points # Hz 
-    settings = (1.7, 2.0, None, 3.0)
+    freq_axis = arange(num_points)*freq_sampling/2/num_points # Hz 
+    params = (1.7, 2.0, None, 3.0)
     
     #af_function = af_order1
     
@@ -28,7 +28,7 @@ def analog_filter_plot():
     #plot_normalize_analog(settings[1], af_function, freq, freq_sampling)
     
     af_function = af_order2_asym
-    plot_normalize_analog(settings, af_function, freq, freq_sampling)
+    h, phi = plot_normalize_analog(settings, af_function, freq, freq_sampling)
     show() 
     print 'Done'
     
