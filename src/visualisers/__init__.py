@@ -58,13 +58,10 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(settings, af_cb, freq_axis, freq_sampling):
-    freq_sampling = float(freq_sampling)
-    w = 2*pi*freq_axis  
-    w_complex = 1j*w
+def plot_normalize_analog(params, af_action, freq_axis, freq_sampling):
+    (h, phi) = calc_analog_filter_curves(params, freq_axis, af_action)
     
     # Abs
-    h = _plot_AFC(w_complex, settings, af_cb)
     y_dB = to_dB(h)
     subplot(2, 1, 1)
     ylabel('K, 20*log(...)')
@@ -72,25 +69,29 @@ def plot_normalize_analog(settings, af_cb, freq_axis, freq_sampling):
     grid()   
     axis = freq_axis/freq_sampling#imag(w_complex)
     plot(axis, y_dB)
-    xlim(0, freq_sampling/freq_sampling*0.5)
+    xlim(0, 0.5)
     
     # Angle
-    phi = _plot_PFC(w_complex, settings, af_cb)
     subplot(2, 1, 2)
     grid()
     ylabel('Phase, deg')
     xlabel('Norm. freq. f/fs')
     plot(axis, phi)
-    xlim(0, freq_sampling/freq_sampling*0.5)
+    xlim(0, 0.5)
     return h, phi
 
-def _plot_AFC(w, settings, af_cb):
-    y = af_cb(w, settings)
+def calc_analog_filter_curves(params, freq_axis, af_action):
+    w_complex = 1j*2*pi*freq_axis 
+    h, phi = calc_afc(w_complex, params, af_action), calc_pfc(w_complex, params, af_action)
+    return (h, phi)
+
+def calc_afc(w, params, af_action):
+    y = af_action(w, params)
     y = real(conj(y)*y)**0.5
     return y
 
-def _plot_PFC(w, settings, af_cb):
-    h = af_cb(w, settings)
+def calc_pfc(w, params, af_action):
+    h = af_action(w, params)
     y = angle(h, deg=True) 
     return y
     
