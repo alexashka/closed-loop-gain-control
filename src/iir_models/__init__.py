@@ -24,6 +24,13 @@ def af_order2_asym(w_complex, settings_tuple):
     y = K*af_order1(w_complex, T1)*af_order1(w_complex, T2)
     return y
 
+def af_order2_asym_delay(w_complex, settings_tuple):
+    T1 = settings_tuple[0]
+    T2 = settings_tuple[1]
+    t0 = settings_tuple[2]  # фазовый сдвиг
+    K = settings_tuple[3]  # Коэффициент усиления
+    y = K*af_order1(w_complex, T1)*af_order1(w_complex, T2)
+    return y
 
 def calc_analog_filter_curves(params, freq_axis, af_action):
     w_complex = 1j*2*pi*freq_axis 
