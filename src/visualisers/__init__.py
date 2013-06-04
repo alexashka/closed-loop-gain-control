@@ -59,7 +59,7 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(h, phi, freq_axis, freq_sampling):
+def plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position):
     # Abs
     y_dB = to_dB(h)
     subplot(2, 1, 1)
@@ -68,6 +68,7 @@ def plot_normalize_analog(h, phi, freq_axis, freq_sampling):
     grid()   
     axis = freq_axis/freq_sampling
     plot(axis, y_dB)
+    plot(freq_axis[cut_position]/freq_sampling, y_dB[cut_position], 'o')
     xlim(0, 0.5)
     
     # Angle
@@ -76,6 +77,7 @@ def plot_normalize_analog(h, phi, freq_axis, freq_sampling):
     ylabel('Phase, deg')
     xlabel('Norm. freq. f/fs')
     plot(axis, phi)
+    plot(freq_axis[cut_position]/freq_sampling, phi[cut_position], 'o')
     xlim(0, 0.5)
     
 def calc_half_fs_axis(total_points, fs):

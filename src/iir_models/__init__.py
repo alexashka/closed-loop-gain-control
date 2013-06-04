@@ -7,6 +7,8 @@ from numpy import abs
 
 from pylab import *
 
+from app_math import to_dB
+
 def af_order1(w_complex, settings_tuple):
     T = float(settings_tuple)
     y = 1/(1+w_complex*T)
@@ -46,8 +48,8 @@ def calc_analog_filter_curves(params, freq_axis, af_action):
         if abs(phi[i]-phi[i+1]) > 180:
             adder += abs(phi[i]-phi[i+1])
         phi_copy[i+1] = phi[i+1]-adder
-    
-    return (h, phi_copy, freq_axis)
+        
+    return (h, phi_copy, freq_axis, to_dB(h))
 
 def calc_afc(w, params, af_action):
     y = af_action(w, params)

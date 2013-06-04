@@ -4,6 +4,7 @@
 
 '''
 from pylab import show
+from pylab import plot
 
 # App
 from iir_models import af_order2_asym
@@ -20,9 +21,21 @@ def analog_filter_plot():
     params = (1.7, 1.0, 0.5, 3.0)
     #h, phi, freq_axis = calc_analog_filter_curves(params, freq_axis, af_order2_asym)
     #plot_normalize_analog(h, phi, freq_axis, freq_sampling)
+
+    h, phi, freq_axis, h_db = calc_analog_filter_curves(params, freq_axis, af_order2_asym_delay)
+    cut_position = 0
+    for i in range(len(h)-1):
+        cut_position += 1
+        if h_db[i]*h_db[i+1] < 0:
+            print h_db[i], phi[i], freq_axis[i]
+            #plot(freq_axis[i]/freq_sampling, phi[i], 'v')
+            break
+        
+    # Рисуем
+    plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
     
-    h, phi, freq_axis = calc_analog_filter_curves(params, freq_axis, af_order2_asym_delay)
-    plot_normalize_analog(h, phi, freq_axis, freq_sampling)
+    
+    
     show() 
     
     
