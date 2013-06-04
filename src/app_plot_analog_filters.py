@@ -11,9 +11,6 @@ from pylab import grid
 from numpy import ndarray
 from numpy import arange
 
-from numpy import imag
-from numpy import exp
-from numpy import pi
 
 # App
 from iir_models import af_order1

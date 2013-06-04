@@ -84,9 +84,9 @@ if __name__=='__main__':
         # Постоянные времени измеряются секундами, поэтому частота дискретизации
         #   должна быть в районе одного Гц. Применим oversampling пусть частота будет 100 Гц.
         #
-        # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
+        # 15 секунд - отрезок времени. Предполагается, что переходные процессы завершаются за
         # время 3tau = 3*5
-        tau = 8.0  # оценочное врем переходный процессов
+        tau = 8.0  # оценочное время переходный процессов
         window_metro = tau*3  # sec.
         Fs = 100.0  # freq. sampling - Hz ; with oversampling
     
@@ -112,7 +112,7 @@ if __name__=='__main__':
         #print string_json
         
         for record in params:    
-            plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
+            plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
         grid(); show()
         
         def mean_list_lists(list_lists):
@@ -170,8 +170,6 @@ if __name__=='__main__':
         sets['howOpen'] = 'w'
         sets['coding'] = 'utf8'
         dal.list2file(sets, rpt)
-            
-       
-        
+                
     main()
     print 'Done'
