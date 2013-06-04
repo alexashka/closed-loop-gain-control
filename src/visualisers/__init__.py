@@ -1,3 +1,4 @@
+# coding: utf-8
 import numpy as np
 from scipy import signal
 from numpy import exp
@@ -58,32 +59,31 @@ def impz(b,a=1):
     subplots_adjust(hspace=0.5)
     show()
     
-def plot_normalize_analog(settings, af_cb, freq, freq_sampling):
-
-    freq_sampling = float(freq_sampling)
-    w = 2*pi*freq  
-    w_complex = 1j*w
-    
+def plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position):
     # Abs
-    y1 = _plot_AFC(w_complex, settings, af_cb)
-    y_dB = to_dB(y1*y1)
-    subplot(2, 1, 1); grid()
-    plot(imag(w_complex)/freq_sampling, y_dB); grid()
-    xlim(0, pi)
+    y_dB = to_dB(h)
+    subplot(2, 1, 1)
+    ylabel('K, 20*log(...)')
+    xlabel('Norm. freq. f/fs')
+    grid()   
+    axis = freq_axis/freq_sampling
+    plot(axis, y_dB)
+    plot(freq_axis[cut_position]/freq_sampling, y_dB[cut_position], 'o')
+    xlim(0, 0.5)
     
     # Angle
-    y2 = _plot_PFC(w_complex, settings, af_cb)
-    subplot(2, 1, 2); grid()
-    plot(imag(w_complex)/freq_sampling, y2); 
-    xlim(0, pi)
-
-def _plot_AFC(w, settings, af_cb):
-    y = af_cb(w, settings)
-    y = real(conj(y)*y)**0.5
-    return y
-
-def _plot_PFC(w, settings, af_cb):
-    h = af_cb(w, settings)
-    y = angle(h, deg=False) 
-    return y
+    subplot(2, 1, 2)
+    grid()
+    ylabel('Phase, deg')
+    xlabel('Norm. freq. f/fs')
+    plot(axis, phi)
+    plot(freq_axis[cut_position]/freq_sampling, phi[cut_position], 'o')
+    xlim(0, 0.5)
+    
+def calc_half_fs_axis(total_points, fs):
+    """ Геренирует ось до половины частоты дискр. с числом
+    точек равным заданному
+    """
+    freq_axis = arange(total_points)*fs/2/total_points # Hz до половины fs
+    return freq_axis
     
