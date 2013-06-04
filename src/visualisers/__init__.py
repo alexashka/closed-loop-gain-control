@@ -65,16 +65,16 @@ def plot_normalize_analog(settings, af_cb, freq, freq_sampling):
     
     # Abs
     y1 = _plot_AFC(w_complex, settings, af_cb)
-    y_dB = to_dB(y1*y1)
-    subplot(2, 1, 1); grid()
-    plot(imag(w_complex)/freq_sampling, y_dB, 'v'); grid()
-    xlim(0, pi)
+    y_dB = y1#to_dB(y1*y1)
+    #subplot(2, 1, 1); grid()
+    plot(imag(w_complex)/(2*pi*freq_sampling/freq_sampling), y_dB); grid()
+    xlim(0, freq_sampling)
     
     # Angle
     y2 = _plot_PFC(w_complex, settings, af_cb)
-    subplot(2, 1, 2); grid()
-    plot(imag(w_complex)/freq_sampling, y2); 
-    xlim(0, pi)
+    #subplot(2, 1, 2); grid()
+    #plot(imag(w_complex)/freq_sampling, y2); 
+    #xlim(0, pi)
 
 def _plot_AFC(w, settings, af_cb):
     y = af_cb(w, settings)
