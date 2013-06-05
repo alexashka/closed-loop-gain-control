@@ -23,13 +23,21 @@ from dsp_modules.signal_templates import get_metro_and_axis
 from dsp_modules.signal_generator import e_del_full
 from opimizers import run_approximation
 
+# App
+from iir_models import get_cut_position
+from iir_models import af_order2_asym_delay
+from iir_models import calc_analog_filter_curves
+
+from visualisers import plot_normalize_analog
+from visualisers import calc_half_fs_axis
+
 def get_list_curves(
                     axis, 
                     noise, 
                     count_iteration_metro, add_multiplicate_noise=True,
                     base_params=None):
     curves = []
-    (T1, T2, dt, max_dtemperature, t0) = base_params
+    T1, T2, dt, max_dtemperature, temperature_ref = base_params
     for metro in range(count_iteration_metro):
         t = axis.get_axis()
         
@@ -92,15 +100,15 @@ if __name__=='__main__':
         noise = gen.get_gauss_noise(sigma, num_points)
         
         # Базовые параметры
-        max_dtemperature = 3  # высота ступеньки
+        max_dtemperature = 2.0  # высота ступеньки
         temperature_ref = 70  # смещение кривой по оси Оy
         T1 = 1.4  # sec.
         T2 = 2.0  # sec.
-        dt = 4.0  # фазовый сдвиг кривой
+        dt = 0.1  # фазовый сдвиг кривой
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
         print 'T1', T1
         print 'T2', T2
-        curves = get_list_curves(axis, noise, count_iteration_metro, base_params)
+        curves = get_list_curves(axis, noise, count_iteration_metro, True, base_params)
         
         # Оцениваем все параметры кривых
         T1 = 5.0
@@ -114,8 +122,10 @@ if __name__=='__main__':
         # DEVELOP
         x = axis.get_axis()
         for curve in curves:
-            plot(x, curve,'b')
+            #plot(x, curve,'b')
+            pass
             
+<<<<<<< HEAD:src/app-first-generation.py
         #metro_data = {'measure':curves_save}#, 'axis': list(axis.get_axis())}
         #print metro_data
         #string_json = json.dumps(curves, indent=4)
@@ -124,6 +134,13 @@ if __name__=='__main__':
         for record in params:    
             plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
         grid(); show()
+=======
+       
+        for record in params: 
+            pass   
+            #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
+        #grid(); show()
+>>>>>>> 8f8f8ae6e3e4dfca3b63a3f4f146a68166add672:src/app-top.py
         
         def mean_list_lists(list_lists):
             count_lists = len(list_lists)
@@ -135,13 +152,32 @@ if __name__=='__main__':
                 summary.append(value/count_lists)
             return array(summary)
     
-        print 'mean', mean_list_lists(params)  
+
+        mean_params = mean_list_lists(params)
+        print 'mean', mean_params 
         
         # Генерируем зашумленные данные 
         
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
+        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+        freq_sampling = 4.0  # Hz
+        num_points = 1024
+        freq_axis = calc_half_fs_axis(num_points, freq_sampling)
+        dVoltage = 0.2  # V
+        params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
+    
+        h, phi, freq_axis, h_db = calc_analog_filter_curves(
+                                                            params, 
+                                                            freq_axis, 
+                                                            af_order2_asym_delay)
+        cut_position = get_cut_position(h_db)
+            
+        # Рисуем
+        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
+        plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+        show()
         
         
         # Для каждого из опытов
