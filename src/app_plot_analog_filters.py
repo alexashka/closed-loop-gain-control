@@ -24,7 +24,7 @@ def analog_filter_plot():
   
     freq = arange(1000) # Hz 
     settings = (1.833, 1.561)
-    freq_sampling = 10  # Hz
+    freq_sampling = 100  # Hz
     af_function = af_order1
     num_points = 5*freq
     print "num_points: ", num_points
@@ -40,8 +40,7 @@ def analog_filter_plot():
     # Оцениваем все параметры кривых
     # DEVELOP
     x = axis.get_axis()
-    for curve in curves:
-        plot(x, curve,'b')
+    plot(curves)
         
         
     af_function = af_order2_sym
