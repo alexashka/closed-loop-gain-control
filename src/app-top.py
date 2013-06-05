@@ -98,9 +98,13 @@ if __name__=='__main__':
         # Постоянные времени измеряются секундами, поэтому частота дискретизации
         #   должна быть в районе одного Гц. Применим oversampling пусть частота будет 100 Гц.
         #
-        # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
+        # 15 секунд - отрезок времени. Предполагается, что переходные процессы завершаются за
         # время 3tau = 3*5
+<<<<<<< HEAD
         tau = 15.0  # оценочное врем переходный процессов
+=======
+        tau = 8.0  # оценочное время переходный процессов
+>>>>>>> f05c58b765755759c21073a154f80dd688a0cc4f
         window_metro = tau*3  # sec.
         Fs = 30.0  # freq. sampling - Hz ; with oversampling
     
@@ -137,13 +141,12 @@ if __name__=='__main__':
         for curve in curves:
             #plot(x, curve,'b')
             pass
-       
-        for record in params: 
-            pass   
-            #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
-        #xlabel("t, s")
-        #ylabel("T, oC")
+
+        for record in params:    
+            #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
         #grid(); show()
+
+
         
         def mean_list_lists(list_lists):
             count_lists = len(list_lists)
@@ -171,7 +174,6 @@ if __name__=='__main__':
             freq_axis = calc_half_fs_axis(num_points, freq_sampling)
             dVoltage = 0.6  # V
             params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
-        
             h, phi, freq_axis, h_db = calc_analog_filter_curves(
                                                                 params, 
                                                                 freq_axis, 
@@ -182,48 +184,7 @@ if __name__=='__main__':
             print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
             plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
             show()
-            
-        """
-        # Для каждого из опытов
-        sum = ''
-        first_line_rpt = ''
-        for i in range(num_points+1):
-                sum += str(i)+' , '
-        print sum
-        rpt.append(sum)   
-            
-            
-        for idx in range(count_metro):
-            one_line_rpt = ''
-            
-            # Generate noize
-            y = gen.get_gauss_noise(sigma, num_points)
-            
-            acum = ''
-            for sample in y:
-                tmp = int(sample*1000)/1000.0
-                acum += str(tmp)+', '
-            
-            one_line_rpt += str(idx+1)+' , '+acum
-            #print idx
-            # Зашумляем одну
-            
-            # Пишем в отчет *.csv 
-            # 1, 2, 8
-            # 3, 8, ...
-            rpt.append(one_line_rpt)
-         
-         
-        def printer(msg):
-            print msg
-        #map(printer, rpt)
-        sets = {}
-        #dal.
-        sets['name'] = 'source_rpt.csv'
-        sets['howOpen'] = 'w'
-        sets['coding'] = 'utf8'
-        dal.list2file(sets, rpt)
-        """
-        
+
+
     main()
     print 'Done'

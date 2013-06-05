@@ -5,6 +5,7 @@ encoding//src/app-top.py=utf8
 encoding//src/app-zero-point.py=utf8
 encoding//src/app_digital_filters.py=utf-8
 encoding//src/app_math/simple_math_operators.py=utf8
+encoding//src/app_plot_analog_filters.py=utf-8
 encoding//src/compilation_code.py=utf8
 encoding//src/dsp_modules/signal_generator.py=utf8
 encoding//src/dsp_modules/signal_templates.py=utf-8
