@@ -1,16 +1,20 @@
 # coding: utf8
 
 from pylab import plot
+from pylab import xlabel
+from pylab import ylabel
 from pylab import show
 from pylab import grid
+
+import math
 
 from numpy import random
 from numpy import array
 from numpy import append
 from numpy import concatenate
 from numpy import zeros
+from numpy import arange
 import json
-
 
 # Other
 import dals.os_io.io_wrapper as dal
@@ -45,20 +49,29 @@ def get_list_curves(
         if add_multiplicate_noise:
             k = 0.000003
         else:
-            k = 0.003
+            k = 0.03
         num_points = 1
         
-        temperature_ref += random.normal(0, temperature_ref*k/50, size=num_points)
-        dt +=  random.normal(0, dt*k*2, size=num_points)
-        #max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
+        temperature_ref += random.normal(0, temperature_ref*k/30, size=num_points)
+        dt +=  random.normal(0, dt*k*2*4, size=num_points)
+        max_dtemperature += random.normal(0, max_dtemperature*k, size=num_points)  # фиктивный 
         curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature+temperature_ref
 
         # Добавляем шум
         curve += noise
 
         # Сохраняем кривую
-        curves.append(curve)
+        curves.append(mock_curve(curve))
     return curves
+
+def mock_curve(curve):
+    result = curve
+    for i in range(len(curve)):
+        result[i] = math.floor(curve[i]*10.0)/10
+        #print math.floor(curve[i]*100)/100
+    
+    return result
+    
 
 def get_notes(curves, axis, zero_point=None):
     params = []
@@ -87,13 +100,13 @@ if __name__=='__main__':
         #
         # 15 секунда - отрезок времени. Предполагается, что переходные процессы завершаются за
         # время 3tau = 3*5
-        tau = 8.0  # оценочное врем переходный процессов
+        tau = 15.0  # оценочное врем переходный процессов
         window_metro = tau*3  # sec.
-        Fs = 100.0  # freq. sampling - Hz ; with oversampling
+        Fs = 30.0  # freq. sampling - Hz ; with oversampling
     
         num_points = window_metro*Fs
         print "num_points: ", num_points
-        count_iteration_metro = 20
+        count_iteration_metro = 6
         sigma = 0.03  # зашумленность сигнала
         
         axis = XAxis(num_points, 1/Fs)
@@ -102,16 +115,16 @@ if __name__=='__main__':
         # Базовые параметры
         max_dtemperature = 2.0  # высота ступеньки
         temperature_ref = 70  # смещение кривой по оси Оy
-        T1 = 1.4  # sec.
-        T2 = 2.0  # sec.
-        dt = 0.1  # фазовый сдвиг кривой
+        T1 = 5.4  # sec.
+        T2 = 3.0  # sec.
+        dt = 1.0  # фазовый сдвиг кривой
         base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
         print 'T1', T1
         print 'T2', T2
-        curves = get_list_curves(axis, noise, count_iteration_metro, True, base_params)
+        curves = get_list_curves(axis, noise, count_iteration_metro, False, base_params)
         
         # Оцениваем все параметры кривых
-        T1 = 5.0
+        T1 = 2.0
         T2 = 1.0
         dt = 0.0
         max_dtemperature = 3.0
@@ -124,11 +137,12 @@ if __name__=='__main__':
         for curve in curves:
             #plot(x, curve,'b')
             pass
-            
        
         for record in params: 
             pass   
             #plot(x, wrapper_for_finding_2l_del_full(record, x),'g')
+        #xlabel("t, s")
+        #ylabel("T, oC")
         #grid(); show()
         
         def mean_list_lists(list_lists):
@@ -142,7 +156,7 @@ if __name__=='__main__':
             return array(summary)
     
 
-        mean_params = mean_list_lists(params)
+        mean_params = [  5.32255626,   3.07633474,   0.88892465,   2.14692147,  69.83541651]#mean_list_lists(params)
         print 'mean', mean_params 
         
         # Генерируем зашумленные данные 
@@ -150,24 +164,25 @@ if __name__=='__main__':
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
-        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
-        freq_sampling = 4.0  # Hz
-        num_points = 1024
-        freq_axis = calc_half_fs_axis(num_points, freq_sampling)
-        dVoltage = 0.2  # V
-        params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
-    
-        h, phi, freq_axis, h_db = calc_analog_filter_curves(
-                                                            params, 
-                                                            freq_axis, 
-                                                            af_order2_asym_delay)
-        cut_position = get_cut_position(h_db)
-            
-        # Рисуем
-        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-        plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
-        show()
+        if True:
+            T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+            freq_sampling = 3.0  # Hz
+            num_points = 1024
+            freq_axis = calc_half_fs_axis(num_points, freq_sampling)
+            dVoltage = 0.6  # V
+            params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
         
+            h, phi, freq_axis, h_db = calc_analog_filter_curves(
+                                                                params, 
+                                                                freq_axis, 
+                                                                af_order2_asym_delay)
+            cut_position = get_cut_position(h_db)
+                
+            # Рисуем
+            print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
+            plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+            show()
+            
         """
         # Для каждого из опытов
         sum = ''
@@ -202,14 +217,12 @@ if __name__=='__main__':
         def printer(msg):
             print msg
         #map(printer, rpt)
-        
         sets = {}
         #dal.
         sets['name'] = 'source_rpt.csv'
         sets['howOpen'] = 'w'
         sets['coding'] = 'utf8'
         dal.list2file(sets, rpt)
-            
         """
         
     main()
