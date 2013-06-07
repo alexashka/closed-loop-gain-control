@@ -13,6 +13,7 @@ from numpy import array
 from numpy import append
 from numpy import concatenate
 from numpy import zeros
+from numpy import ones
 from numpy import arange
 import json
 
@@ -140,6 +141,7 @@ if __name__=='__main__':
 
         for record in params:    
             #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
+            pass
         #grid(); show()
 
 
@@ -163,9 +165,11 @@ if __name__=='__main__':
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
+        freq_sampling = 1.3  # Hz
         if True:
             T1, T2, dt, max_dtemperature, temperature_ref = mean_params
-            freq_sampling = 3.0  # Hz
+            dt = 0
+            
             num_points = 1024
             freq_axis = calc_half_fs_axis(num_points, freq_sampling)
             dVoltage = 0.6  # V
@@ -179,8 +183,20 @@ if __name__=='__main__':
             # Рисуем
             print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
             plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+            #show()
+
+        #if True:
+            from visualisers import mfreqz
+            from visualisers import impz
+            from iir_models.iir_digital import calc_digital_characteristics
+            b, a, fs = calc_digital_characteristics(params[:-1], freq_sampling)
+            print b, a
+            
+            """ View """
+            #plot_normalize_analog(tau, freq, freq_sampling, plot_AFC, plot_PFC)
+            #impz(b, a)
+            mfreqz(b, a)
+            
             show()
-
-
     main()
     print 'Done'

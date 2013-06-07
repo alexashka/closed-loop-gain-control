@@ -18,28 +18,29 @@ def mfreqz_2():
    
     
 def _plotter_angle_and_abs(h, w):
-    h_dB = to_dB(h)
+    h_dB = to_dB(abs(h))
+    f_axis = w/2/pi
     
     # Plot
     subplot(211)
-    plot(w, h_dB)
-    ylim(min(h_dB), max(h_dB))
-    xlim(0, max(w))
+    grid()
+    plot(f_axis, h_dB)
+    #ylim(min(h_dB), max(h_dB))
+    #xlim(0, max(f_axis))
     ylabel('Magnitude (db)')
     xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
     title(r'Frequency response')
     
     # Plot
     subplot(212)
-    h_Phase = unwrap(arctan2(imag(h),real(h)))
-    plot(w,h_Phase)
     grid()
-    xlim(0, max(w))
+    h_Phase = unwrap(arctan2(imag(h),real(h)))*180/pi
+    plot(f_axis,h_Phase)
+    xlim(0, max(f_axis))
     ylabel('Phase (radians)')
     xlabel(r'Normalized Frequency (x$\pi$rad/sample)')
     title(r'Phase response')
     subplots_adjust(hspace=0.5)
-    grid()
     
 def impz(b,a=1):
     impulse = repeat(0.,50); impulse[0] =1.
@@ -66,10 +67,10 @@ def plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position):
     ylabel('20*log(K)')
     xlabel('F, Hz')
     grid()   
-    axis = freq_axis
+    axis = freq_axis/freq_sampling
     plot(axis, y_dB)
-    plot(freq_axis[cut_position], y_dB[cut_position], 'o')
-    xlim(0, freq_sampling/2)
+    plot(freq_axis[cut_position]/freq_sampling, y_dB[cut_position], 'o')
+    xlim(0, freq_sampling/2/freq_sampling)
     
     # Angle
     subplot(2, 1, 2)
@@ -77,8 +78,8 @@ def plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position):
     ylabel('Phase, deg')
     xlabel('F, Hz')
     plot(axis, phi)
-    plot(freq_axis[cut_position], phi[cut_position], 'o')
-    xlim(0, freq_sampling/2)
+    plot(freq_axis[cut_position]/freq_sampling, phi[cut_position], 'o')
+    xlim(0, freq_sampling/2/freq_sampling)
     
 def calc_half_fs_axis(total_points, fs):
     """ Геренирует ось до половины частоты дискр. с числом
