@@ -23,7 +23,6 @@ def _plotter_angle_and_abs(h, w):
     
     # Plot
     subplot(211)
-    grid()
     plot(f_axis, h_dB)
     #ylim(min(h_dB), max(h_dB))
     #xlim(0, max(f_axis))
@@ -33,7 +32,6 @@ def _plotter_angle_and_abs(h, w):
     
     # Plot
     subplot(212)
-    grid()
     h_Phase = unwrap(arctan2(imag(h),real(h)))*180/pi
     plot(f_axis,h_Phase)
     xlim(0, max(f_axis))
@@ -58,7 +56,7 @@ def impz(b,a=1):
     xlabel(r'n (samples)')
     title(r'Step response')
     subplots_adjust(hspace=0.5)
-    show()
+    #show()
     
 def plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position):
     # Abs

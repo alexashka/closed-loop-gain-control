@@ -165,10 +165,10 @@ if __name__=='__main__':
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
-        freq_sampling = 1.3  # Hz
+        freq_sampling = 1.0  # Hz
         if True:
             T1, T2, dt, max_dtemperature, temperature_ref = mean_params
-            dt = 0
+            #dt = 0
             
             num_points = 1024
             freq_axis = calc_half_fs_axis(num_points, freq_sampling)
@@ -182,7 +182,7 @@ if __name__=='__main__':
                 
             # Рисуем
             print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-            plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+            #plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
             #show()
 
         #if True:
@@ -190,12 +190,17 @@ if __name__=='__main__':
             from visualisers import impz
             from iir_models.iir_digital import calc_digital_characteristics
             b, a, fs = calc_digital_characteristics(params[:-1], freq_sampling)
+            
+            from numpy.polynomial import Polynomial as P
+            delay = zeros(freq_sampling*dt+1)
+            delay[-1] = 1
+            b = (P(b)*P(delay)).coef
             print b, a
             
             """ View """
             #plot_normalize_analog(tau, freq, freq_sampling, plot_AFC, plot_PFC)
-            #impz(b, a)
-            mfreqz(b, a)
+            impz(b, a)
+            #mfreqz(b, a)
             
             show()
     main()

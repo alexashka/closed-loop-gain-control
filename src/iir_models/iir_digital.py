@@ -7,6 +7,7 @@ Created on 07.06.2013
 from scipy import signal
 from numpy import array
 from numpy.polynomial import Polynomial as P
+from numpy import ones
 
 # Runner
 def calc_digital_characteristics(params, freq_sampling): 
