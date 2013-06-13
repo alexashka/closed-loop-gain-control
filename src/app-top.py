@@ -138,7 +138,7 @@ if __name__=='__main__':
             #plot(x, curve,'b')
             pass
 
-        for record in params:    
+#        for record in params:    
             #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
         #grid(); show()
 
