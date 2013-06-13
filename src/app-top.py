@@ -165,7 +165,7 @@ if __name__=='__main__':
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
-        freq_sampling = 1.0  # Hz
+        freq_sampling = 3.0  # Hz
         if True:
             T1, T2, dt, max_dtemperature, temperature_ref = mean_params
             #dt = 0
@@ -182,7 +182,7 @@ if __name__=='__main__':
                 
             # Рисуем
             print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-            #plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+            plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
             #show()
 
         #if True:
@@ -199,8 +199,8 @@ if __name__=='__main__':
             
             """ View """
             #plot_normalize_analog(tau, freq, freq_sampling, plot_AFC, plot_PFC)
-            impz(b, a)
-            #mfreqz(b, a)
+            #impz(b, a)
+            mfreqz(b, a)
             
             show()
     main()
