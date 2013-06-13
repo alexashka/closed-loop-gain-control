@@ -20,7 +20,7 @@ def main():
     
     D2 = angle(((5.3226*1j*w)+1)*(3.0763*1j*w+1))
     
-    if ((D1-D2) > 0) and ((D1-D2) < 0):
+    if ((D1-D2) > 0) or ((D1-D2) < 0):
         print "find other system"
     
     print    "stability"
