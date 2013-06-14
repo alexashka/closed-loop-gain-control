@@ -100,11 +100,7 @@ if __name__=='__main__':
         #
         # 15 секунд - отрезок времени. Предполагается, что переходные процессы завершаются за
         # время 3tau = 3*5
-<<<<<<< HEAD
         tau = 15.0  # оценочное врем переходный процессов
-=======
-        tau = 8.0  # оценочное время переходный процессов
->>>>>>> f05c58b765755759c21073a154f80dd688a0cc4f
         window_metro = tau*3  # sec.
         Fs = 30.0  # freq. sampling - Hz ; with oversampling
     
@@ -137,14 +133,14 @@ if __name__=='__main__':
         params = get_notes(curves, axis, zero_point)
         
         # DEVELOP
-        x = axis.get_axis()
+        """"x = axis.get_axis()
         for curve in curves:
-            #plot(x, curve,'b')
-            pass
+            plot(x, curve,'b')
+            pass"""
 
-        for record in params:    
-            #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
-        #grid(); show()
+#        for record in params:    
+#           plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
+#        grid(); show()
 
 
         
