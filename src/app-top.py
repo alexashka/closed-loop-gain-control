@@ -145,11 +145,8 @@ def main():
                 params, 
                 freq_axis, 
                 af_order2_asym_delay)
-        cut_position = get_cut_position(h_db)
-            
-        # Рисуем
-        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-        plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
+        
+        #plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
     if True:
@@ -162,12 +159,29 @@ def main():
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
         print 'b',b, 'a', a
+        #cut_position = get_cut_position(h_db)
+            
+        # Рисуем
+        #print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
         
         """ View """
         #plot_normalize_analog(tau, freq, work_freq, plot_AFC, plot_PFC)
         #impz(b, a)
         mfreqz(b, a)
         show()
+        
+        if False:
+            # Оценка точности
+            pass
+        
+        if True:
+            # Оценка устойчивости
+            pass
+        
+        if False:
+            # Исследование комбинации фильтра, сглаживающего
+            #   сигнал ошибки и усилителя
+            pass
         
 if __name__=='__main__':
 
