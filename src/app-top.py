@@ -39,11 +39,21 @@ from visualisers import calc_half_fs_axis
 def get_list_curves(
                     axis, 
                     noise, 
-                    count_iteration_metro, add_multiplicate_noise=True,
+                    count_curves, add_multiplicate_noise=True,
                     base_params=None):
     curves = []
+    if not base_params:
+        max_dtemperature = 2.0  # высота ступеньки
+        temperature_ref = 70  # смещение кривой по оси Оy
+        T1 = 5.4  # sec.
+        T2 = 3.0  # sec.
+        dt = 1.0  # фазовый сдвиг кривой
+        base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
+        print 'T1', T1
+        print 'T2', T2
+        
     T1, T2, dt, max_dtemperature, temperature_ref = base_params
-    for metro in range(count_iteration_metro):
+    for metro in range(count_curves):
         t = axis.get_axis()
         
         # Params
@@ -85,44 +95,25 @@ def get_notes(curves, axis, zero_point=None):
     
 if __name__=='__main__':
     def main():
-        # rpt
-        #coeff_decimation = 10;
-        #num_column_in_rpt = 20;
-        #rpt = []
-        
-        #
+        # Задаем начальные параметры
         voltage_agc_ref = 1.2  # V - AGC - auto gain control
         dv_ref = 0.1  # V - тестовый скачек
-        #temperature_ref = 60  # oC
-        
-        # Задаем начальные параметры
-        # Постоянные времени измеряются секундами, поэтому частота дискретизации
-        #   должна быть в районе одного Гц. Применим oversampling пусть частота будет 100 Гц.
-        #
-        # 15 секунд - отрезок времени. Предполагается, что переходные процессы завершаются за
-        # время 3tau = 3*5
         tau = 15.0  # оценочное врем переходный процессов
         window_metro = tau*3  # sec.
         Fs = 30.0  # freq. sampling - Hz ; with oversampling
-    
         num_points = window_metro*Fs
-        print "num_points: ", num_points
-        count_iteration_metro = 6
-        sigma = 0.03  # зашумленность сигнала
         
-        axis = XAxis(num_points, 1/Fs)
+        print "num_points: ", num_points
+        axis = XAxis(num_points, 1/Fs)  # Общая временная ось
+        sigma = 0.03  # зашумленность сигнала
         noise = gen.get_gauss_noise(sigma, num_points)
         
         # Базовые параметры
-        max_dtemperature = 2.0  # высота ступеньки
-        temperature_ref = 70  # смещение кривой по оси Оy
-        T1 = 5.4  # sec.
-        T2 = 3.0  # sec.
-        dt = 1.0  # фазовый сдвиг кривой
-        base_params = (T1, T2, dt, max_dtemperature, temperature_ref)
-        print 'T1', T1
-        print 'T2', T2
-        curves = get_list_curves(axis, noise, count_iteration_metro, False, base_params)
+        count_curves = 6
+        curves = get_list_curves(axis=axis, 
+                                 noise=noise, 
+                                 count_curves=count_curves, 
+                                 add_multiplicate_noise=False)
         
         # Оцениваем все параметры кривых
         T1 = 2.0
