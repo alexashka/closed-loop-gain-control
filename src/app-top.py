@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 # std
 import json
 
@@ -133,9 +133,10 @@ def main():
 
     
     # Рассчитываем незашумленную кривую
+    T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+    work_freq = 3.0  # Hz
     if True:
-        work_freq = 3.0  # Hz
-        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+        # Аналоговая часть
         num_points = 1024
         freq_axis = calc_half_fs_axis(num_points, work_freq)
         
@@ -151,6 +152,7 @@ def main():
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
+    if True:
         # Цифровая часть
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
