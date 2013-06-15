@@ -165,7 +165,7 @@ if __name__=='__main__':
         #get_list_curves() 
         
         # Рассчитываем незашумленную кривую
-        freq_sampling = 3.0  # Hz
+        freq_sampling = 10.0  # Hz
         if True:
             T1, T2, dt, max_dtemperature, temperature_ref = mean_params
             #dt = 0
