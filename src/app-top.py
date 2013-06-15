@@ -19,8 +19,11 @@ from numpy.polynomial import Polynomial as P
 
 # App
 from measure_processors import get_list_curves
+from measure_processors import get_list_art_curves
 
 from app_math.simple_math_operators import XAxis
+
+import dsp_modules.signal_generator as gen
 
 from dsp_modules.signal_generator import wrapper_for_finding_2l_del_full
 from dsp_modules.signal_templates import get_metro_and_axis
@@ -67,26 +70,27 @@ def main():
     axis = XAxis(num_points, 1/Fs)  # Общая временная ось
 
     # Получить измеренные кривые
-    print "num_points: ", num_points
-    count_curves = 6
-    curves = get_list_curves(axis=axis, count_curves=count_curves)
-    
-    # Оцениваем все параметры кривых
-    params = get_notes(curves, axis, zero_point)
-    
     if False:
-        x = axis.get_axis()
-        for curve in curves:
-            #plot(x, curve,'b')
-            pass
-    
-        for record in params:    
-            #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
-            pass
-        #grid(); show()
+        print "num_points: ", num_points
+        count_curves = 6
+        curves = get_list_curves(axis=axis, count_curves=count_curves)
+        
+        # Оцениваем все параметры кривых
+        params = get_notes(curves, axis, zero_point)
+        
+        if False:
+            x = axis.get_axis()
+            for curve in curves:
+                #plot(x, curve,'b')
+                pass
+            for record in params:    
+                #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
+                pass
+            #grid(); show()
 
     # Усредняем
     if False:
+        # Предыдущее условие должно быть True
         # Рассчитываем
         mean_params  = mean_list_lists(params)
     else:
@@ -95,11 +99,31 @@ def main():
     print 'mean', mean_params 
     
     # Оценка стойкости к зашумленности исходных данных
-    
+    # Рассматривается только аддитивный белый гауссовский шум
+    # Как показывают опыты, если шум мал, то все параметры оцениваются
+    #   достаточно точно.
+    if True:
+        count_curves= 10
+        sigma = 0.3  # зашумленность сигнала
+        curves = []
+        for i in range(count_curves):
+            noise = gen.get_gauss_noise(sigma, len(axis.get_axis()))
+            curve = get_list_art_curves(
+                    axis=axis, 
+                    noise=noise, 
+                    count_curves=count_curves, 
+                    base_params=mean_params)
+            curves.append(curve[0])
+        x = axis.get_axis()
+        for curve in curves:
+            plot(x, curve,'b')
+        #    pass
+        show()
+        params = get_notes(curves, axis, zero_point)
     
     # Рассчитываем незашумленную кривую
-    freq_sampling = 3.0  # Hz
     if False:
+        freq_sampling = 3.0  # Hz
         T1, T2, dt, max_dtemperature, temperature_ref = mean_params
       
         num_points = 1024
@@ -117,11 +141,8 @@ def main():
         plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
         #show()
 
-    if True:
-        
+        # Цифровая часть
         b, a, fs = calc_digital_characteristics(params[:-1], freq_sampling)
-        
-        
         delay = zeros(freq_sampling*dt+1)
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
