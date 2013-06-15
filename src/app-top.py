@@ -8,6 +8,7 @@ from pylab import xlabel
 from pylab import ylabel
 from pylab import show
 from pylab import grid
+from pylab import hist
 
 from numpy import array
 from numpy import append
@@ -102,9 +103,11 @@ def main():
     # Рассматривается только аддитивный белый гауссовский шум
     # Как показывают опыты, если шум мал, то все параметры оцениваются
     #   достаточно точно.
-    if True:
-        count_curves= 10
-        sigma = 0.3  # зашумленность сигнала
+    #
+    # Не будем использовать - слишком долго считает
+    if False:
+        count_curves= 100
+        sigma = 0.03  # зашумленность сигнала
         curves = []
         for i in range(count_curves):
             noise = gen.get_gauss_noise(sigma, len(axis.get_axis()))
@@ -116,10 +119,17 @@ def main():
             curves.append(curve[0])
         x = axis.get_axis()
         for curve in curves:
-            plot(x, curve,'b')
-        #    pass
-        show()
+            #plot(x, curve,'b')
+            pass
+        #show()
         params = get_notes(curves, axis, zero_point)
+        T1_set = []
+        for record in params:  
+            T1_set.append(record[0])  
+            pass
+        print T1_set
+        hist(T1_set, 20)
+        show()
     
     # Рассчитываем незашумленную кривую
     if False:
