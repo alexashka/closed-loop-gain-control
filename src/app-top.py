@@ -36,6 +36,7 @@ from iir_models import get_cut_position
 from iir_models import af_order2_asym_delay
 from iir_models import calc_analog_filter_curves
 from iir_models.iir_digital import calc_digital_characteristics
+from iir_models.iir_digital import get_dfilter_axises
 
 from visualisers import plot_normalize_analog
 from visualisers import calc_half_fs_axis
@@ -145,8 +146,8 @@ def main():
                 params, 
                 freq_axis, 
                 af_order2_asym_delay)
-        
-        #plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
+        cut_position = 0
+        plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
     if True:
@@ -159,6 +160,7 @@ def main():
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
         print 'b',b, 'a', a
+        h, w = get_dfilter_axises(b, a)
         #cut_position = get_cut_position(h_db)
             
         # Рисуем
@@ -167,7 +169,7 @@ def main():
         """ View """
         #plot_normalize_analog(tau, freq, work_freq, plot_AFC, plot_PFC)
         #impz(b, a)
-        mfreqz(b, a)
+        mfreqz(h, w)
         show()
         
         if False:

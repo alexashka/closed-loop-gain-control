@@ -25,3 +25,13 @@ def calc_digital_characteristics(params, freq_sampling):
     
     b, a = signal.bilinear(b_analog, a_analog, fs=freq_sampling)
     return b, a, freq_sampling
+
+def get_dfilter_axises(b, a):
+    w, h = signal.freqz(b,a, worN=1000, whole=False)
+    return h, w
+
+def get_stability_notes(h, w):
+    pass
+
+def mult_chapters():
+    pass
