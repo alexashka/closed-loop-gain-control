@@ -15,21 +15,29 @@ from numpy import concatenate
 from numpy import zeros
 from numpy import ones
 from numpy import arange
+from numpy.polynomial import Polynomial as P
 
 # App
 from measure_processors import get_list_curves
+
 from app_math.simple_math_operators import XAxis
+
 from dsp_modules.signal_generator import wrapper_for_finding_2l_del_full
 from dsp_modules.signal_templates import get_metro_and_axis
 from dsp_modules.signal_generator import e_del_full
+
 from opimizers import run_approximation
 
 from iir_models import get_cut_position
 from iir_models import af_order2_asym_delay
 from iir_models import calc_analog_filter_curves
+from iir_models.iir_digital import calc_digital_characteristics
 
 from visualisers import plot_normalize_analog
 from visualisers import calc_half_fs_axis
+from visualisers import mfreqz
+from visualisers import impz
+
 
 def get_notes(curves, axis, zero_point=None):
     params = []
@@ -110,12 +118,10 @@ def main():
         #show()
 
     if True:
-        from visualisers import mfreqz
-        from visualisers import impz
-        from iir_models.iir_digital import calc_digital_characteristics
+        
         b, a, fs = calc_digital_characteristics(params[:-1], freq_sampling)
         
-        from numpy.polynomial import Polynomial as P
+        
         delay = zeros(freq_sampling*dt+1)
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
