@@ -8,6 +8,13 @@ from scipy import signal
 from numpy import array
 from numpy.polynomial import Polynomial as P
 from numpy import ones
+from numpy import pi
+from numpy import abs
+from numpy import angle
+
+# App
+from iir_models import get_cut_position
+from app_math import to_dB
 
 # Runner
 def calc_digital_characteristics(params, freq_sampling): 
@@ -25,3 +32,20 @@ def calc_digital_characteristics(params, freq_sampling):
     
     b, a = signal.bilinear(b_analog, a_analog, fs=freq_sampling)
     return b, a, freq_sampling
+
+def get_dfilter_axises(b, a):
+    w, h = signal.freqz(b,a, worN=1024, whole=False)
+    return h, w
+
+def get_stability_notes(h, w, count_points):
+    """ По Найквесту """
+    # Сперва запас по фазе 
+    cut_position = get_cut_position(to_dB(abs(h)))
+    phase_margin = angle(h[cut_position])*180/pi
+    
+    # По амплитуде
+    print angle(h)
+    pass
+
+def mult_chapters():
+    pass

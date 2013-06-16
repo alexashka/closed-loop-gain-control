@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 # std
 import json
 
@@ -36,6 +36,8 @@ from iir_models import get_cut_position
 from iir_models import af_order2_asym_delay
 from iir_models import calc_analog_filter_curves
 from iir_models.iir_digital import calc_digital_characteristics
+from iir_models.iir_digital import get_dfilter_axises
+from iir_models.iir_digital import get_stability_notes
 
 from visualisers import plot_normalize_analog
 from visualisers import calc_half_fs_axis
@@ -133,13 +135,13 @@ def main():
 
     
     # Рассчитываем незашумленную кривую
+    T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+    params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
+    work_freq = 3.0  # Hz
     if True:
-        work_freq = 3.0  # Hz
-        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+        # Аналоговая часть
         num_points = 1024
         freq_axis = calc_half_fs_axis(num_points, work_freq)
-        
-        params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
         h, phi, freq_axis, h_db = calc_analog_filter_curves(
                 params, 
                 freq_axis, 
@@ -151,6 +153,7 @@ def main():
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
+    if True:
         # Цифровая часть
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
@@ -180,13 +183,32 @@ def main():
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
         print 'b',b, 'a', a
+        h, w = get_dfilter_axises(b, a)
+        get_stability_notes(h, w, len(w))
+        
         
         """ View """
-        #plot_normalize_analog(tau, freq, work_freq, plot_AFC, plot_PFC)
         #impz(b, a)
-        mfreqz(b, a)
+        mfreqz(h, w)
         show()
+        
+        if False:
+            # Оценка точности
+            pass
+        
+        if True:
+            # Оценка устойчивости
+            pass
+        
+        # Решение проблем, связанных с переходом 
+        #   от дискретной системы к цифровой
+        if False:
+            # Исследование комбинации фильтра, сглаживающего
+            #   сигнал ошибки и усилителя
+            pass
         
 if __name__=='__main__':
     main()
     print 'Done'
+    
+    
