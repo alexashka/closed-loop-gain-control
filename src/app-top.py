@@ -157,26 +157,6 @@ def main():
         # Цифровая часть
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
-        # Рассчитываем незашумленную кривую
-        freq_sampling = 10.0  # Hz
-        if True:
-            T1, T2, dt, max_dtemperature, temperature_ref = mean_params
-            #dt = 0
-            
-            num_points = 1024
-            freq_axis = calc_half_fs_axis(num_points, freq_sampling)
-            dVoltage = 0.6  # V
-            params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
-            h, phi, freq_axis, h_db = calc_analog_filter_curves(
-                                                                params, 
-                                                                freq_axis, 
-                                                                af_order2_asym_delay)
-            cut_position = get_cut_position(h_db)
-                
-            # Рисуем
-            print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-            plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
-            #show()
         # Моделирование сдвига сигнала во времени
         # Точность моделирования задержки - такт. Округляем в большую сторону
         delay = zeros(work_freq*dt+2)
