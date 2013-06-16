@@ -55,3 +55,23 @@ def get_list_curves(axis,
         # Сохраняем кривую
         curves.append(mock_curve(curve))
     return curves
+
+def get_list_art_curves(axis, 
+                    noise=None, 
+                    count_curves=0,
+                    base_params=None):
+    curves = []       
+    T1, T2, dt, max_dtemperature, temperature_ref = base_params
+    for i in range(count_curves):
+        t = axis.get_axis()
+        
+        # Params
+        num_points = 1
+        curve = gen.ht_2level_del(t, T1, T2, dt)*max_dtemperature+temperature_ref
+
+        # Добавляем шум
+        curve += noise
+
+        # Сохраняем кривую
+        curves.append(mock_curve(curve))
+    return curves

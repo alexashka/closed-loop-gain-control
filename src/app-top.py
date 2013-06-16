@@ -8,6 +8,7 @@ from pylab import xlabel
 from pylab import ylabel
 from pylab import show
 from pylab import grid
+from pylab import hist
 
 from numpy import array
 from numpy import append
@@ -19,8 +20,11 @@ from numpy.polynomial import Polynomial as P
 
 # App
 from measure_processors import get_list_curves
+from measure_processors import get_list_art_curves
 
 from app_math.simple_math_operators import XAxis
+
+import dsp_modules.signal_generator as gen
 
 from dsp_modules.signal_generator import wrapper_for_finding_2l_del_full
 from dsp_modules.signal_templates import get_metro_and_axis
@@ -51,7 +55,7 @@ def get_notes(curves, axis, zero_point=None):
 def main():
     # Исходные параметры
     voltage_agc_ref = 1.2  # V - AGC - auto gain control
-    dv_ref = 0.1  # V - тестовый скачек
+    dVoltage = 0.6  # V - тестовый скачек
     tau = 15.0  # оценочное врем переходный процессов
     window_metro = tau*3  # sec.
     Fs = 30.0  # freq. sampling - Hz ; with oversampling
@@ -67,26 +71,27 @@ def main():
     axis = XAxis(num_points, 1/Fs)  # Общая временная ось
 
     # Получить измеренные кривые
-    print "num_points: ", num_points
-    count_curves = 6
-    curves = get_list_curves(axis=axis, count_curves=count_curves)
-    
-    # Оцениваем все параметры кривых
-    params = get_notes(curves, axis, zero_point)
-    
     if False:
-        x = axis.get_axis()
-        for curve in curves:
-            #plot(x, curve,'b')
-            pass
-    
-        for record in params:    
-            #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
-            pass
-        #grid(); show()
+        print "num_points: ", num_points
+        count_curves = 6
+        curves = get_list_curves(axis=axis, count_curves=count_curves)
+        
+        # Оцениваем все параметры кривых
+        params = get_notes(curves, axis, zero_point)
+        
+        if False:
+            x = axis.get_axis()
+            for curve in curves:
+                #plot(x, curve,'b')
+                pass
+            for record in params:    
+                #plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
+                pass
+            #grid(); show()
 
     # Усредняем
     if False:
+        # Предыдущее условие должно быть True
         # Рассчитываем
         mean_params  = mean_list_lists(params)
     else:
@@ -95,16 +100,45 @@ def main():
     print 'mean', mean_params 
     
     # Оценка стойкости к зашумленности исходных данных
-    
+    # Рассматривается только аддитивный белый гауссовский шум
+    # Как показывают опыты, если шум мал, то все параметры оцениваются
+    #   достаточно точно.
+    #
+    # Не будем использовать - слишком долго считает
+    if False:
+        count_curves= 100
+        sigma = 0.03  # зашумленность сигнала
+        curves = []
+        for i in range(count_curves):
+            noise = gen.get_gauss_noise(sigma, len(axis.get_axis()))
+            curve = get_list_art_curves(
+                    axis=axis, 
+                    noise=noise, 
+                    count_curves=count_curves, 
+                    base_params=mean_params)
+            curves.append(curve[0])
+        x = axis.get_axis()
+        for curve in curves:
+            #plot(x, curve,'b')
+            pass
+        #show()
+        params = get_notes(curves, axis, zero_point)
+        T1_set = []
+        for record in params:  
+            T1_set.append(record[0])  
+            pass
+        print T1_set
+        hist(T1_set, 20)  # Гистограмма
+        show()
+
     
     # Рассчитываем незашумленную кривую
-    freq_sampling = 3.0  # Hz
-    if False:
+    if True:
+        work_freq = 3.0  # Hz
         T1, T2, dt, max_dtemperature, temperature_ref = mean_params
-      
         num_points = 1024
-        freq_axis = calc_half_fs_axis(num_points, freq_sampling)
-        dVoltage = 0.6  # V
+        freq_axis = calc_half_fs_axis(num_points, work_freq)
+        
         params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
         h, phi, freq_axis, h_db = calc_analog_filter_curves(
                 params, 
@@ -114,13 +148,13 @@ def main():
             
         # Рисуем
         print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
-        plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
+        plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
-    if True:
+        # Цифровая часть
+        b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
-        b, a, fs = calc_digital_characteristics(params[:-1], freq_sampling)
-        
+<<<<<<< HEAD
         
 <<<<<<< HEAD
         # Рассчитываем незашумленную кривую
@@ -145,16 +179,21 @@ def main():
             #show()
 =======
         delay = zeros(freq_sampling*dt+1)
+=======
+        # Моделирование сдвига сигнала во времени
+        # Точность моделирования задержки - такт. Округляем в большую сторону
+        delay = zeros(work_freq*dt+2)
+>>>>>>> a33613939d396775bd7496291dd64009fc274b3d
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
-        print b, a
+        print 'b',b, 'a', a
         
         """ View """
-        #plot_normalize_analog(tau, freq, freq_sampling, plot_AFC, plot_PFC)
+        #plot_normalize_analog(tau, freq, work_freq, plot_AFC, plot_PFC)
         #impz(b, a)
         mfreqz(b, a)
-        
         show()
+        
 if __name__=='__main__':
 >>>>>>> 75e54d0f8f52b8db9f845d6b38c69c07c6ea702a
 
