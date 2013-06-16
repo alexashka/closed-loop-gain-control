@@ -53,6 +53,32 @@ def get_notes(curves, axis, zero_point=None):
         print v_result
         params.append(v_result)
     return params
+<<<<<<< HEAD
+    
+if __name__=='__main__':
+    def main():
+        # rpt
+        #coeff_decimation = 10;
+        #num_column_in_rpt = 20;
+        #rpt = []
+        
+        #
+        voltage_agc_ref = 1.2  # V - AGC - auto gain control
+        dv_ref = 0.1  # V - тестовый скачек
+        #temperature_ref = 60  # oC
+        
+        # Задаем начальные параметры
+        # Постоянные времени измеряются секундами, поэтому частота дискретизации
+        #   должна быть в районе одного Гц. Применим oversampling пусть частота будет 100 Гц.
+        #
+        # 15 секунд - отрезок времени. Предполагается, что переходные процессы завершаются за
+        # время 3tau = 3*5
+        tau = 15.0  # оценочное врем переходный процессов
+        window_metro = tau*3  # sec.
+        Fs = 30.0  # freq. sampling - Hz ; with oversampling
+    
+        num_points = window_metro*Fs
+=======
  
 def main():
     # Исходные параметры
@@ -74,6 +100,7 @@ def main():
 
     # Получить измеренные кривые
     if False:
+>>>>>>> d440d968f1e8a4d3402965d4e1ec9cb6f4b07a66
         print "num_points: ", num_points
         count_curves = 6
         curves = get_list_curves(axis=axis, count_curves=count_curves)
@@ -81,6 +108,29 @@ def main():
         # Оцениваем все параметры кривых
         params = get_notes(curves, axis, zero_point)
         
+<<<<<<< HEAD
+        # DEVELOP
+        """"x = axis.get_axis()
+        for curve in curves:
+            plot(x, curve,'b')
+            pass"""
+
+#        for record in params:    
+#           plot(x, wrapper_for_finding_2l_del_full(record, x),'r')
+#        grid(); show()
+
+
+        
+        def mean_list_lists(list_lists):
+            count_lists = len(list_lists)
+            result = zeros(len(list_lists[0]))
+            for list_values in list_lists:
+                result += list_values
+            summary = [] 
+            for value in result:
+                summary.append(value/count_lists)
+            return array(summary)
+=======
         if False:
             x = axis.get_axis()
             for curve in curves:
@@ -133,6 +183,7 @@ def main():
         hist(T1_set, 20)  # Гистограмма
         show()
 
+>>>>>>> d440d968f1e8a4d3402965d4e1ec9cb6f4b07a66
     
     # Рассчитываем незашумленную кривую
     T1, T2, dt, max_dtemperature, temperature_ref = mean_params
