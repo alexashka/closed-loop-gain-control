@@ -73,7 +73,7 @@ def main():
     axis = XAxis(num_points, 1/Fs)  # Общая временная ось
 
     # Получить измеренные кривые
-    print '\nMeasures processing...'
+    print 'Measures processing...'
     if False:
         print "num_points: ", num_points
         count_curves = 6
@@ -144,15 +144,17 @@ def main():
         print '\nAnalog...'
         num_points = 1024
         freq_axis = calc_half_fs_axis(num_points, work_freq)
-        h, phi, freq_axis, h_db = calc_analog_filter_curves(
+        h, phi, freq_axis, h_db, h_complex = calc_analog_filter_curves(
                 params, 
                 freq_axis, 
                 af_order2_asym_delay)
         cut_position = get_cut_position(h_db)
-            
+             
         # Рисуем
         # Запас по фазе должен быть больше -180 (-120...)
-        print 'Phase rest (analog) =', 180-abs(phi[cut_position])  
+        rest_phase, rest_ampl = get_stability_notes(h_complex)
+        print 'Phase rest =', rest_phase
+        print 'Phase magnitude =', 1/rest_ampl
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
@@ -170,13 +172,15 @@ def main():
         print 'b =',b 
         print 'a =', a
         h, w = get_dfilter_axises(b, a)
-        get_stability_notes(h, w, len(w))
+        rest_phase, rest_ampl = get_stability_notes(h)
+        print 'Phase rest =', rest_phase
+        print 'Phase magnitude =', 1/rest_ampl
         
         
         """ View """
         #impz(b, a)
-        #mfreqz(h, w)
-        #show()
+        mfreqz(h, w)
+        show()
         
         if False:
             # Оценка точности

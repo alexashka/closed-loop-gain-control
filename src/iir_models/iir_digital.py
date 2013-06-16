@@ -37,18 +37,20 @@ def get_dfilter_axises(b, a):
     w, h = signal.freqz(b,a, worN=1024, whole=False)
     return h, w
 
-def get_stability_notes(h, w, count_points):
+def get_stability_notes(h):
     from app_math import find_first_zero_idx
+    from iir_models import correct_pfc
     """ По Найквесту """
     # Сперва запас по фазе 
     cut_position = find_first_zero_idx(to_dB(abs(h)))
-    phase_margin = angle(h[cut_position])*180/pi
-    print 'Phase rest (digital) =', 180-abs(phase_margin)
-    
+    rest_phase = 180-abs(angle(h[cut_position])*180/pi)
+        
     # По амплитуде
-    phases_rad = angle(h)
-    print phases_rad+pi
-    pass
+    phases_rad = correct_pfc(h)
+    ampl_idx = find_first_zero_idx(phases_rad+pi)
+    ampl = abs(h[ampl_idx])
+    return rest_phase, ampl
+
 
 def mult_chapters():
     pass
