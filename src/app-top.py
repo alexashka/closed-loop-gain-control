@@ -136,9 +136,9 @@ def main():
         show()
     
     # Рассчитываем незашумленную кривую
+    work_freq = 3.0  # Hz
     T1, T2, dt, max_dtemperature, temperature_ref = mean_params
     params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
-    work_freq = 3.0  # Hz
     if True:
         # Аналоговая часть
         print '\nAnalog...'
@@ -172,6 +172,7 @@ def main():
         print 'b =',b 
         print 'a =', a
         h, w = get_dfilter_axises(b, a)
+        
         rest_phase, rest_ampl = get_stability_notes(h)
         print 'Phase rest =', rest_phase
         print 'Phase magnitude =', 1/rest_ampl
