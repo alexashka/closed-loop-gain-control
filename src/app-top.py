@@ -154,9 +154,6 @@ def main():
         # Цифровая часть
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
-<<<<<<< HEAD
-        
-<<<<<<< HEAD
         # Рассчитываем незашумленную кривую
         freq_sampling = 10.0  # Hz
         if True:
@@ -177,13 +174,9 @@ def main():
             print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
             plot_normalize_analog(h, phi, freq_axis, freq_sampling, cut_position)
             #show()
-=======
-        delay = zeros(freq_sampling*dt+1)
-=======
         # Моделирование сдвига сигнала во времени
         # Точность моделирования задержки - такт. Округляем в большую сторону
         delay = zeros(work_freq*dt+2)
->>>>>>> a33613939d396775bd7496291dd64009fc274b3d
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
         print 'b',b, 'a', a
@@ -195,7 +188,5 @@ def main():
         show()
         
 if __name__=='__main__':
->>>>>>> 75e54d0f8f52b8db9f845d6b38c69c07c6ea702a
-
     main()
     print 'Done'
