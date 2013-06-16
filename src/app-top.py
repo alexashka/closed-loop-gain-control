@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 # std
 import json
 
@@ -36,6 +36,8 @@ from iir_models import get_cut_position
 from iir_models import af_order2_asym_delay
 from iir_models import calc_analog_filter_curves
 from iir_models.iir_digital import calc_digital_characteristics
+from iir_models.iir_digital import get_dfilter_axises
+from iir_models.iir_digital import get_stability_notes
 
 from visualisers import plot_normalize_analog
 from visualisers import calc_half_fs_axis
@@ -71,6 +73,7 @@ def main():
     axis = XAxis(num_points, 1/Fs)  # Общая временная ось
 
     # Получить измеренные кривые
+    print 'Measures processing...'
     if False:
         print "num_points: ", num_points
         count_curves = 6
@@ -95,9 +98,10 @@ def main():
         # Рассчитываем
         mean_params  = mean_list_lists(params)
     else:
+        
         # Используем уже полученные результаты
         mean_params = [  5.32255626,   3.07633474,   0.88892465,   2.14692147,  69.83541651]
-    print 'mean', mean_params 
+    print 'Mean params =', mean_params 
     
     # Оценка стойкости к зашумленности исходных данных
     # Рассматривается только аддитивный белый гауссовский шум
@@ -130,28 +134,33 @@ def main():
         print T1_set
         hist(T1_set, 20)  # Гистограмма
         show()
-
     
     # Рассчитываем незашумленную кривую
+    work_freq = 3.0  # Hz
+    T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+    params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
     if True:
-        work_freq = 3.0  # Hz
-        T1, T2, dt, max_dtemperature, temperature_ref = mean_params
+        # Аналоговая часть
+        print '\nAnalog...'
         num_points = 1024
         freq_axis = calc_half_fs_axis(num_points, work_freq)
-        
-        params = T1, T2, dt, max_dtemperature/dVoltage, temperature_ref
-        h, phi, freq_axis, h_db = calc_analog_filter_curves(
+        h, phi, freq_axis, h_db, h_complex = calc_analog_filter_curves(
                 params, 
                 freq_axis, 
                 af_order2_asym_delay)
         cut_position = get_cut_position(h_db)
-            
+             
         # Рисуем
-        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
+        # Запас по фазе должен быть больше -180 (-120...)
+        rest_phase, rest_ampl = get_stability_notes(h_complex)
+        print 'Phase rest =', rest_phase
+        print 'Phase magnitude =', 1/rest_ampl
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
+    if True:
         # Цифровая часть
+        print '\nDigital...'
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
         # Моделирование сдвига сигнала во времени
@@ -159,15 +168,38 @@ def main():
         delay = zeros(work_freq*dt+2)
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
-        print 'b',b, 'a', a
+        
+        print 'b =',b 
+        print 'a =', a
+        h, w = get_dfilter_axises(b, a)
+        
+        rest_phase, rest_ampl = get_stability_notes(h)
+        print 'Phase rest =', rest_phase
+        print 'Phase magnitude =', 1/rest_ampl
+        
         
         """ View """
-        #plot_normalize_analog(tau, freq, work_freq, plot_AFC, plot_PFC)
         #impz(b, a)
-        mfreqz(b, a)
+        mfreqz(h, w)
         show()
         
+        if False:
+            # Оценка точности
+            pass
+        
+        if True:
+            # Оценка устойчивости
+            pass
+        
+        # Решение проблем, связанных с переходом 
+        #   от дискретной системы к цифровой
+        if False:
+            # Исследование комбинации фильтра, сглаживающего
+            #   сигнал ошибки и усилителя
+            pass
+        
 if __name__=='__main__':
-
     main()
     print 'Done'
+    
+    

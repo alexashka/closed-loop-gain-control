@@ -9,8 +9,7 @@ from app_math import to_dB
 
 
 
-def mfreqz(b,a):
-    w, h = signal.freqz(b,a, worN=1000, whole=False)
+def mfreqz(h,w):
     _plotter_angle_and_abs(h, w)
 
 def mfreqz_2():
