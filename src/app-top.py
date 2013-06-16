@@ -99,7 +99,7 @@ def main():
     else:
         # Используем уже полученные результаты
         mean_params = [  5.32255626,   3.07633474,   0.88892465,   2.14692147,  69.83541651]
-    print 'mean', mean_params 
+    print 'mean =', mean_params 
     
     # Оценка стойкости к зашумленности исходных данных
     # Рассматривается только аддитивный белый гауссовский шум
@@ -148,7 +148,8 @@ def main():
         cut_position = get_cut_position(h_db)
             
         # Рисуем
-        print phi[cut_position]  # Запас по фазе должен быть больше -180 (-120...)
+        # Запас по фазе должен быть больше -180 (-120...)
+        print 'phase rest (analog) =', 180-abs(phi[cut_position])  
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 

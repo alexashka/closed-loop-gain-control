@@ -28,7 +28,7 @@ def calc_digital_characteristics(params, freq_sampling):
     p2 = P([T2, 1])
     ans = p1*p2
     a_analog = ans.coef
-    print a_analog
+    #print a_analog
     
     b, a = signal.bilinear(b_analog, a_analog, fs=freq_sampling)
     return b, a, freq_sampling
@@ -38,13 +38,16 @@ def get_dfilter_axises(b, a):
     return h, w
 
 def get_stability_notes(h, w, count_points):
+    from app_math import find_first_zero_idx
     """ По Найквесту """
     # Сперва запас по фазе 
-    cut_position = get_cut_position(to_dB(abs(h)))
+    cut_position = find_first_zero_idx(to_dB(abs(h)))
     phase_margin = angle(h[cut_position])*180/pi
+    print 'Rest phase (digital) =', 180-abs(phase_margin)
     
     # По амплитуде
-    print angle(h)
+    phases_rad = angle(h)
+    print phases_rad+pi
     pass
 
 def mult_chapters():

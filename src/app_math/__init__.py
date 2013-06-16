@@ -16,3 +16,11 @@ def mean_list_lists(list_lists):
     for value in result:
         summary.append(value/count_lists)
     return array(summary)
+
+def find_first_zero_idx(in_array):
+    cut_position = 0
+    for i in range(len(in_array)-1):
+        cut_position += 1
+        if in_array[i]*in_array[i+1] < 0:
+            break
+    return cut_position
