@@ -73,6 +73,7 @@ def main():
     axis = XAxis(num_points, 1/Fs)  # Общая временная ось
 
     # Получить измеренные кривые
+    print '\nMeasures processing...'
     if False:
         print "num_points: ", num_points
         count_curves = 6
@@ -97,9 +98,10 @@ def main():
         # Рассчитываем
         mean_params  = mean_list_lists(params)
     else:
+        
         # Используем уже полученные результаты
         mean_params = [  5.32255626,   3.07633474,   0.88892465,   2.14692147,  69.83541651]
-    print 'mean =', mean_params 
+    print 'Mean params =', mean_params 
     
     # Оценка стойкости к зашумленности исходных данных
     # Рассматривается только аддитивный белый гауссовский шум
@@ -139,6 +141,7 @@ def main():
     work_freq = 3.0  # Hz
     if True:
         # Аналоговая часть
+        print '\nAnalog...'
         num_points = 1024
         freq_axis = calc_half_fs_axis(num_points, work_freq)
         h, phi, freq_axis, h_db = calc_analog_filter_curves(
@@ -149,12 +152,13 @@ def main():
             
         # Рисуем
         # Запас по фазе должен быть больше -180 (-120...)
-        print 'phase rest (analog) =', 180-abs(phi[cut_position])  
+        print 'Phase rest (analog) =', 180-abs(phi[cut_position])  
         plot_normalize_analog(h, phi, freq_axis, work_freq, cut_position)
         #show()
 
     if True:
         # Цифровая часть
+        print '\nDigital...'
         b, a, fs = calc_digital_characteristics(params[:-1], work_freq)
         
         # Моделирование сдвига сигнала во времени
@@ -162,15 +166,17 @@ def main():
         delay = zeros(work_freq*dt+2)
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
-        print 'b',b, 'a', a
+        
+        print 'b =',b 
+        print 'a =', a
         h, w = get_dfilter_axises(b, a)
         get_stability_notes(h, w, len(w))
         
         
         """ View """
         #impz(b, a)
-        mfreqz(h, w)
-        show()
+        #mfreqz(h, w)
+        #show()
         
         if False:
             # Оценка точности

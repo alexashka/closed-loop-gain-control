@@ -43,7 +43,7 @@ def get_stability_notes(h, w, count_points):
     # Сперва запас по фазе 
     cut_position = find_first_zero_idx(to_dB(abs(h)))
     phase_margin = angle(h[cut_position])*180/pi
-    print 'Rest phase (digital) =', 180-abs(phase_margin)
+    print 'Phase rest (digital) =', 180-abs(phase_margin)
     
     # По амплитуде
     phases_rad = angle(h)
