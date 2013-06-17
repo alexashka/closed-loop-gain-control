@@ -17,6 +17,7 @@ from numpy import zeros
 from numpy import ones
 from numpy import arange
 from numpy.polynomial import Polynomial as P
+from numpy import sum
 
 # App
 from measure_processors import get_list_curves
@@ -169,7 +170,7 @@ def main():
         delay[-1] = 1
         b = (P(b)*P(delay)).coef
         
-        print 'b =',b 
+        print 'b =', b 
         print 'a =', a
         h, w = get_dfilter_axises(b, a)
         
@@ -177,11 +178,27 @@ def main():
         print 'Phase rest =', rest_phase
         print 'Phase magnitude =', 1/rest_ampl
         
+        def calc_static_err(b, a):
+            """ Рассчитывает передачу сигнала ошибки 
+            We(z) = 1/(1+Wd(z)) Wd(z) - передат. функция разомнкутной системы
+            
+            Wd(z) = b/a
+            
+            Ошибка по положению
+            C0 = W(z)|z = 1
+            """
+            ae = (P(a)+P(b)).coef
+            be = a           
+            C0 = sum(be)/sum(ae)
+            print "Static error = ", C0
+        
+        calc_static_err(b, a)
+        
         
         """ View """
         #impz(b, a)
-        mfreqz(h, w)
-        show()
+        #mfreqz(h, w)
+        #show()
         
         if False:
             # Оценка точности
