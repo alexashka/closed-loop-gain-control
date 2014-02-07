@@ -1,5 +1,12 @@
 # coding: utf-8
 
+"""
+
+Model:
+    h = th0+th1*x
+
+"""
+
 import numpy
 import pylab
 
