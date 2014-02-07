@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import numpy
-from numpy import matrix
+import pylab
 
 
 def warm_up_exercise():
@@ -10,10 +10,19 @@ def warm_up_exercise():
 
 def load(filename):
     tmp = numpy.genfromtxt(filename, delimiter=',')
-    tmp = numpy.matrix.transpose(tmp)
     return tmp
 
+
+def plot_data(x, y):
+    pylab.plot(x, y, '+')
+    pylab.show()
+
 if __name__ == '__main__':
-    data = load('mlclass-ex1/ex1data1.txt')
-    print data[:1]
+    def main():
+        data = load('mlclass-ex1/ex1data1.txt')
+        x = data[:, :1]
+        y = data[:, 1:2]
+        plot_data(x, y)
+
+    main()
 
