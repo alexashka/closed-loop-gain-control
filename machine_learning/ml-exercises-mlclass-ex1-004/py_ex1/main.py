@@ -3,7 +3,7 @@
 """
 
 Model:
-    h = th0+th1*x
+    h = theta_0+theta_1 * x
 
 """
 
@@ -24,12 +24,18 @@ def plot_data(x, y):
     pylab.plot(x, y, '+')
     pylab.show()
 
-if __name__ == '__main__':
-    def main():
-        data = load('mlclass-ex1/ex1data1.txt')
-        x = data[:, :1]
-        y = data[:, 1:2]
-        plot_data(x, y)
 
+def main():
+    data = load('mlclass-ex1/ex1data1.txt')
+    x = data[:, :1]
+    y = data[:, 1:2]
+    #plot_data(x, y)
+
+    m = len(y)
+
+    x = numpy.hstack([numpy.ones((m, 1)), x])
+    print x
+
+if __name__ == '__main__':
     main()
 
