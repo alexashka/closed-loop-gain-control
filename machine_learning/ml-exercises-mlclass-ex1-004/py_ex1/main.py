@@ -30,10 +30,9 @@ def main():
     x = data[:, :1]
     y = data[:, 1:2]
     #plot_data(x, y)
-
     m = len(y)
-
     x = numpy.hstack([numpy.ones((m, 1)), x])
+    theta = numpy.zeros(())
     print x
 
 if __name__ == '__main__':
