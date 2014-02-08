@@ -43,15 +43,12 @@ def compute_cost(m_x, y, theta):
     return j
 
 
-def gradient_descent(X, y, theta, alpha, num_iterations):
-    theta_local = numpy.zeros((1, 2)).T  # Превращаем в вектор
-    m = len(y)
-
+def gradient_descent(m_x, y, theta, alpha, num_iterations):
     # 0
-    h = theta.T * X
+    h = (theta.T * m_x.T).T
     print h - y
-    dtheta0 = - alpha * 1/m * np.sum(h - y)
-    print dtheta0
+    #dtheta0 = - alpha * 1/m * np.sum(h - y)
+    #print dtheta0
 
     # 1
     #dtheta1 = - alpha * 1/m * np.sum((h - np.mat(y).T) * )
@@ -66,7 +63,7 @@ def main():
     # Похоже сортировка не нужна - или таки нужна?
     # J - Это сумма, поэтому скорее всего не важна
     #
-    # Извлекаем два !вектора входных данных
+    # Извлекаем два !вектора! входных данных
     data = load('mlclass-ex1/ex1data1.txt')
     x = np.mat(data[:, :1])
     y = np.mat(data[:, 1:2])
