@@ -14,6 +14,9 @@ convex function
 
 Danger:
  В NumPy операции с матрицами очень опасные - никакой защиты.
+
+Numpy:
+http://wiki.scipy.org/NumPy_for_Matlab_Users
 """
 
 import numpy
@@ -44,14 +47,18 @@ def compute_cost(m_x, y, theta):
 
 
 def gradient_descent(m_x, y, theta, alpha, num_iterations):
+    theta_local = np.copy(theta)
+    m = m_x.shape[0]
+
     # 0
     h = (theta.T * m_x.T).T
-    print h - y
-    #dtheta0 = - alpha * 1/m * np.sum(h - y)
-    #print dtheta0
+    dtheta0 = - alpha * 1/m * np.sum(h - y)
 
     # 1
-    #dtheta1 = - alpha * 1/m * np.sum((h - np.mat(y).T) * )
+    x = m_x[:, 1]
+    dtheta1 = - alpha * 1/m * np.sum(np.multiply((h - y), x))
+
+    # May iterate
 
     tmp0 = 0
     tmp1 = 0
