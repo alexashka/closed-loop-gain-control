@@ -42,7 +42,13 @@ def main():
     m = len(y)
     x = numpy.hstack([numpy.ones((m, 1)), x])
     theta = numpy.zeros((1, 2))
+
+    #
     j = compute_cost(x, y, theta)
+
+    #
+    iterations = 1500;
+    alpha = 0.01
 
 if __name__ == '__main__':
     main()
