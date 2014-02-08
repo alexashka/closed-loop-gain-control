@@ -5,7 +5,7 @@
 Model:
     h = theta_0+theta_1 * x
 
-X - matrix
+x_m - matrix
 x - vector
 
 Local min:
@@ -36,24 +36,20 @@ def plot_data(x, y):
     pylab.show()
 
 
-def compute_cost(X, y, theta):
+def compute_cost(m_x, y, theta):
     j = 0
-    y = y.T
-    for i, elem in enumerate(X.T):
-        elem = np.mat(elem).T
-        h_i = theta.T * elem
-        j += (h_i - y[i])**2
-    j *= 1.0 / (2 * len(y))
+    h = m_x * theta  # (AB)^T = B^T * A^T
+    j = 1/(2.0 * m_x.shape[0]) * np.sum(np.square(h - y))
     return j
 
 
 def gradient_descent(X, y, theta, alpha, num_iterations):
     theta_local = numpy.zeros((1, 2)).T  # Превращаем в вектор
     m = len(y)
-    y = y.T
 
     # 0
-    h = np.mat(theta.T * X)
+    h = theta.T * X
+    print h - y
     dtheta0 = - alpha * 1/m * np.sum(h - y)
     print dtheta0
 
@@ -69,28 +65,29 @@ def gradient_descent(X, y, theta, alpha, num_iterations):
 def main():
     # Похоже сортировка не нужна - или таки нужна?
     # J - Это сумма, поэтому скорее всего не важна
+    #
+    # Извлекаем два !вектора входных данных
     data = load('mlclass-ex1/ex1data1.txt')
-    x = data[:, :1]
-    y = np.mat(data[:, 1:2]).T
+    x = np.mat(data[:, :1])
+    y = np.mat(data[:, 1:2])
     #plot_data(x, y)
 
     # Prepare data
-    m = len(y.T)
-    X = numpy.hstack([numpy.ones((m, 1)), x])
-    X = X.T
+    m = len(y)
+    m_x = numpy.hstack([numpy.ones((m, 1)), x])
 
     # Params - zero point
-    theta = np.mat(numpy.zeros((1, 2))).T  # Превращаем в вектор
+    theta = np.mat(numpy.zeros((1, 2))).T  # Превращаем в !вектор
 
     # cost first iteration
-    j = compute_cost(X, y, theta)  # just example
+    j = compute_cost(m_x, y, theta)  # just example
 
     # Iteration
     num_iterations = 1500
     alpha = 0.01
 
     # Find min
-    gradient_descent(X, y, theta, alpha, num_iterations)
+    gradient_descent(m_x, y, theta, alpha, num_iterations)
 
     # Plot data and estimated line
 

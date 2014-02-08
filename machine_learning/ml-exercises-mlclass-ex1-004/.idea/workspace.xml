@@ -35,9 +35,9 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/py_ex1/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="698" selection-end="698" vertical-scroll-proportion="0.49369085" vertical-offset="469" max-vertical-offset="1785">
+            <state line="89" column="4" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.6514196" vertical-offset="1100" max-vertical-offset="1734">
               <folding>
-                <element signature="e#241#253#0" expanded="true" />
+                <element signature="e#243#255#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -367,11 +367,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/numpy/matrixlib/defmatrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="329" column="7" selection-start="9017" selection-end="9017" vertical-scroll-proportion="0.33280757" vertical-offset="5331" max-vertical-offset="18462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/py_ex1/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="698" selection-end="698" vertical-scroll-proportion="0.49369085" vertical-offset="469" max-vertical-offset="1785">
+        <state line="89" column="4" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.6514196" vertical-offset="1100" max-vertical-offset="1734">
           <folding>
-            <element signature="e#241#253#0" expanded="true" />
+            <element signature="e#243#255#0" expanded="true" />
           </folding>
         </state>
       </provider>
