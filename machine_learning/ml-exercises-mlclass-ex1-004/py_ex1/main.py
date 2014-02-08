@@ -10,6 +10,8 @@ Model:
 import numpy
 import pylab
 
+import numpy as np
+
 
 def warm_up_exercise():
     return numpy.eye(5)
@@ -27,10 +29,11 @@ def plot_data(x, y):
 
 def compute_cost(x, y, theta):
     j = 0
-    for i, elem in enumerate(x):
-        h_i = numpy.sum(elem*theta)
+    for i, elem in enumerate(x.T):
+        elem = elem.T
+        h_i = (np.mat(theta)).T * (np.mat(elem))
         j += (h_i - y[i])**2
-    j *= 1.0 / (2 * len(x))
+    j *= 1.0 / (2 * len(y))
     return j
 
 
@@ -41,10 +44,12 @@ def main():
     #plot_data(x, y)
     m = len(y)
     x = numpy.hstack([numpy.ones((m, 1)), x])
-    theta = numpy.zeros((1, 2))
+    x = (np.mat(x)).T
+    theta = numpy.zeros((1, 2)).T
 
     #
     j = compute_cost(x, y, theta)
+    print j
 
     #
     iterations = 1500;
