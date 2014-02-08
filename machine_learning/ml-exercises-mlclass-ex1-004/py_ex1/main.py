@@ -11,6 +11,9 @@ x - vector
 Local min:
 http://book.caltech.edu/bookforum/showthread.php?p=10595
 convex function
+
+Danger:
+ В NumPy операции с матрицами очень опасные - никакой защиты.
 """
 
 import numpy
@@ -35,9 +38,10 @@ def plot_data(x, y):
 
 def compute_cost(X, y, theta):
     j = 0
-    for i, elem in enumerate(X):
+    y = y.T
+    for i, elem in enumerate(X.T):
         elem = np.mat(elem).T
-        h_i = np.mat(theta).T * elem
+        h_i = theta.T * elem
         j += (h_i - y[i])**2
     j *= 1.0 / (2 * len(y))
     return j
@@ -46,6 +50,16 @@ def compute_cost(X, y, theta):
 def gradient_descent(X, y, theta, alpha, num_iterations):
     theta_local = numpy.zeros((1, 2)).T  # Превращаем в вектор
     m = len(y)
+    y = y.T
+
+    # 0
+    h = np.mat(theta.T * X)
+    dtheta0 = - alpha * 1/m * np.sum(h - y)
+    print dtheta0
+
+    # 1
+    #dtheta1 = - alpha * 1/m * np.sum((h - np.mat(y).T) * )
+
     tmp0 = 0
     tmp1 = 0
 
@@ -57,24 +71,26 @@ def main():
     # J - Это сумма, поэтому скорее всего не важна
     data = load('mlclass-ex1/ex1data1.txt')
     x = data[:, :1]
-    y = data[:, 1:2]
+    y = np.mat(data[:, 1:2]).T
     #plot_data(x, y)
 
     # Prepare data
-    m = len(y)
+    m = len(y.T)
     X = numpy.hstack([numpy.ones((m, 1)), x])
+    X = X.T
 
     # Params - zero point
-    theta = numpy.zeros((1, 2)).T  # Превращаем в вектор
+    theta = np.mat(numpy.zeros((1, 2))).T  # Превращаем в вектор
 
     # cost first iteration
-    j = compute_cost(X, y, theta)
+    j = compute_cost(X, y, theta)  # just example
 
     # Iteration
-    iterations = 1500
+    num_iterations = 1500
     alpha = 0.01
 
     # Find min
+    gradient_descent(X, y, theta, alpha, num_iterations)
 
     # Plot data and estimated line
 
