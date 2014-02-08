@@ -7,6 +7,10 @@ Model:
 
 X - matrix
 x - vector
+
+Local min:
+http://book.caltech.edu/bookforum/showthread.php?p=10595
+convex function
 """
 
 import numpy
@@ -39,8 +43,18 @@ def compute_cost(X, y, theta):
     return j
 
 
+def gradient_descent(X, y, theta, alpha, num_iterations):
+    theta_local = numpy.zeros((1, 2)).T  # Превращаем в вектор
+    m = len(y)
+    tmp0 = 0
+    tmp1 = 0
+
+    # atomic update
+
+
 def main():
-    # Похоже сортировка не нужна
+    # Похоже сортировка не нужна - или таки нужна?
+    # J - Это сумма, поэтому скорее всего не важна
     data = load('mlclass-ex1/ex1data1.txt')
     x = data[:, :1]
     y = data[:, 1:2]
@@ -59,6 +73,10 @@ def main():
     # Iteration
     iterations = 1500
     alpha = 0.01
+
+    # Find min
+
+    # Plot data and estimated line
 
 if __name__ == '__main__':
     main()
