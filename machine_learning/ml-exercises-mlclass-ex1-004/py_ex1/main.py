@@ -40,6 +40,7 @@ def compute_cost(X, y, theta):
 
 
 def main():
+    # Похоже сортировка не нужна
     data = load('mlclass-ex1/ex1data1.txt')
     x = data[:, :1]
     y = data[:, 1:2]
