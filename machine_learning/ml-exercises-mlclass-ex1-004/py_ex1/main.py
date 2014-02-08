@@ -5,6 +5,8 @@
 Model:
     h = theta_0+theta_1 * x
 
+X - matrix
+x - vector
 """
 
 import numpy
@@ -27,9 +29,9 @@ def plot_data(x, y):
     pylab.show()
 
 
-def compute_cost(x, y, theta):
+def compute_cost(X, y, theta):
     j = 0
-    for i, elem in enumerate(x):
+    for i, elem in enumerate(X):
         elem = np.mat(elem).T
         h_i = np.mat(theta).T * elem
         j += (h_i - y[i])**2
@@ -42,14 +44,18 @@ def main():
     x = data[:, :1]
     y = data[:, 1:2]
     #plot_data(x, y)
+
+    # Prepare data
     m = len(y)
-    x = numpy.hstack([numpy.ones((m, 1)), x])
+    X = numpy.hstack([numpy.ones((m, 1)), x])
+
+    # Params - zero point
     theta = numpy.zeros((1, 2)).T  # Превращаем в вектор
 
-    #
-    j = compute_cost(x, y, theta)
+    # cost first iteration
+    j = compute_cost(X, y, theta)
 
-    #
+    # Iteration
     iterations = 1500
     alpha = 0.01
 
