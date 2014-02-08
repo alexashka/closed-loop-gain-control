@@ -29,9 +29,9 @@ def plot_data(x, y):
 
 def compute_cost(x, y, theta):
     j = 0
-    for i, elem in enumerate(x.T):
-        elem = elem.T
-        h_i = (np.mat(theta)).T * (np.mat(elem))
+    for i, elem in enumerate(x):
+        elem = np.mat(elem).T
+        h_i = np.mat(theta).T * elem
         j += (h_i - y[i])**2
     j *= 1.0 / (2 * len(y))
     return j
@@ -44,8 +44,7 @@ def main():
     #plot_data(x, y)
     m = len(y)
     x = numpy.hstack([numpy.ones((m, 1)), x])
-    x = (np.mat(x)).T
-    theta = numpy.zeros((1, 2)).T
+    theta = numpy.zeros((1, 2)).T  # Превращаем в вектор
 
     #
     j = compute_cost(x, y, theta)
