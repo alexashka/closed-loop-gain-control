@@ -48,10 +48,9 @@ def main():
 
     #
     j = compute_cost(x, y, theta)
-    print j
 
     #
-    iterations = 1500;
+    iterations = 1500
     alpha = 0.01
 
 if __name__ == '__main__':
