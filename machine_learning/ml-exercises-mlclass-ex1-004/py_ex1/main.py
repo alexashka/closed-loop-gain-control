@@ -49,13 +49,10 @@ def compute_cost(m_x, y, theta):
 def gradient_descent(m_x, y, theta, alpha, num_iterations):
     theta_local = np.copy(theta)
     m = m_x.shape[0]
-    x = m_x[:, 1]
 
     for i in range(num_iterations):
         h = (theta_local.T * m_x.T).T
-
-        theta_local[0] -= alpha * 1/m * np.sum(h - y)
-        theta_local[1] -= alpha * 1/m * np.sum(np.multiply((h - y), x))
+        theta_local -= alpha * 1 / m * np.multiply((h - y), m_x).T.sum(axis=1)
 
     return theta_local
 
