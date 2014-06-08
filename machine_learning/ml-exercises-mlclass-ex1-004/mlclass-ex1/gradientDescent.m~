@@ -18,8 +18,8 @@ function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
       %
       
       h = X*theta;
-      tmp = (((h - y)')*X)';      
-      theta -= alpha/m * tmp;
+      tmp = ((h - y)')*X;      
+      theta -= alpha/m * tmp';
 
       % ============================================================
 
