@@ -19,4 +19,5 @@ function J = computeCost(X, y, theta)
   k = 1/(2*m);
   tmp = (h - y).^2;
   J = k * sum(tmp) 
+  
 end

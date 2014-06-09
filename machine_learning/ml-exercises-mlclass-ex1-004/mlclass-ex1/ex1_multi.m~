@@ -54,6 +54,7 @@ X = X_tmp;
 
 % Add intercept term to X
 X = [ones(m, 1) X];
+X
 
 %% ================ Part 2: Gradient Descent ================
 
@@ -94,7 +95,6 @@ figure;
 plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
 xlabel('Number of iterations');
 ylabel('Cost J');
-return 
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');

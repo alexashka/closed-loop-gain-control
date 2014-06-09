@@ -54,6 +54,8 @@ X = X_tmp;
 
 % Add intercept term to X
 X = [ones(m, 1) X];
+% 1, ...
+% 1, ...
 
 %% ================ Part 2: Gradient Descent ================
 

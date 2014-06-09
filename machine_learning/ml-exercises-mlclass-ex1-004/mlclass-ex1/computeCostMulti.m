@@ -14,9 +14,9 @@ function J = computeCostMulti(X, y, theta)
   %               You should set J to the cost.
 
   h = X*theta;
-  k = 1/(2*m);
   tmp = (h - y).^2;
-  J = k * sum(tmp) 
+  tmp
+  J = 1/(2*m) * sum(tmp);
 
 
 
