@@ -13,13 +13,9 @@ function J = computeCostMulti(X, y, theta)
   % Instructions: Compute the cost of a particular choice of theta
   %               You should set J to the cost.
 
-  h = X*theta;
+  h = theta'*X;
   tmp = (h - y).^2;
-  tmp
   J = 1/(2*m) * sum(tmp);
-
-
-
   % =========================================================================
 
 end

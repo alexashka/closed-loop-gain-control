@@ -48,9 +48,8 @@ fprintf('Program paused. Press enter to continue.\n');
 
 % Scale features and set them to zero mean
 fprintf('Normalizing Features ...\n');
-[X_tmp mu sigma] = featureNormalize(X);
-%plot(X_tmp)
-X = X_tmp;
+[X_norm mu sigma] = featureNormalize(X);
+X = X_norm;
 
 % Add intercept term to X
 X = [ones(m, 1) X];
@@ -99,16 +98,17 @@ ylabel('Cost J');
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');
-fprintf(' %f \n', theta);
+fprintf(' %f \n', theta);  % TODO: похоже она для нормализованных данных
 fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
-% not need to be normalized.
-x_s = [1 1650 3]';
-
-price = theta'*x_s; % You should change this
+% not need to be normalized. Только он.
+x_val = [1650 3];
+x_s = [1 x_val]';
+x_norm = [1 (x_val-mu)./sigma]';
+price = theta'*x_norm; % You should change this
 
 
 % ============================================================
@@ -117,7 +117,7 @@ fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using gradient descent):\n $%f\n'], price);
 
 fprintf('Program paused. Press enter to continue.\n');
-return
+%return
 
 %% ================ Part 3: Normal Equations ================
 
@@ -153,7 +153,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
+price = theta'*x_s; % You should change this
 
 
 % ============================================================

@@ -89,12 +89,6 @@ fprintf('For population = 70,000, we predict a profit of %f\n',...
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-return
-
-
-
-
-
 %% ============= Part 4: Visualizing J(theta_0, theta_1) =============
 fprintf('Visualizing J(theta_0, theta_1) ...\n')
 

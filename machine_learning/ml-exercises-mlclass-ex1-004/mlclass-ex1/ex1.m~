@@ -91,6 +91,10 @@ pause;
 
 return
 
+
+
+
+
 %% ============= Part 4: Visualizing J(theta_0, theta_1) =============
 fprintf('Visualizing J(theta_0, theta_1) ...\n')
 
