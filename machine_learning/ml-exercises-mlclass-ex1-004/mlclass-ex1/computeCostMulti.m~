@@ -15,6 +15,7 @@ function J = computeCostMulti(X, y, theta)
 
   h = X*theta;
   tmp = (h - y).^2;
+  tmp
   J = 1/(2*m) * sum(tmp);
 
 

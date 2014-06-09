@@ -19,13 +19,10 @@ for iter = 1:num_iters
     h = X*theta;
     dJ = 1/m * (((h - y)')*X)';      
     theta -= alpha * dJ;
-
     % ============================================================
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCostMulti(X, y, theta);
-    break
-
 end
 
 end
