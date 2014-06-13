@@ -17,7 +17,14 @@ p = zeros(m, 1);
 
 
 
-
+h = sigmoid(theta'*X')';
+for i=1:length(h);
+  a = 0;
+  if (h(i) >= 0.5)
+    a = 1;
+  end
+  p(i) = a;
+end
 
 
 
