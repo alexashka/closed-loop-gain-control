@@ -69,7 +69,6 @@ fprintf('Gradient at initial theta (zeros): \n');
 fprintf(' %f \n', grad);
 
 fprintf('\nProgram paused. Press enter to continue.\n');
-return 
 pause;
 
 
@@ -82,6 +81,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  Run fminunc to obtain the optimal theta
 %  This function will return theta and the cost 
+% TODO: Передаем лямбду?
 [theta, cost] = ...
 	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
 
