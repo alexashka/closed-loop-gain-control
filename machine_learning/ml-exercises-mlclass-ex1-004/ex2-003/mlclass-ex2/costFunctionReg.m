@@ -21,7 +21,8 @@ grad = zeros(size(theta));  % vector
 lin = theta'*X';
 h = sigmoid(lin');
 tmp = -y.*log(h)-(1-y).*log(1-h);
-J = 1/m*sum(tmp) + lambda/(2*m) * sum(theta.^2);
+J = 1/m*sum(tmp) + lambda/(2*m) * sum(theta(2:end).^2);  % theta_0 skip
+
 
 % derivatives
 grad = (1/m * ((h-y))'*X)';
