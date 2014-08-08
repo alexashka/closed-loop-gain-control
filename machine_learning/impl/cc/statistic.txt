@@ -1,0 +1,2 @@
+http://scicomp.stackexchange.com/questions/351/recommendations-for-a-usable-fast-c-matrix-library
+cuBLAS
