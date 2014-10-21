@@ -37,16 +37,21 @@ grad = zeros(size(theta));
 %
 
 
+lin = theta'*X';
+h = sigmoid(lin');
+tmp = -y.*log(h)-(1-y).*log(1-h);
+tmp1 = lambda/(2*m) * sum(theta(2:end).^2);  % theta_0 skip
+J = 1/m*sum(tmp) + tmp1;
 
 
+% derivatives
+grad = (1/m * ((h-y))'*X)';
 
+% correction
+delta = lambda/m * theta;
+delta(1) = 0;
+grad += delta;
 
-
-
-
-
-% =============================================================
-
-grad = grad(:);
+grad = grad(:);  % what do that?
 
 end
