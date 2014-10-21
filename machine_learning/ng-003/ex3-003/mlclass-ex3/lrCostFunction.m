@@ -35,20 +35,18 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
-
-
-lin = theta'*X';
+lin = theta' * X';
 h = sigmoid(lin');
-tmp = -y.*log(h)-(1-y).*log(1-h);
-tmp1 = lambda/(2*m) * sum(theta(2:end).^2);  % theta_0 skip
-J = 1/m*sum(tmp) + tmp1;
+tmp = -y .* log(h) - (1 - y) .* log(1 - h);
+tmp1 =  sum(theta(2 : end) .^ 2);  % theta_0 skip
+J = 1 / m * sum(tmp) + (lambda / (2 * m)) * tmp1;
 
 
 % derivatives
-grad = 1/m * X' *(h-y);
+grad = 1/m * X' * (h - y);
 
 % correction
-delta = lambda/m * theta;
+delta = lambda * 1/m * theta;
 delta(1) = 0;
 grad += delta;
 
