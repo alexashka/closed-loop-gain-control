@@ -45,7 +45,7 @@ J = 1/m*sum(tmp) + tmp1;
 
 
 % derivatives
-grad = (1/m * ((h-y))'*X)';
+grad = 1/m * X' *(h-y);
 
 % correction
 delta = lambda/m * theta;
