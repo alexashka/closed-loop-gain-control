@@ -27,6 +27,7 @@ clear ; close all; clc
 % Load Training Data
 fprintf('Loading and Visualizing Data ...\n')
 
+% похоже данные уже разделены на части
 % Load from ex5data1: 
 % You will have X, y, Xval, yval, Xtest, ytest in your environment
 load ('ex5data1.mat');
@@ -35,9 +36,9 @@ load ('ex5data1.mat');
 m = size(X, 1);
 
 % Plot training data
-%plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
-%xlabel('Change in water level (x)');
-%ylabel('Water flowing out of the dam (y)');
+plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
+xlabel('Change in water level (x)');
+ylabel('Water flowing out of the dam (y)');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -124,6 +125,8 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+aasdfsdf
 
 %% =========== Part 6: Feature Mapping for Polynomial Regression =============
 %  One solution to this is to use polynomial regression. You should now
