@@ -35,9 +35,9 @@ load ('ex5data1.mat');
 m = size(X, 1);
 
 % Plot training data
-plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
-xlabel('Change in water level (x)');
-ylabel('Water flowing out of the dam (y)');
+%plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
+%xlabel('Change in water level (x)');
+%ylabel('Water flowing out of the dam (y)');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -47,7 +47,7 @@ pause;
 %  regression. 
 %
 
-theta = [1 ; 1];
+theta = [1 ; 1];  % [t0; t1]
 J = linearRegCostFunction([ones(m, 1) X], y, theta, 1);
 
 fprintf(['Cost at theta = [1 ; 1]: %f '...
