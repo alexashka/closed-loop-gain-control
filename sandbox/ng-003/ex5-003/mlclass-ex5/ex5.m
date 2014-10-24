@@ -27,7 +27,7 @@ clear ; close all; clc
 % Load Training Data
 fprintf('Loading and Visualizing Data ...\n')
 
-% похоже данные уже разделены на части
+% Похоже данные уже разделены на части, но пропорции очень странные
 % Load from ex5data1: 
 % You will have X, y, Xval, yval, Xtest, ytest in your environment
 load ('ex5data1.mat');
@@ -36,9 +36,11 @@ load ('ex5data1.mat');
 m = size(X, 1);
 
 % Plot training data
-plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
-xlabel('Change in water level (x)');
-ylabel('Water flowing out of the dam (y)');
+if false
+  plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
+  xlabel('Change in water level (x)');
+  ylabel('Water flowing out of the dam (y)');
+end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -86,13 +88,15 @@ pause;
 lambda = 0;
 [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
 
-%  Plot fit over the data
-plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
-xlabel('Change in water level (x)');
-ylabel('Water flowing out of the dam (y)');
-hold on;
-plot(X, [ones(m, 1) X]*theta, '--', 'LineWidth', 2)
-hold off;
+if false
+  %  Plot fit over the data
+  plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
+  xlabel('Change in water level (x)');
+  ylabel('Water flowing out of the dam (y)');
+  hold on;
+  plot(X, [ones(m, 1) X]*theta, '--', 'LineWidth', 2)
+  hold off;
+end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -105,6 +109,7 @@ pause;
 %                 see a graph with "high bias" -- slide 8 in ML-advice.pdf 
 %
 
+fprintf('Part 5: Learning Curve for Linear Regression.\n');
 lambda = 0;
 [error_train, error_val] = ...
     learningCurve([ones(m, 1) X], y, ...
