@@ -39,15 +39,18 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+m = length(y);
+mval = length(yval);
 
+for i = 1:length(lambda_vec)
+  % Это расчет для всего набора
+  lambda = lambda_vec(i);
 
+  [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
 
-
-
-
-
-
+  error_train(i) = linearRegCostFunction([ones(m, 1) X], y, theta, 0);
+  error_val(i) = linearRegCostFunction([ones(mval, 1) Xval], yval, theta, 0);  % full set !!
+end
 
 % =========================================================================
-
 end

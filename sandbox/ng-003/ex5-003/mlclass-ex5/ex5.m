@@ -15,6 +15,8 @@
 %  or any other files other than those mentioned above.
 %
 
+% lambde up -> hyp. is simpler
+
 %% Initialization
 clear ; close all; clc
 
@@ -115,13 +117,14 @@ lambda = 0;
     learningCurve([ones(m, 1) X], y, ...
                   [ones(size(Xval, 1), 1) Xval], yval, ...
                   lambda);
-
-plot(1:m, error_train, 1:m, error_val);
-title('Learning curve for linear regression')
-legend('Train', 'Cross Validation')
-xlabel('Number of training examples')
-ylabel('Error')
-axis([0 13 0 150])
+if false
+  plot(1:m, error_train, 1:m, error_val);
+  title('Learning curve for linear regression')
+  legend('Train', 'Cross Validation')
+  xlabel('Number of training examples')
+  ylabel('Error')
+  axis([0 13 0 150])
+end
 
 fprintf('# Training Examples\tTrain Error\tCross Validation Error\n');
 for i = 1:m
@@ -130,8 +133,6 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
-
-aasdfsdf
 
 %% =========== Part 6: Feature Mapping for Polynomial Regression =============
 %  One solution to this is to use polynomial regression. You should now
@@ -147,6 +148,7 @@ X_poly = [ones(m, 1), X_poly];                   % Add Ones
 
 % Map X_poly_test and normalize (using mu and sigma)
 X_poly_test = polyFeatures(Xtest, p);
+
 X_poly_test = bsxfun(@minus, X_poly_test, mu);
 X_poly_test = bsxfun(@rdivide, X_poly_test, sigma);
 X_poly_test = [ones(size(X_poly_test, 1), 1), X_poly_test];         % Add Ones
