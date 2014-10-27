@@ -98,13 +98,20 @@ while ~isempty(email_contents)
     %
 
 
+    idx = -1;
+    n = length(vocabList);
+    for i = 1:n
+        dstr = vocabList{i};
 
-
-
-
-
-
-
+        if strcmp(dstr, str) == 1
+            idx = i;
+            break;
+        end
+    end 
+    if idx == -1
+        continue
+    end   
+    word_indices = [word_indices ; idx];
 
     % =============================================================
 

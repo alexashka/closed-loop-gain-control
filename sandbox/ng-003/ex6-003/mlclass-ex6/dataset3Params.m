@@ -23,10 +23,29 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+variants = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+m = length(variants);
+track = zeros(m, m);
 
+for C_i = 1:m
+  C_ = variants(C_i);
+  for sigma_i = 1:m
+    sigma_ = variants(sigma_i);
+    % calc
+    model= svmTrain(X, y, C_, @(x1, x2) gaussianKernel(x1, x2, sigma_)); 
 
+    % checking
+    predictions = svmPredict(model, Xval);
+    err = mean(double(predictions ~= yval));
 
+    % store
+    track(C_i, sigma_i) = err;
+  end
+end
+[x, y, v] = find(track == min(track(:)));
 
+C = variants(x(1));
+sigma = variants(y(1));
 
 
 % =========================================================================
