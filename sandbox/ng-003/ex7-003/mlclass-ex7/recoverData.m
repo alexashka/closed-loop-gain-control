@@ -21,6 +21,14 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               Notice that U(j, 1:K) is a row vector.
 %               
 
+Ureduce = U(:, 1:K);
+m = size(Z, 1);
+
+for i = 1:m
+  z = Z(i, :)';
+  rec = Ureduce * z;
+  X_rec(i, :) = rec;
+end
 
 
 % =============================================================

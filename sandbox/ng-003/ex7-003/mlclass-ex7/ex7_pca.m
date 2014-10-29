@@ -118,7 +118,7 @@ pause;
 fprintf('\nLoading face dataset.\n\n');
 
 %  Load Face dataset
-load ('ex7faces.mat')
+load ('/home/zaqwes/work/research_toolboxes/mining-stuff-data/ex7faces.mat')
 
 %  Display the first 100 faces in the dataset
 displayData(X(1:100, :));
