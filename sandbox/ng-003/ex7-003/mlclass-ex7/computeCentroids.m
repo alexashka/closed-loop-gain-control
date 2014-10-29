@@ -26,7 +26,16 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+for k = 1:K
+  I = find(idx == k);
 
+  v = X(I, :);
+
+  % FIXME: может быть деление на ноль!
+  c = 1/size(v, 1) * sum(v, 1);  % просто сумма
+
+  centroids(k, :) = c;
+end
 
 
 
