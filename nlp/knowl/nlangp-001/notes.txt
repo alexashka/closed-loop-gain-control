@@ -4,3 +4,5 @@ Sparse data problem
 Осн. приложени // маловато
 - tagging
 - translation  
+
+модели
