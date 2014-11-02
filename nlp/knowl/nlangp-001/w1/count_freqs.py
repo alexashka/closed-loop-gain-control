@@ -30,11 +30,13 @@ def simple_conll_corpus_iterator(corpus_file):
             ne_tag = fields[-1]
             # phrase_tag = fields[-2] #Unused
             #pos_tag = fields[-3] #Unused
+
             word = " ".join(fields[:-1])
             yield word, ne_tag
         else:
             # Empty line
             yield (None, None)
+
         l = corpus_file.readline()
 
 
