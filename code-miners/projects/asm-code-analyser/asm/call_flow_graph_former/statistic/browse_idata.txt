@@ -1,0 +1,26 @@
+макросы и определения(#ifd..) - нужно пропустить через препроцессор! как-то?...
+в инклюдах есть логика! но нет указателей блока кода - наверное лучше включить
+похоже может нагенерировать много меток
+variable	i=0;
+mEventT1_hndl	macro	count,handler
+	mObject_sel	THIS
+	movf	count,w
+	iorwf	count+1,w
+	btfss	STATUS,Z
+	decfsz	count
+	bra		metka#v(i)
+	movf	count+1,f
+	btfsc	STATUS,Z
+	bra		metkaB#v(i)	
+	decf	count+1,f
+	decf	count,f
+	bra		metka#v(i)
+metkaB#v(i)		; защита от повтора?
+	call	handler   
+metka#v(i):
+	call	_Task_Fast
+	i++
+endm
+
+важны макросы с вызовамы меток, инече можно на них забить они не влияют на ход выполнения
+макросы могут быть и в асм-файлах

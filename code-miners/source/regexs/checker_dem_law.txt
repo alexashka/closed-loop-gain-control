@@ -1,0 +1,1 @@
+((->|\.)[\S]+?){2,5} - Law of Demeter violation: method call chain walks an object graph with more than one dot (.)

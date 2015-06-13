@@ -1,0 +1,244 @@
+;/**
+;  file : #include _v1_IRQ.inc
+;
+;  abs. : макросы и переменные дл€ работы с прерывани€ми
+;
+; */
+
+temps	idata
+
+;// сюда сохран€ютс€ спец. регистры при вызове высокопреоритетных прер.
+temp_fsr0L		res 1
+temp_fsr0H		res 1
+temp_fsr1L		res 1
+temp_fsr1H		res 1
+temp_fsr2L		res 1
+temp_fsr2H		res 1
+
+;// сюда сохран€ютс€ спец. регистры при вызове низкопреор. прер.
+temp2_fsr0L		res 1
+temp2_fsr0H		res 1
+temp2_fsr1L		res 1
+temp2_fsr1H		res 1
+temp2_fsr2L		res 1
+temp2_fsr2H		res 1
+temp2_WREG		res 1
+temp2_BSR		res 1
+temp2_STATUS	res 1
+
+;/// похоже это сохнанение состо€ние преде вызовом 
+;// программы обработки прерывани€
+mTpush	macro
+	movff	FSR0L, temp2_fsr0L
+	movff	FSR0H, temp2_fsr0H
+	movff	FSR1L, temp2_fsr1L
+	movff	FSR1H, temp2_fsr1H
+	movff	FSR2L, temp2_fsr2L
+	movff	FSR2H, temp2_fsr2H
+	movff	BSR,   temp2_BSR
+	movff	STATUS,temp2_STATUS
+	movwf	FSR0L	; ? а почему не сразу
+	movff	FSR0L, temp2_WREG
+endm
+
+;// восстанавливаем состо€ние прерванной программы
+mTpull	macro
+	movff	temp2_WREG,FSR0L
+	movf	FSR0L,w
+	movff	temp2_BSR,BSR
+	movff	temp2_STATUS,STATUS
+	movff	temp2_fsr0L,FSR0L
+	movff	temp2_fsr0H,FSR0H
+	movff	temp2_fsr1L,FSR1L
+	movff	temp2_fsr1H,FSR1H
+	movff	temp2_fsr2L,FSR2L
+	movff	temp2_fsr2H,FSR2H
+endm
+;///
+	
+;/// “оже похоже сохранение, но дл€ высокопреоритетных прерываний	
+mFSRin	macro	;// FSR in
+	movff	FSR0L,temp_fsr0L
+	movff	FSR0H,temp_fsr0H
+	movff	FSR1L,temp_fsr1L
+	movff	FSR1H,temp_fsr1H
+	movff	FSR2L,temp_fsr2L
+	movff	FSR2H,temp_fsr2H
+endm
+
+mFSRout	macro
+	movff	temp_fsr0L,FSR0L
+	movff	temp_fsr0H,FSR0H
+	movff	temp_fsr1L,FSR1L
+	movff	temp_fsr1H,FSR1H
+	movff	temp_fsr2L,FSR2L
+	movff	temp_fsr2H,FSR2H
+endm
+;///
+
+variable	i=0
+
+;/// TMR1IE - номер бита в PIE1
+;// PIE1: PERIPHERAL INTERRUPT ENABLE REGISTER 1
+mTimer1_int	macro	label
+	btfsc	PIE1,TMR1IE
+		btfss	PIR1,TMR1IF
+	bra		metka#v(i)
+		bcf		PIR1,TMR1IF
+	clrwdt	;// wd timer
+	call	label
+metka#v(i):
+	i++
+endm
+
+mADconv_int	macro	label
+	btfsc	PIE1,ADIE
+		btfss	PIR1,ADIF
+	bra		metka#v(i)
+		bcf		PIR1,ADIF
+	call	label
+metka#v(i):
+	i++
+endm
+
+;/// UART_i
+mUART1RX_int macro	label
+	btfsc	PIE1,RC1IE
+		btfss	PIR1,RC1IF
+	bra		metka#v(i)
+		call	label
+metka#v(i):
+	i++
+endm
+			
+mUART1TX_int macro	label
+	btfsc	PIE1,TX1IE
+		btfss	PIR1,TX1IF
+	bra		metka#v(i)
+		call	label
+metka#v(i):
+	i++
+endm
+
+;// UART2
+mUART2RX_int macro	label
+	btfsc	PIE3,RC2IE
+		btfss	PIR3,RC2IF
+	bra		metka#v(i)
+		call	label
+metka#v(i):
+	i++
+endm
+
+;// btfsc - Bit Test f, Skip if Clear
+;// btfss - Bit Test f, Skip if Set
+mUART2TX_int macro	label
+	btfsc	PIE3,TX2IE	; TX2IE - используетс€ как номер бита?
+		btfss	PIR3,TX2IF ; проскакиваем и вызываем функцию?
+	bra		metka#v(i)
+		call	label
+metka#v(i):
+	i++
+endm
+;/// end UARTs
+
+;/// 
+;
+;SSP1IE: MSSP1 Interrupt Enable bit
+;1 = Enables the MSSP1 interrupt
+;0 = Disables the MSSP1 interrupt
+mSSP1_int	macro	label
+	btfsc	PIE1,SSP1IE
+		btfss   PIR1,SSP1IF	
+	bra		metka#v(i)
+		call	label
+metka#v(i):
+	i++
+endm
+
+variable	i=0;
+mEventT1_hndl	macro	count,handler
+	mObject_sel	THIS
+	movf	count,w
+	iorwf	count+1,w
+	btfss	STATUS,Z
+	decfsz	count
+	bra		metka#v(i)
+	movf	count+1,f
+	btfsc	STATUS,Z
+	bra		metkaB#v(i)	
+	decf	count+1,f
+	decf	count,f
+	bra		metka#v(i)
+metkaB#v(i)		; защита от повтора?
+	call	handler   
+metka#v(i):
+	call	_Task_Fast
+	i++
+endm
+
+
+;/// просто вызов функции?
+mSlideTo	macro	Link
+	goto	Link
+endm
+;/// ///
+
+;// вызовы прдпрограмм
+mRetIfF?	macro	link
+	call	link
+	xorlw	TRUE
+	btfss	STATUS,Z
+	retlw	FALSE
+			endm
+
+mFunction	macro	link
+	call	link
+			endm
+
+mASK		macro	link
+	call	link
+			endm
+mGET		macro	link
+	call	link
+			endm
+mSET		macro	link
+	call	link
+			endm
+mRUN		macro	link
+	call	link
+			endm
+			
+mRETURN		macro
+	return
+			endm
+
+; igor 170512
+; вызов и возврат с сохранением всего
+;Syntax: CALL k {,s}
+;Operands: 0 ? k ? 1048575
+;	s ? [0,1]
+;Operation: (PC) + 4 > TOS,
+;	k > PC<20:1>,
+;	if s = 1
+;		(W) > WS,
+;		(STATUS) > STATUSS,
+;		(BSR) > BSRS
+;Syntax: RETURN {s}
+;Operands: s ? [0,1]
+;Operation: 
+;	(TOS) > PC,
+;	if s = 1
+;		(WS) > W,
+;		(STATUSS) > STATUS,
+;		(BSRS) > BSR,
+;		PCLATU, PCLATH are unchanged
+mCallSave	macro	link
+	call	link, FAST
+			endm
+mReturnSave	macro
+	return	FAST
+			endm
+mCall		macro 	link
+	call link
+			endm

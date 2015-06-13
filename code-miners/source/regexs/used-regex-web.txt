@@ -1,0 +1,30 @@
+
+// 
+\r\n to '+\r\n'
+id=" to id="new'+number+'
+getElementById(" to getElementById("new"+number+"
+
+//
+<input type="text" name=".*?" value="" id="vtv' to <span id="vtv'
+
+//
+<!--.*?-->
+'<div class="div_newt">'+\r\n
+\r\n'</div>'+
+\r\n'<p></p>'+
+\r\n''+
+\r\n'<div  class="divider">'+
+'<div class="div_newt"><p></p></div>'+\r\n
+'   '+\r\n
+\r\n' <div  class="divider">'+
+\r\n' <div class="div_newt">'+
+<div><label > to <b>
+</label ></div> to </b>
+
+
+\r\n.*?id="vtv' to \r\n'"vtv'
+ size=".*?" readonly="readonly" class=".*?"/>'\+ to '
+'<input type="text" value= to '
+ ' to ',
+ 
+ .*?id="new' to 'new'

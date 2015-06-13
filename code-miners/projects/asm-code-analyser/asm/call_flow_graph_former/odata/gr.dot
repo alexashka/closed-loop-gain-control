@@ -1,0 +1,7 @@
+digraph graphname {
+_lbl;
+"_begin\r";
+"asf_v#v(asfd)asdf";
+"_begin\r" -> _lbl;
+"_begin\r" -> "asf_v#v(asfd)asdf";
+}

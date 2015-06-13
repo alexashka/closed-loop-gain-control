@@ -1,0 +1,1 @@
+// sampler.cc//namespace test_generator {using test_generator::LocalStr;LocalStr Sampler::log_all_(LocalStr rw) {  return "log_all";}LocalStr Sampler::get_bn1_(LocalStr rw) {  return "get_bn1";}//}

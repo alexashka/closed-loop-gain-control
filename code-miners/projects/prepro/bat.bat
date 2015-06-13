@@ -1,0 +1,2 @@
+set PYTHONPATH=%PYTHONPATH%;%PY_UASIO%
+cmd &

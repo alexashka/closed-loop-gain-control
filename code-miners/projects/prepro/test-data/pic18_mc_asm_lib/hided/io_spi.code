@@ -1,0 +1,49 @@
+; Запись
+_SPI_SET_wByteIn:;(w?/?)
+	movwf	SPI_Temp
+	movlw	8
+_Loop1:
+	bcf		bSCK2
+	rlcf	SPI_Temp,f
+	btfsc	STATUS,C
+	bsf		bSDI2
+	btfss	STATUS,C
+	bcf		bSDI2
+	nop
+	nop
+	nop
+	bsf		bSCK2
+	addlw	-1
+	bnz		_Loop1
+	bsf		bSDI2
+	return
+
+; Чтение наверное
+_SPI_GET_ByteOutW:;(?/w?)
+	movlw	8
+_Loop2:
+	bcf		bSCK2
+	nop
+	nop
+	bsf		bSCK2
+	rlcf	SPI_Temp,f
+obr:
+	clrwdt
+	bsf		SPI_Temp,0
+	btfss	bSDO2
+	bcf		SPI_Temp,0
+	nop
+	nop
+	btfss	bSDO2
+	bra		drug
+	btfss	SPI_Temp,0
+	bra		obr
+	bra		norm
+drug:
+	btfsc	SPI_Temp,0
+	bra		obr
+norm:
+	addlw	-1
+	bnz		_Loop2
+	movf	SPI_Temp,w
+	return

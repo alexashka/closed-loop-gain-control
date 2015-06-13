@@ -1,0 +1,15 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="7">
+            <File firstVisibleLine="60" xOffset="0" scrollWidth="546" startPos="1862" endPos="1862" selMode="0" lang="Assembly" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\idata\simples.asm" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="847" startPos="4730" endPos="4730" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\LabelFindEngine.py" />
+            <File firstVisibleLine="76" xOffset="0" scrollWidth="707" startPos="3731" endPos="3731" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\FinderCallGr.py" />
+            <File firstVisibleLine="73" xOffset="0" scrollWidth="721" startPos="2257" endPos="2257" selMode="0" lang="Assembly" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\idata\_v3_COMP.asm" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="238" startPos="230" endPos="230" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\find_call_gr.py" />
+            <File firstVisibleLine="74" xOffset="0" scrollWidth="553" startPos="3425" endPos="3425" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\GrClasses.py" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="504" startPos="284" endPos="284" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\constants.py" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="469" startPos="516" endPos="516" selMode="0" lang="Python" filename="J:\igorya\CoreJ\block-amp-power-ukv-sys\do-python\call-graph\PreProc.py" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

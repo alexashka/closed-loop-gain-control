@@ -1,0 +1,64 @@
+# Unrolled:
+{
+  "access_settings": {
+    "tconfirmation_pass": "tconfirmation_pass", 
+    "tcurrent_pass": "tcurrent_pass", 
+    "tnew_pass": "tnew_pass"
+  }, 
+  "coupled_sys_settings": {
+    "tetv1_ip": "tetv1_ip", 
+    "tetv1_port": "tetv1_port", 
+    "tetv2_ip": "tetv2_ip", 
+    "tetv2_port": "tetv2_port", 
+    "textern_ip": "textern_ip", 
+    "textern_port": "textern_port", 
+    "tsnmp_mgr_ip": "tsnmp_mgr_ip", 
+    "tsnmp_mgr_port": "tsnmp_mgr_port"
+  }, 
+  "light_settings": {
+    "tinf0": "tinf0", 
+    "tinf1": "tinf1", 
+    "ttimestamp": "ttimestamp"
+  }, 
+  "marker_need_delete": {}, 
+  "network_adaptor_system": {
+    "rauto_dns0": "rauto_dns0", 
+    "rauto_dns1": "rauto_dns1", 
+    "rdhcp_off": "rdhcp_off", 
+    "rdhcp_on": "rdhcp_on", 
+    "tcurrent_auto_dns": "tcurrent_auto_dns", 
+    "tcurrent_dhcp": "tcurrent_dhcp", 
+    "tcurrent_dns_ip": "tcurrent_dns_ip", 
+    "tcurrent_gw": "tcurrent_gw", 
+    "tcurrent_ip": "tcurrent_ip", 
+    "tcurrent_mask": "tcurrent_mask", 
+    "tset_dns_prim": "tset_dns_prim", 
+    "tset_dns_second": "tset_dns_second", 
+    "tset_ip": "tset_ip", 
+    "tset_mask": "tset_mask"
+  }, 
+  "settings_mon_system": {
+    "tchannal_idx": "tchannal_idx", 
+    "tdevice_id_snmp": "tdevice_id_snmp", 
+    "tdevice_type_snmp": "tdevice_type_snmp", 
+    "tfrw_high": "tfrw_high", 
+    "tfrw_low": "tfrw_low", 
+    "tperiod_snmp": "tperiod_snmp", 
+    "tpower_high": "tpower_high", 
+    "tpower_low": "tpower_low", 
+    "trs_addr": "trs_addr", 
+    "tterm_high": "tterm_high", 
+    "tterm_low": "tterm_low"
+  }, 
+  "snmp_settings": {
+    "cip_accessed_0": "cip_accessed_0", 
+    "cip_accessed_1": "cip_accessed_1", 
+    "cip_accessed_union": "cip_accessed_union", 
+    "osnmp_rd_access": "osnmp_rd_access", 
+    "osnmp_wr_access": "osnmp_wr_access", 
+    "tip_accessed_0": "tip_accessed_0", 
+    "tip_accessed_1": "tip_accessed_1", 
+    "tsnmp_port_in": "tsnmp_port_in"
+  }
+}# Packed:
+{"access_settings": {"tconfirmation_pass": "tconfirmation_pass", "tcurrent_pass": "tcurrent_pass", "tnew_pass": "tnew_pass"}, "snmp_settings": {"osnmp_wr_access": "osnmp_wr_access", "osnmp_rd_access": "osnmp_rd_access", "tip_accessed_0": "tip_accessed_0", "tip_accessed_1": "tip_accessed_1", "cip_accessed_union": "cip_accessed_union", "tsnmp_port_in": "tsnmp_port_in", "cip_accessed_1": "cip_accessed_1", "cip_accessed_0": "cip_accessed_0"}, "network_adaptor_system": {"tset_dns_prim": "tset_dns_prim", "tcurrent_gw": "tcurrent_gw", "tcurrent_ip": "tcurrent_ip", "tset_mask": "tset_mask", "tset_dns_second": "tset_dns_second", "rdhcp_on": "rdhcp_on", "tcurrent_dns_ip": "tcurrent_dns_ip", "rauto_dns1": "rauto_dns1", "rauto_dns0": "rauto_dns0", "tcurrent_mask": "tcurrent_mask", "rdhcp_off": "rdhcp_off", "tcurrent_auto_dns": "tcurrent_auto_dns", "tcurrent_dhcp": "tcurrent_dhcp", "tset_ip": "tset_ip"}, "settings_mon_system": {"tfrw_low": "tfrw_low", "tdevice_id_snmp": "tdevice_id_snmp", "tdevice_type_snmp": "tdevice_type_snmp", "tfrw_high": "tfrw_high", "trs_addr": "trs_addr", "tterm_low": "tterm_low", "tpower_high": "tpower_high", "tchannal_idx": "tchannal_idx", "tpower_low": "tpower_low", "tterm_high": "tterm_high", "tperiod_snmp": "tperiod_snmp"}, "coupled_sys_settings": {"tetv1_port": "tetv1_port", "tetv2_port": "tetv2_port", "tetv2_ip": "tetv2_ip", "textern_ip": "textern_ip", "textern_port": "textern_port", "tetv1_ip": "tetv1_ip", "tsnmp_mgr_ip": "tsnmp_mgr_ip", "tsnmp_mgr_port": "tsnmp_mgr_port"}, "marker_need_delete": {}, "light_settings": {"tinf0": "tinf0", "tinf1": "tinf1", "ttimestamp": "ttimestamp"}}

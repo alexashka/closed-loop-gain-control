@@ -1,0 +1,2 @@
+EXTERN VisualInitialization
+

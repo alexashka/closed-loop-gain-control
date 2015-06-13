@@ -1,0 +1,70 @@
+// переходы 
+
+;/// просто вызов функции? нет просто переход
+mSlideTo	macro	Link
+	goto	Link
+endm
+;/// ///
+
+;// вызовы прдпрограмм
+mRetIfF?	macro	link
+	call	link
+	xorlw	TRUE
+	btfss	STATUS,Z
+	retlw	FALSE
+endm
+mFunction	macro	link
+			call	link
+			endm
+mASK		macro	link
+			call	link
+			endm
+mGET		macro	link
+			call	link
+			endm
+mSET		macro	link
+			call	link
+			endm
+mRUN		macro	link
+			call	link
+			endm
+			
+mRETURN		macro
+			return
+endm
+
+// выходы 
+
+//
+# все возможные комманды
+jumpsCommands = [
+# перескоки - меток не содержат так же они условные, а значит
+#   потенциальном может выполнится то, что они позв. обойти
+'cpfseq', 'cpfsgt', 'cpfslt', 'decfsz', 'dcfsnz', 'incfsz',
+'infsnz', 'tstfsz', 'btfsc', 'btfss',
+# переходы с меткой
+'bc', 'bn', 'bnc', 'bnn', 'bnov', 'bnz',
+'bov', 'bra', 'bz', 'call', 'goto', 'rcall',
+
+# возвраты - без метки
+'retfie', 'retlw', 'return',
+# макросы с меткой
+'mSlideTo', 'mRetIfF?', 'mFunction',
+'mASK', 'mGET', 'mSET', 'mRUN',
+# макрос без метки
+'mRETURN']
+
+# берем наихудший случай
+markedJumps = [
+# переходы с меткой
+'bc',	# дважды находит!! пока обобщ. но нужно подумать еще
+'bov', 'bra', 'bz', 'bn',
+#'bnc', #'bnn', #'bnov', #'bnz',
+'call','goto',	# безусловный код за ним может и не выполнится
+'rcall',
+# макросы с меткой
+'mSlideTo',	# = return эта комманду будет в другом модуле только(она
+  # и при вызове call Должна быть)
+'mRetIfF?', 'mFunction', 'mASK',
+'mGET', 'mSET', 'mRUN',]
+

@@ -1,0 +1,175 @@
+folder I. INTRODUCTION (Week 1)
+name_content Introduction : Why Study Algorithms ? (19 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-intro-annotated-final.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-intro_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=20_en&format=srt"
+name_content About the Course (17 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-about-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-about_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=21_en&format=srt"
+name_content Merge Sort: Motivation and Example (9 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge1.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=1_en&format=srt"
+name_content Merge Sort: Pseudocode (13 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge2.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=2_en&format=srt"
+name_content Merge Sort: Analysis (9 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge3.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-merge3_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=3_en&format=srt"
+name_content Guiding Principles for Analysis of Algorithms (15 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-guiding.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-guiding_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=4_en&format=srt"
+folder II. ASYMPTOTIC ANALYSIS (Week 1)
+name_content Big-Oh Notation (4 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic1.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=11_en&format=srt"
+name_content Basic Examples (7 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic2.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=12_en&format=srt"
+name_content Big Omega and Theta (7 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic3.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic3_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=13_en&format=srt"
+name_content Additional Examples [Review - Optional] (8 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic4.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-asymptotic4_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=14_en&format=srt"
+folder III. DIVIDE & CONQUER ALGORITHMS (Week 1)
+name_content O(n log n) Algorithm for Counting Inversions I (13 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-inversions1.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-inversions1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=15_en&format=srt"
+name_content O(n log n) Algorithm for Counting Inversions II (17 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-inversions2.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-inversions2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=16_en&format=srt"
+name_content Strassen's Subcubic Matrix Multiplication Algorithm (22 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-strassen.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-strassen_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=19_en&format=srt"
+name_content O(n log n) Algorithm for Closest Pair I [Advanced - Optional] (32 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-closest1.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-closest1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=17_en&format=srt"
+name_content O(n log n) Algorithm for Closest Pair II [Advanced - Optional] (19 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-closest2.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-closest2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=18_en&format=srt"
+folder IV. THE MASTER METHOD (Week 2)
+name_content Motivation (8 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master1.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=5_en&format=srt"
+name_content Formal Statement (10 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master2.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=6_en&format=srt"
+name_content Examples (13 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master3.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master3_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=7_en&format=srt"
+name_content Proof I (10 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master4.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master4_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=8_en&format=srt"
+name_content Interpretation of the 3 Cases (11 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master5.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master5_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=9_en&format=srt"
+name_content Proof II (16 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master6.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-master6_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=10_en&format=srt"
+folder V. QUICKSORT - ALGORITHM (Week 2)
+name_content Quicksort: Overview (12 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-intro-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-intro_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=23_en&format=srt"
+name_content Partitioning Around a Pivot (25 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-partition-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-partition_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=22_en&format=srt"
+name_content Correctness of Quicksort [Review - Optional] (11 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-correctness-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-correctness_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=24_en&format=srt"
+name_content Choosing a Good Pivot (22min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-pivot-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-pivot_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=25_en&format=srt"
+folder VI. QUICKSORT - ANALYSIS (Week 2)
+name_content Analysis I: A Decomposition Principle  [Advanced - Optional] (22 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis1-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=26_en&format=srt"
+name_content Analysis II: The Key Insight [Advanced - Optional] (12min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis2-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=27_en&format=srt"
+name_content Analysis III: Final Calculations [Advanced - Optional] (9min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis3-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-qsort-analysis3_typed.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/notes%2Fqsort.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=28_en&format=srt"
+folder VII. PROBABILITY REVIEW (Weeks 2-3)
+name_content Part I [Review - Optional] (25 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-prob_review1-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-prob_review1_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=29_en&format=srt"
+name_content Part II [Review - Optional] (17 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-prob_review2-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-prob_review2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=30_en&format=srt"
+folder VIII. LINEAR-TIME SELECTION (Week 3)
+name_content Randomized Selection - Algorithm (22 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-ralgorithm-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-ralgorithm_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=36_en&format=srt"
+name_content Randomized Selection -  Analysis (21 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-ranalysis-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-ranalysis_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=37_en&format=srt"
+name_content Deterministic Selection - Algorithm [Advanced - Optional] (17 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-dalgorithm.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-dalgorithm_typed.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/notes%2Fmedian.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=38_en&format=srt"
+name_content Deterministic Selection - Analysis I [Advanced - Optional] (22 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-danalysis.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-danalysis_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=39_en&format=srt"
+name_content Deterministic Selection - Analysis II [Advanced - Optional] (13 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-dalgorithmanalysis-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-danalysis2_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=41_en&format=srt"
+name_content Omega(n log n) Lower Bound for Comparison-Based Sorting [Advanced - Optional] (13 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-sortinglb-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-select-sortinglb_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=40_en&format=srt"
+folder IX. GRAPHS AND THE CONTRACTION ALGORITHM (Week 3)
+name_content Graphs and Minimum Cuts (16 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-overview-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-overview_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=31_en&format=srt"
+name_content Graph Representations (14 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-representations-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-representations_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=32_en&format=srt"
+name_content Random Contraction Algorithm (9 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-algorithm-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-algorithm_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=33_en&format=srt"
+name_content Analysis of Contraction Algorithm (30 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-analysis-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-analysis_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=35_en&format=srt"
+name_content Counting Minimum Cuts (7 min)
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-counting-annotated.pdf"
+"d19vezwu8eufl6.cloudfront.net /algo1/slides%2Falgo-karger-counting_typed.pdf"
+"class.coursera.org /algo-003/lecture/subtitles?q=34_en&format=srt"

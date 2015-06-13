@@ -1,0 +1,43 @@
+﻿#-*- coding: utf-8 -*-
+''' 
+	iss0 : не видит return macro and var
+'''
+import sys
+sys.path.append('G:/github/py-reuse-pkgs')
+import includer as incr
+import define_purger as dpurger
+#import macro_purger as 	# разворачивает макросы и обрабатывает
+
+# Run()
+if __name__=="__main__":
+	# Чтаем исходный файл - единицу компиляции
+	fpath = '../../test_data/pb/'
+	fname = 'eeprom.asm'
+	ftarget = 'processed/cu_'+fname	# файл с резултьтатом
+	full_fname = fpath+fname
+	import os
+	os.chdir(fpath)
+	
+	# .ignorelist
+	#ignore_inc = [ '' ] - не нужно - вкл. файл просто закомментится - pXXXXX.inc
+	
+	# ! могут быть инглуды задефайнены!!
+	# нужно очистить от дефайнов заголовочные файлы, а потом уже блок кода! нет! сперва все включить
+	#   а потом фильтровать - может быть неэфф. но наверняка
+	
+	# собрать один файл
+	incr.ProcessCompileUnit( full_fname, ftarget )
+	
+	'''
+	# удаляем комментарии
+	print '\nRemoving commints...'
+	inc.purgeFromComments( ftarget )
+	
+	# пропускаем через макросы - если внутри есть дефайны, то отфильтруем потом
+	print '\nRemoving macroses...'
+	run( ftarget )
+	'''
+	# пропускаем через definer ! один раз но весь исходник! и все готово, 
+	print '\nPurge from ifdefs...'
+	dpurger.ConditionCompile( ftarget ) 
+	# В итоге чистый файл - чистый код, котовый к графическом анализу
