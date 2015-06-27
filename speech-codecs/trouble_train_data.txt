@@ -1,0 +1,1 @@
+how save binary data on development? In git store - BAD

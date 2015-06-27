@@ -1,0 +1,23 @@
+% function [ output_args ] = Untitled1( input_args )
+%UNTITLED1 Summary of this function goes here
+%  Detailed explanation goes here
+patch = ''
+lsf1to10 = load( 'lsf.mat' )
+% CB_lsf1to3_bit = lsf1to10.sqfull(2:4, 1:end);
+% CB_lsf4to6_bit = lsf1to10.sqfull(5:7, 1:end);
+% CB_lsf7to10_bit = lsf1to10.sqfull(8:11, 1:end);
+% 
+CB_lsf1_bit = lsf1to10.sqfull(2, 1:end);
+CB_lsf2_bit = lsf1to10.sqfull(3, 1:end);
+CB_lsf3_bit = lsf1to10.sqfull(4, 1:end);
+CB_lsf4_bit = lsf1to10.sqfull(5, 1:end);
+CB_lsf5_bit = lsf1to10.sqfull(6, 1:end);
+CB_lsf6_bit = lsf1to10.sqfull(7, 1:end);
+CB_lsf7_bit = lsf1to10.sqfull(8, 1:end);
+CB_lsf8_bit = lsf1to10.sqfull(9, 1:end);
+CB_lsf9_bit = lsf1to10.sqfull(10, 1:end);
+CB_lsf10_bit = lsf1to10.sqfull(11, 1:end);
+dspquant2
+
+save finalCB10
+save finalCB10
