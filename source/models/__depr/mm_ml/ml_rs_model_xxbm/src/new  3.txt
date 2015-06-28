@@ -1,0 +1,65 @@
+%%%%% testing
+mul = gpow(gpow(alpha_to(2), 1, unicalc), GF-1-2*t, unicalc)
+shhow(1) = gpow(gpow(alpha_to(2), 0, unicalc), GF-1-2*t, unicalc);
+shhow(2) = gmult(shhow(1), mul ,unicalc);
+shhow(3) = gmult(mul , shhow(2),unicalc);
+shhow(4) = gmult(mul , shhow(3),unicalc);
+shhow(5) = gmult(mul , shhow(4),unicalc);
+shhow;
+ginv(172, unicalc)
+%asdfas
+%ginv(gpow(alpha_to(2), 1, unicalc), unicalc)
+%gpow(alpha_to(2), 255-1, unicalc)
+%adg
+%%%%
+  ommm = [1 2 3 4 5 6 7 8];
+  ommm = [2 1 1 1 1 1 1 1];
+  ommm = [54     7   250    17   133   202   150    21    22];%[38    60   228   122    50    22   204     3    64];
+  ommm = [91    85   135    56    57    56   157    66];%[0     7   0    17   0   202   0    21    0];
+  ommm = bitroute(ommm, length(ommm));
+  ommm2 = ommm;%[78    67   253    97   235   157    23   208];
+  %ommm = [8 7 6 4 4 3 2 1];
+
+  omr_tmp = [];
+  for j = 0:7
+    alpha_k(j+1) = gpow(alpha_to(2), j, unicalc);
+  end
+  for k = 0:10 %GF-2  % такты
+      % вычисяем Lambda(Alpha^i) пользуемся степенной финкцией
+      if k == 0
+        for i = 0:7
+          omr(i+1) = ommm(i+1);  % загружаемся (умнож. не нул. степ.)
+        end
+		tt = [omr(1); omr(2);omr(3);omr(4);omr(5);omr(6);omr(7);omr(8)]';
+      end
+	  
+      % суммирование
+      omr_sum = omr(1);
+      for i = 1:7
+          omr_sum = gsum(omr_sum, omr(i+1), unicalc);  
+          % загружаемся (умнож. не 
+      end
+      % умножение
+      for i = 0:7
+          omr(i+1) = gmult(alpha_k(i+1), omr(i+1), unicalc);  
+          % загружаемся (умнож. не нул. степ.)
+      end
+	  tt = [omr(1); omr(2);omr(3);omr(4);omr(5);omr(6);omr(7);omr(8)]';
+	  omr_tmp = [omr_tmp omr_sum];
+  end
+  omr_tmp
+  omr_tmp = [];
+  for k = 0:10
+    result = 0;
+	alpha_k = gpow(alpha_to(2), k, unicalc);
+	alpha_k;
+    for j = 1:8  % по компанентам омеги
+	  result = gmult(alpha_k, result, unicalc);
+      result = gsum(ommm2(j), result, unicalc);
+	end
+	result;
+	omr_tmp = [omr_tmp result];
+  end
+  omr_tmp
+%dsfg
+

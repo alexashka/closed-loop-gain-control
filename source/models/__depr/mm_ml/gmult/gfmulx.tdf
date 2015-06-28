@@ -1,0 +1,31 @@
+      
+PARAMETERS (m = 8,irrpol = 391);
+
+subdesign gfmulx (a[m..1], b[m..1] : INPUT; c[m..1] : OUTPUT;)
+VARIABLE 
+expand[m..2][(2*m-1)..1], total[m..1][(2*m-1)..1], irp[(m+1)..1], reduce[(m-1)..1][(2*m-1)..1],
+extra[(m-1)..1][(m+1)..1], left[(m-1)..1] : node;
+
+BEGIN  irp[] = irrpol; left[] = 0; total[1][(2*m-1)..1] = (left[], (a[] & b[1]));
+% %FOR k IN 2 TO m 
+   GENERATE IF (k<m) GENERATE FOR j IN (k+m) TO (2*m-1) GENERATE expand[k][j]=GND; END GENERATE;
+                 END GENERATE;
+            FOR j IN 1 TO (k-1) GENERATE expand[k][j]=GND; END GENERATE;  expand[k][(k+m-1)..k]=(a[] & b[k]);
+            FOR j IN 1 TO (2*m-1) GENERATE  total[k][j] = expand[k][j] $ total[k-1][j];  END GENERATE; END GENERATE;
+% %FOR k IN 1 TO (m-1) 
+   GENERATE IF (k==1) GENERATE  extra[k][] = irp[] & total[m][2*m-k];
+                 ELSE GENERATE  extra[k][] = irp[] & reduce[k-1][2*m-k]; END GENERATE;
+            IF (k<(m-1) & k!=1) GENERATE FOR j IN 1 TO ((m-1)-k) 
+                                  GENERATE  reduce[k][j] = reduce[k-1][j]; END GENERATE; END GENERATE;
+            IF (k==1) GENERATE  FOR j IN 1 TO (m-2) GENERATE reduce[1][j] = total[m][j]; END GENERATE; END GENERATE;
+            IF (k>1) GENERATE   FOR j IN (m-k) TO (2*m-k) 
+                       GENERATE reduce[k][j] = extra[k][j-(m-1)+k] $ reduce[k-1][j]; END GENERATE;
+                ELSE GENERATE   FOR j IN (m-1) TO (2*m-1) 
+                       GENERATE reduce[k][j] = total[m][j] $ extra[1][j-(m-2)]; END GENERATE; END GENERATE;
+            IF (k>1) GENERATE   reduce[k][2*m-k] = GND & reduce[k-1][2*m-1];
+                                FOR j IN (2*m-k+1) TO 2*m-1 GENERATE  reduce[k][j] = GND & reduce[k][j-1];
+                                                        END GENERATE; END GENERATE; END GENERATE;
+% %c[m..2] = reduce[m-1][m..2];
+   c[1] = reduce[m-1][1] # reduce[m-1][2*m-1]; -- last term is disappeared reduce nodes
+END;
+
