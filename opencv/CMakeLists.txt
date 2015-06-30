@@ -19,7 +19,10 @@ include_directories(${OpenCVDir}/modules/videoio/include)
 include_directories(${OpenCVDir}/modules/highgui/include)
 include_directories(${OpenCVDir}/modules/ml/include)
 
+include_directories(/home/zaqwes/src/boost_1_58_0)
+
 add_executable(blur.bin
     blur.cc
-    ${OpenCVDir}/modules/imgproc/src/smooth.cpp
+    #convolution.cpp # need numext - it's dead
+    #${OpenCVDir}/modules/imgproc/src/smooth.cpp
 )
