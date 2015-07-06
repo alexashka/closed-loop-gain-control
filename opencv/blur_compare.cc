@@ -25,7 +25,7 @@ int main()
 {
  
       Mat src, dst, temp;
-      float sum, x1, y1;
+      //float sum, x1, y1;
  
       /// Load an image
       src = imread("/home/zaqwes/work/materials/Image0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
@@ -37,7 +37,7 @@ int main()
       std::vector<float> f;
       const int kern_size = 11;
       const int half = kern_size / 2;
-      Mat kern = cv::getGaussianKernel (kern_size, 11, CV_32F);
+      Mat kern = cv::getGaussianKernel (kern_size, 5, CV_32F);
 
       Mat out;
       transpose(kern, out);
@@ -47,42 +47,44 @@ int main()
 
       dst = src.clone();
       temp = src.clone();
+      Mat dst_compare = src.clone();
+      sepFilter2D(src, dst_compare, -1, out, out);
  
       // along y - direction
       for(int y = 0; y < src.rows; ++y){
           for(int x = 0; x < src.cols / 2; ++x){
-              sum = 0.0;
+              float sum = 0.0;
               for(int i = 
                 //0
                 -half
                 ; i <= half; i++){
                   int y1 = reflect(src.rows, y - i);
-                  sum += f[i + half]*src.at<uchar>(y1, x);
+                  sum += f[i + half]* (uchar)src.at<uchar>(y1, x);
               }
-              temp.at<uchar>(y,x) = sum;
+              dst.at<uchar>(y,x) = (uchar)sum;
           }
       }
 
       // along x - direction
       for(int y = 0; y < src.rows; ++y){
-          for(int x = 0; x < src.cols / 2; ++x){
-              sum = 0.0;
+
+          for(int x = half; x < src.cols / 2; ++x){
+              float sum = 0.0;
               for(int i = 
                 //0
                 -half
                 ; i <= half; i++){
-                  int x1 = reflect(src.cols, x - i);
-                  sum += f[i + half]*temp.at<uchar>(y, x1);
+                  int x1 = //reflect(src.cols, 
+                    x - i;//);
+                  sum += f[i + half]*(uchar)dst.at<uchar>(y, x1);
               }
-              dst.at<uchar>(y,x) = sum;
+              src.at<uchar>(y,x) = (uchar)sum;
           }
+
       }
 
-      Mat dst_compare = src.clone();
-
-      sepFilter2D(src, dst_compare, -1, out, out);
-
-      Mat diff = dst_compare - dst;
+      Mat diff = dst_compare - src;
+      //Mat diff = dst - dst_compare;
 
       //namedWindow("final");
       //imshow("final", dst);
