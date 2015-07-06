@@ -24,7 +24,7 @@ CC=g++
 
 all:  prog 
 
-prog: w1 s4 s5 s7 s10
+prog: w1 s4 s5 s7 blur_compare
 
 # Step 3:
 w1: w1.o
@@ -58,11 +58,11 @@ s7.o: s7.cc
 
 # conversions
 # Step 10:
-s10: s10.o
-	$(CC) s10.o -o  $@ `pkg-config opencv --libs`
+blur_compare: blur_compare.o
+	$(CC) blur_compare.o -o  $@ `pkg-config opencv --libs`
 	
-s10.o: s10.cc
-	$(CC) -c -o s10.o s10.cc
+s10.o: blur_compare.cc
+	$(CC) -c -o blur_compare.o blur_compare.cc
 
 
 # http://stackoverflow.com/questions/2172621/cannot-open-shared-object-file-no-such-file-or-directory
@@ -89,4 +89,4 @@ s10.o: s10.cc
 #	./s5
 
 clean:
-	rm -fr *.o w1 s4 s5 s7
+	rm -fr *.o w1 s4 s5 s7 blur_compare
