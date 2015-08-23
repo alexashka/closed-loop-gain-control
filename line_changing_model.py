@@ -5,6 +5,9 @@ import numpy as np
 class GreedyLineDispatcher(object):
 	""" запрос новой полосы """
 	def regen_new(self):
+		return 0
+
+	def check_intersection(self, lhs_id, rhs_id):
 		pass
 
 class AnyPoint(object):
@@ -12,9 +15,13 @@ class AnyPoint(object):
 		pass
 
 class Region(object):
-	""" Two points """
+	""" 
+		может представлять линию
+		Two points 
+	"""
 	def __init__(self):
 		# при поиске не имеет значения какая какая
+
 		self.start_point = None
 		self.stop_point = None
 
