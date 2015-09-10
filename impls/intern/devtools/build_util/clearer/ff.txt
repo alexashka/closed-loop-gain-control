@@ -1,0 +1,1 @@
+[Linker Error] Unresolved external '__fastcall TMainForm::Button2Click(System::TObject *)' referenced from G:\WORK_I\REED_SOLOMON\BUILD_UTIL\CLEARER\CLEARMAIN.OBJ

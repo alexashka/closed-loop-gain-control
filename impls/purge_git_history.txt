@@ -1,0 +1,8 @@
+http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-git-repo
+
+http://askubuntu.com/questions/377438/how-can-i-recursively-delete-all-files-of-a-specific-extension-in-the-current-di
+
+find . -name "*.mat" -type f -delete
+find . -name "*.bak" -type f
+
+git filter-branch --tree-filter 'find . -name "*.mat" -type f -delete' HEAD

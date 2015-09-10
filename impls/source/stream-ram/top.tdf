@@ -1,0 +1,44 @@
+include "8count";
+include "reg_ram";
+subdesign top (
+	clk, 
+	wr, 
+	a[2..0], 
+	d[5..0] : input;
+
+	--
+	q[5..0],
+	first : output;
+)
+variable
+	counter : 8count; 
+	reg_ram_up : reg_ram;
+	reg_ram_down : reg_ram;
+	sel : node;
+begin
+	counter.clk = clk;
+	reg_ram_up.clk = clk;
+	reg_ram_up.d[] = d[];
+	reg_ram_up.sel = sel;
+	reg_ram_up.a[] = a[];
+	reg_ram_up.wr = wr;
+	
+	reg_ram_down.clk = clk;
+	reg_ram_down.d[] = d[];
+	reg_ram_down.sel = !sel;
+	reg_ram_down.a[] = a[];
+	reg_ram_down.wr = wr;
+	
+	
+	--
+	sel = counter.qd;
+	first = sel;
+	--reg_ram_up.test;
+
+	-- outputs
+	if sel then
+		q[] = reg_ram_up.q[];
+	else
+		q[] = reg_ram_down.q[];
+	end if;
+end;

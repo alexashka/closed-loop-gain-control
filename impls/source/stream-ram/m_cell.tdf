@@ -1,0 +1,25 @@
+subdesign m_cell(
+	clk, sel, wr, grid_bit, cpu_bit : input;
+	q : output;
+)
+variable
+	load_ena : node;
+	data_to_load : node;
+	save_cell : dffe;
+begin
+	
+-- mux
+if sel then
+	data_to_load = grid_bit;
+else	
+	data_to_load = cpu_bit;
+end if;
+
+save_cell.clk = clk;
+save_cell.d = data_to_load;
+load_ena = (wr and !sel) or sel;
+save_cell.ena = load_ena;
+--
+q = save_cell.q;
+end;
+

@@ -1,0 +1,705 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+
+<link rel="stylesheet" href="QuartusAdvancedUsageArticle_files/style.css" type="text/css" media="all">
+<title>QuartusAdvancedUsageArticle &lt; B4 &lt; TWiki</title>
+<meta http-equiv="Content-Type" content="text/html; charset=KOI8-R">
+<link rel="icon" href="http://b4open.spb.ru/pub/B4/WebPreferences/favicon.ico" type="image/x-icon"> <link rel="shortcut icon" href="http://b4open.spb.ru/pub/B4/WebPreferences/favicon.ico" type="image/x-icon">
+
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="http://b4open.spb.ru/bin/view/B4/WebRss">
+<!-- base href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle" -->
+<script type="text/javascript" src="QuartusAdvancedUsageArticle_files/prototype.js"></script>
+<script type="text/javascript" src="QuartusAdvancedUsageArticle_files/twiki.js"></script>
+<script type="text/javascript" src="QuartusAdvancedUsageArticle_files/pattern.js"></script>
+<script type="text/javascript" src="QuartusAdvancedUsageArticle_files/twist.js"></script><style type="text/css">.twistyMakeHidden {display:none;}</style>
+<script type="text/javascript">
+//<![CDATA[
+	function launchWindow(inWeb, inTopic) {
+		return launchTheWindow("/bin/view/", inWeb, inTopic, "plain.pattern");
+	}
+//]]>
+</script>
+
+
+<style type="text/css" media="all">@import url('/pub/TWiki/TwistyContrib/twist.css');</style>
+<style type="text/css" media="all">
+/* Check if style urls are valid (non-empty) */
+	@import url('/pub/TWiki/PatternSkin/layout.css');
+	@import url('/pub/TWiki/PatternSkin/style.css');
+	@import url('/pub/TWiki/PatternSkin/colors.css');
+</style>
+<!--[if IE]>
+<style>
+pre {
+	overflow-x:auto;
+	 overflow-y:hidden;
+	padding-bottom:expression(this.scrollWidth > this.offsetWidth ? 16 : 0);
+}
+</style>
+<![endif]-->
+<style type="text/css" media="all">
+	/* Styles that are set using variables */
+	.twikiToc li {
+		background-image:url("/pub/TWiki/PatternSkin/bullet-down.gif");
+	}
+	#patternLeftBar .patternWebIndicator,
+	.patternBookViewList .twikiTopRow {
+		background-color:#cccccc;
+	}
+	#patternTopBar { background-image:url(""); background-repeat:no-repeat;}
+	#patternTopBar { background-color:#ffffff;}
+	.twikiHelp,
+	.patternAccessKeyInfo {
+		background:url("/pub/TWiki/PatternSkin/striped_blue.gif");
+	}
+	.patternLeftBarPersonal,
+	.tipsOfTheDayContents {
+		background:url("/pub/TWiki/PatternSkin/gradient_blue.jpg") #fff repeat-x;
+	}
+	#patternLeftBar,
+	#patternMain {
+		background:url("/pub/TWiki/PatternSkin/gradient_yellow.jpg") #fff repeat-x;
+	}
+	.patternPrintPage #patternMain {
+		background:#fff;
+	}
+	.twikiPageForm table {
+		background-image:url("/pub/TWiki/PatternSkin/striped_yellow.gif");
+	}
+	.patternLeftBarPersonal li {
+		background-image:url("/pub/TWiki/PatternSkin/bullet-blue.gif");
+	}
+</style>
+<style type="text/css" media="all">
+	/* Check if style urls are valid (non-empty) */
+	
+	
+	
+</style>
+<style type="text/css" media="print">
+	@import url("/pub/TWiki/PatternSkin/print.css");
+</style>
+
+
+
+
+<script type="text/javascript">function DM_ExtensionEvent(event){
+  event.preventDefault();
+  var element = event.target; 
+  var ev = document.createEvent("Events");
+  ev.initEvent("DMasterExtensionEvent", true, false);
+  element.dispatchEvent(ev);
+};
+function convertLinksToDM()
+{
+  var re = /(?:.([^.]+))?$/;
+  var extensions = "EXE,ZIP,RAR,ARJ,Z,GZ,LZH,GZIP,TAR,MP3,AVI,MPG,MPEG,QT,PLJ,ASF,WMA,WMV,MOV,TIF,TIFF,BIN,ACE,ISO,WAV,VQF,OGG,MPE,MPA,RAM,7Z,DOC,PDF,PPT,XLS,DJVU,MSI".split(",");
+  for (var i=0;i<document.links.length;i++) {
+    var ext = re.exec(document.links[i].href)[1].toUpperCase();
+    if (ext.indexOf("?")>0) { ext = ext.split("?")[0] }
+    try {
+    if (extensions.indexOf(ext) >= 0) {
+      document.links[i].addEventListener("click", function (e) { DM_ExtensionEvent(e); }, false);
+    }
+   } catch(e) { alert("error"); }
+  }
+};
+convertLinksToDM();
+</script></head><body class="patternViewPage"><div id="patternScreen"><div id="patternPageShadow"><div id="patternPage"><a name="PageTop"></a>
+<table id="patternColumnWrapper" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="2"><div id="patternTopBar"><table class="patternTopBarContents" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><!--
+<span class="patternTopBarLogo twikiLeft"><a href=""><img src="" border="0" alt="Powered by TWiki" /></a></span> 
+--> 
+<span class="patternTopBarLogo twikiLeft"><h4>b4open.</h4></span>
+<h4><a name="сложные задачипростые решения"></a> &nbsp;&nbsp;&nbsp;сложные задачи&nbsp;&#8212;&nbsp;простые решения </h4>
+</td></tr></tbody></table></div><!-- /patternTopBar--></td></tr><tr>
+<td id="patternLeftBar" valign="top">
+<div class="patternLeftBarContents">
+<div class="patternWebIndicator"><b><a href="http://b4open.spb.ru/bin/view/B4/WebHome" class="twikiLink">B4</a></b></div> <ul>
+<li> <a href="http://b4open.spb.ru/bin/view/B4/ProjectInfo" class="twikiLink">о проекте</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/ProjectNews" class="twikiLink">новости</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/ProjectHistory" class="twikiLink">история</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/ThePhotos" class="twikiLink">галерея</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/ProjectTeam" class="twikiLink">участники</a>
+</li></ul> 
+<hr>    <ul>
+<li> <a href="http://b4open.spb.ru/bin/view/B4/ForumHasBeenRemoved" class="twikiLink">форум</a>
+</li></ul> 
+<hr> <ul>
+<li> <a href="http://b4open.spb.ru/bin/view/B4/TheArticles" class="twikiLink">статьи</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/SomeLinks" class="twikiLink">ссылки</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/ContactInfo" class="twikiLink">контакты</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/DocumentsList" class="twikiLink">документация</a>
+</li> <li> <a href="http://b4open.spb.ru/bin/view/B4/DownloadsList" class="twikiLink">downloads</a>
+</li></ul> 
+<hr> <ul>
+<li> <a href="http://b4open.spb.ru/bin/view/B4/BercutMmt" class="twikiLink">Bercut-MMT</a>
+</li></ul> 
+<p>
+</p><hr>
+<div class="patternFormHolder">
+<form name="jumpForm" action="/bin/view/B4/QuartusAdvancedUsageArticle">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<th class="patternInputHolder"><input class="patternFormField patternFormFieldDefaultColor" name="topic" size="16" value="Jump" onfocus="clearDefaultandCSS(this);" type="text"></th><th class="patternFormSpacer">&nbsp;</th><th class="patternFormButton" width="16"><input class="patternFormButton" src="QuartusAdvancedUsageArticle_files/arrowright.gif" title="Jump" align="middle" type="image"></th>
+</tr></tbody></table>
+</form>
+<form name="quickSearchForm" action="/bin/view/B4/WebSearch">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<th class="patternInputHolder"><input class="patternFormField patternFormFieldDefaultColor" name="search" value="Search" size="16" onfocus="clearDefaultandCSS(this);" type="text"></th><th class="patternFormSpacer">&nbsp;</th><th class="patternFormButton" width="16"><input class="patternFormButton" src="QuartusAdvancedUsageArticle_files/searchtopic.gif" title="Search" align="middle" type="image"></th>
+</tr></tbody></table>
+</form><!-- START OF CHANGE LANGUAGE LINK --><!-- END --></div>
+<p>
+</p><p>
+</p><hr>
+<div class="patternLeftBarPersonal">
+<a href="http://b4open.spb.ru/bin/login/B4/QuartusAdvancedUsageArticle?origurl=http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle"><img alt="key" src="QuartusAdvancedUsageArticle_files/key.gif" align="top" border="0" height="16" width="16"> Log In</a> or <a href="http://b4open.spb.ru/bin/view/TWiki/TWikiRegistration" class="twikiLink">Register</a>
+</div><!-- /patternLeftBarContents--></div></td><!-- /patternLeftBar-->
+<td id="patternMain" valign="top"><div class="patternMainContents">
+<div class="twikiHidden"><hr></div><a name="Content"> </a><div class="twikiHidden"> Start of topic | <a href="#Actions">Skip to actions</a><hr></div>
+<div class="patternContent"><div class="patternTopic"><h1><a name="Использование пакета Quartus II"></a><a name=" Использование пакета Quartus II"></a>  Использование пакета Quartus II в командной строке </h1>
+<p>
+</p><div class="twikiToc"> <ul>
+<li> <a href="#%F7%D7%C5%C4%C5%CE%C9%C5"> Введение</a>
+</li> <li> <a href="#%E6%C1%CA%CC%D9,+%C9%D3%D0%CF%CC%D8%DA%D5%C5%CD%D9%C5+%D0%CF%C4%D0%D2%CF%C7%D2%C1%CD%CD%C1"> Файлы, используемые подпрограммами quartus</a> <ul>
+<li> <a href="#qsf%20-%20Quartus%20Settings%20File"> qsf - Quartus Settings File</a>
+</li> <li> <a href="#rpt%20-%20Report%20File"> rpt - Report File</a>
+</li> <li> <a href="#qmsg%20-%20Quartus%20Messages%20File"> qmsg - Quartus Messages File</a>
+</li> <li> <a href="#pin%20-%20Pin-Out%20File"> pin - Pin-Out File</a>
+</li> <li> <a href="#summary"> summary</a>
+</li></ul> 
+</li> <li> <a href="#%F0%CF%C4%D0%D2%CF%C7%D2%C1%CD%CD%D9+%D0%C1%CB%C5%D4%C1+quartus"> Подпрограммы пакета quartus</a> <ul>
+<li> <a href="#quartus_map"> quartus_map</a> <ul>
+<li> <a href="#%E1%CE%C1%CC%C9%DA+1+%C6%C1%CA%CC%C1+%D0%D2%CF%C5%CB%D4%C1"> Анализ 1 файла проекта</a>
+</li> <li> <a href="#%E1%CE%C1%CC%C9%DA+%D0%D2%CF%C5%CB%D4%C1"> Анализ проекта</a>
+</li> <li> <a href="#%F3%CF%DA%C4%C1%CE%C9%C5+include-%C6%C1%CA%CC%C1"> Создание include-файла</a>
+</li></ul> 
+</li> <li> <a href="#quartus_fit"> quartus_fit</a>
+</li> <li> <a href="#quartus_asm"> quartus_asm</a>
+</li> <li> <a href="#quartus_cpf"> quartus_cpf</a>
+</li> <li> <a href="#quartus_pgm"> quartus_pgm</a>
+</li></ul> 
+</li> <li> <a href="#%E9%D3%D0%CF%CC%D8%DA%CF%D7%C1%CE%C9%C5+%D5%D4%C9%CC%C9%D4%D9+make"> Использование утилиты make</a>
+</li> <li> <a href="#%F0%D2%C9%CD%C5%D2:+%CB%CF%CD%D0%C9%CC%D1%C3%C9%D1+%D0%D2%CF%C5%CB%D4%C1+%D3+%C9%D3%D0"> Пример: компиляция проекта с использованием make</a> <ul>
+<li> <a href="#%F4%C5%D3%D4%CF%D7%D9%CA+%D0%D2%CF%C5%CB%D4:%20test.tdf%20++test"> Тестовый проект: test.tdf + test.qsf + Makefile</a>
+</li> <li> <a href="#%FA%C1%D0%D5%D3%CB%C1%C5%CD"> Запускаем</a>
+</li> <li> <a href="#%F2%C1%D3%DB%C9%D2%C5%CE%C9%C5+%D7%CF%DA%CD%CF%D6%CE%CF%D3%D4%C5%CA"> Расширение возможностей</a>
+</li></ul> 
+</li> <li> <a href="#%FA%C1%CB%CC%C0%DE%C5%CE%C9%C5"> Заключение</a>
+</li> <li> <a href="#%EC%C9%D4%C5%D2%C1%D4%D5%D2%C1,+%D3%D3%D9%CC%CB%C9"> Литература, ссылки</a>
+</li> <li> <a href="#%F4%C5%CB%D3%D4%D9+%D4%C5%D3%D4%CF%D7%CF%C7%CF+%D0%D2%CF%C5%CB%D4%C1"> Тексты тестового проекта</a>
+</li></ul> 
+</div>
+<p>
+</p><h1><a name="Введение"></a> Введение </h1>
+<p>
+Зачем использовать quartus в командной строке?
+Несколько лет назад я не смог бы ответить на этот вопрос.
+Но сейчас, когда количество проектов непревывно растет и все они используют общую библиотеку, 
+я в полной мере оценил плюсы использования quartus в командной строке: </p><ol>
+<li> чтобы перекомпилировать все проекты, не нужно открывать несколько окон quartus и по очереди запускать компиляцию
+</li> <li> не нужно дожидаться окончания каждой компиляции и потом "вручную" просматривать результаты
+</li> <li> не нужно нажимать кучу кнопок для того, чтобы в сотый раз за день переконвертировать прошивку из одного формата в другой
+</li> <li> стала доступна возможность проводить ночную сборку: раз в сутки все проекты собираются автоматически.
+</li></ol> 
+<p>
+В этой статье я бы хотел поделиться своим опытом с разработчиками ПЛИС, которые используют пакет quartus.
+Особенно интересно это может быть тем, кто "ведет" большое количество проектов и хочет максимально автоматизировать
+неизбежные рутинные процессы.
+</p><p>
+Нужно сразу оговориться, что некоторые подсистемы quartus практически невозможно использовать в командной строке. Например, <span class="twikiNewLink">SignalTap<a rel="nofollow" href="http://b4open.spb.ru/bin/edit/B4/SignalTap?topicparent=B4.QuartusAdvancedUsageArticle" title="Create this topic"><sup>?</sup></a></span> или временной симулятор. Ведь при их использовании необходим постоянный визуальный контроль происходящего на экране.
+</p><p>
+Суть использования quartus в командной строке заключается в следующем. 
+Большинство операций, выполняемых в среде quartus, представлено в виде 
+отдельных программ, которые можно запускать в командной строке с 
+определенными ключами. Каждая из этих программ использует определенные 
+файлы в качестве входных и в ходе выполнения выводит информацию в 
+соответствующие файлы и на экран. Поэтому статья начинается с краткого 
+описания файлов, используемых подпрограммами quartus.
+Далее будут рассмотрены сами подпрограммы и способы автоматизации 
+компиляции простого проекта.
+</p><p>
+</p><p>
+</p><h1><a name="Файлы, используемые подпрограмма"></a> Файлы, используемые подпрограммами quartus </h1>
+<p>
+Подпрограммы используют большое количество типов файлов. Мы рассмотрим 
+только наиболее важные и полезные для работы в командной строке.
+</p><p>
+</p><h2><a name="qsf - Quartus Settings File"></a> qsf - Quartus Settings File </h2>
+<p>
+Пожалуй, самый важный файл. Он хранит <em>все</em> настройки проекта в 
+простом текстовом формате. Это единственный файл, необходимый для 
+компиляции, кроме файлов описания схемы (tdf, bdf, ...). Как правило, он
+ содержит следующие настройки: </p><ul>
+<li> головной файл проекта (например my.tdf) и остальные файлы, использованные в проекте
+</li> <li> название проекта (my)
+</li> <li> список пользовательских библиотек
+</li> <li> микросхему, в которой должен быть разведен проект
+</li> <li> распиновку проекта и т.п.
+</li></ul> 
+<p>
+Например:
+</p><pre>set_global_assignment -name AHDL_FILE my.tdf
+set_global_assignment -name INCLUDE_FILE lib.inc
+
+# Analysis &amp; Synthesis Assignments
+# ================================
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name TOP_LEVEL_ENTITY my
+set_global_assignment -name USER_LIBRARIES "D:\\work\\lib
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name DEVICE EPM570GT100C5
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+</pre>
+<p>
+Файл qsf довольно хорошо описан в help quartus'a, поэтому я ограничусь здесь приведенной информацией.
+Кроме встроенной поддержки в quartus, читатель может самостоятельно изучить настройки, 
+которые хранятся в этом файле, создав и настроив проект в оболочке quartus.
+</p><p>
+</p><p>
+</p><h2><a name="rpt - Report File"></a> rpt - Report File </h2>
+<p>
+Файл отчета. Файлы отчета создаются на каждом этапе компиляции. После 
+mapping'а создается файл .map.rpt, после fitter'a создается файл 
+.fit.rpt и т.д. Эти файлы содержат полную информацию о пройденном этапе.
+ Кроме этих файлов после компиляции создается 
+файл .flow.rpt, который заполняется на каждом этапе компиляции и 
+содержит информацию о всем процессе компиляции и его результатах.
+Например, после полной компиляции (map + fit + asm) в файле .flow.rpt 
+можно увидеть:
+</p><pre>+--------------------------------------------------------------------+
+; Flow Summary                                                       ;
++-------------------------+------------------------------------------+
+; Flow Status             ; Successful - Fri Oct 27 13:24:01 2006    ;
+; Quartus II Version      ; 6.0 Build 178 04/27/2006 SJ Full Version ;
+; Revision Name           ; my                                       ;
+; Top-level Entity Name   ; my                                       ;
+; Family                  ; Cyclone                                  ;
+; Device                  ; EP1C6T144C8                              ;
+; Timing Models           ; Final                                    ;
+; Met timing requirements ; N/A                                      ;
+; Total logic elements    ; 4,658 / 5,980 ( 78 % )                   ;
+; Total pins              ; 57 / 98 ( 58 % )                         ;
+; Total virtual pins      ; 0                                        ;
+; Total memory bits       ; 20,080 / 92,160 ( 22 % )                 ;
+; Total PLLs              ; 2 / 2 ( 100 % )                          ;
++-------------------------+------------------------------------------+
+
++-------------------------------------+
+; Flow Elapsed Time                   ;
++----------------------+--------------+
+; Module Name          ; Elapsed Time ;
++----------------------+--------------+
+; Analysis &amp; Synthesis ; 00:02:35     ;
+; Fitter               ; 00:03:38     ;
+; Assembler            ; 00:00:04     ;
+; Total                ; 00:06:17     ;
++----------------------+--------------+
+</pre>
+<p>
+</p><p>
+</p><h2><a name="qmsg - Quartus Messages File"></a> qmsg - Quartus Messages File </h2>
+<p>
+Файл, в который подпрограммы quartus выводят сообщения. Они хранятся в 
+поддиректории db/ проекта и имеют расширения аналогично rpt - файлам: 
+map.qmsg, asm.qmsg, fit.qmsg, ... В нашем случае эти файлы удобны для 
+просмотра сообщений об ошибках компиляции.
+Формат этих файлов не удобен для чтения, но при использовании строкового
+ процессора этот недостаток не играет большой роли.
+</p><p>
+Например, для вывода на консоль всех ошибок, возникших на этапе анализа и синтеза проекта my 
+можно выполнить такую команду (доступно и в Windows):
+</p><pre>cat db/my.map.qmsg | grep Error | sed 's/" "/\n/g' | sed 's/} {/\n/g' | grep -e Error: -e Text
+</pre>
+<p>
+</p><h2><a name="pin - Pin-Out File"></a> pin - Pin-Out File </h2>
+<p>
+Файл, в котором в текстовом виде хранится вся распиновка проекта. Создается fitter'ом при компиляции проекта.
+</p><p>
+</p><p>
+</p><h2><a name="summary"></a> summary </h2>
+<p>
+Файл, в который подпрограммы quartus выводят окончательный результат 
+своего выполнения. Имена - аналогичны rpt файлам: .fit.summary, 
+.map.summary.
+Например:
+</p><pre>Analysis &amp; Synthesis Status : Successful - Fri Oct 27 13:20:14 2006
+Quartus II Version : 6.0 Build 178 04/27/2006 SJ Full Version
+Revision Name : my
+Top-level Entity Name : my
+Family : Cyclone
+Total logic elements : 5,737
+Total pins : 57
+Total virtual pins : 0
+Total memory bits : 20,080
+Total PLLs : 2
+</pre>
+<p>
+</p><h1><a name="Подпрограммы пакета quartus"></a> Подпрограммы пакета quartus </h1>
+<p>
+Вот неполный список подпрограмм, входящих в состав пакета quartus: </p><ul>
+<li> quartus_map - analysis &amp; synthesys
+</li> <li> quartus_fit - fitter
+</li> <li> quartus_asm - assembler
+</li> <li> quartus_cpf - convert programming files
+</li> <li> quartus_pgm - programmer
+</li></ul> 
+<p>
+Чтобы запустить одну из перечисленных подпрограмм, нужно, чтобы 
+переменная окружения PATH содержала путь
+к директории исполняемых файлов пакета quartus. Например, в среде 
+Windows: c:\program files\altera\quartus\bin. В среде linux - 
+/opt/altera/quartus/bin.
+</p><p>
+Каждая из этих программ описана в help'e quartus'a. Кроме того, вызвав 
+каждую программу с ключом '-h' можно получить справку прямо в командной 
+строке. Например:
+</p><pre>$ quartus_map -h
+Quartus II Assembler
+Version 6.0 Build 178 04/27/2006 SJ Full Version
+Copyright (C) 1991-2006 Altera Corporation
+
+Usage:
+------
+quartus_asm [-h | --help[=&lt;option|topic&gt;] | -v]
+quartus_asm &lt;project name&gt; [&lt;options&gt;]
+
+Description:
+------------
+Options:
+--------
+        -f &lt;argument file&gt;
+        -c &lt;revision name&gt; | --rev=&lt;revision name&gt;
+        --lower_priority
+        --read_settings_files[=on|off]
+        --set=&lt;assignment=value&gt;
+        --write_settings_files[=on|off]
+
+Help Topics:
+------------
+        arguments
+        makefiles
+        return_codes
+
+For more information on specific options, use --help=&lt;option|topic&gt;.
+</pre>
+<p>
+У каждой программы есть ключ --lower_priority, который позволяет запускать 
+программу с пониженным приоритетом. Этот ключ полезно использовать на не очень мощных компьютерах, чтобы
+процедура компиляции не мешала работе за компьютером.
+</p><p>
+</p><h2><a name="quartus_map"></a> quartus_map </h2>
+<p>
+Analysis &amp; Synthesys - первый этап компиляции проекта, анализ и 
+синтез схемы. Для запуска анализа и синтеза необходимо указать
+как минимум 2 ключа:
+</p><pre>$ quartus_map my -c my
+</pre>
+<p>
+где my - имя проекта, для которого есть файл my.qsf.
+</p><p>
+Кроме анализа и синтеза эта программа может выполнять еще несколько функций.
+Рассмотрим несколько таких функций подробнее.
+</p><p>
+</p><h3><a name="Анализ 1 файла проекта"></a> Анализ 1 файла проекта </h3>
+<p>
+</p><pre>$ quartus_map my --analyze_file=my.tdf
+</pre>
+<p>
+</p><h3><a name="Анализ проекта"></a> Анализ проекта </h3>
+<p>
+</p><pre>$ quartus_map my --analyze_project
+</pre>
+<p>
+</p><h3><a name="Создание include-файла"></a> Создание include-файла </h3>
+<p>
+</p><pre>$ quartus_map my --generate_inc_file=my.tdf
+</pre>
+После выполнения этой команды для файла my.tdf будет создан файл my.inc.
+<p>
+</p><h2><a name="quartus_fit"></a> quartus_fit </h2>
+<p>
+Fitter - второй этап компиляции, разводка схемы в кристалле.
+Запускается аналогично quartus_map:
+</p><pre>$ quartus_fit my -c my
+</pre>
+<p>
+</p><h2><a name="quartus_asm"></a> quartus_asm </h2>
+<p>
+Assembler - третий этап компиляции. Генерация файла-прошивки. 
+После выполнения этой программы появятся файлы .pof, .sof для прошивки микросхемы.
+Запускается quartus_asm аналогично quartus_map &amp; quartus_fit.
+</p><p>
+</p><h2><a name="quartus_cpf"></a> quartus_cpf </h2>
+<p>
+Convert Programming File - конвертирование прошивок.
+Эта программа позволяет выполнить конверсию прошивок .pof &amp; .sof  в другие форматы.
+Рассмотрим использование quartus_cpf на примере конверсии прошивки my.pof в my.rpd:
+</p><pre>$ quartus_cpf -c my.pof my.rpd
+</pre>
+<p>
+После выполнения этой команды появится файл my.rpd (raw programming data).
+Аналогично можно выполнить конверсию прошивки в другой формат, например .rbf.
+</p><p>
+</p><p>
+</p><h2><a name="quartus_pgm"></a> quartus_pgm </h2>
+<p>
+Программатор. Запуск этой команды позволяет запрограммировать микросхему, используя 
+один из поддерживаемых кабелей, например <span class="twikiNewLink">ByteBlasterMV<a rel="nofollow" href="http://b4open.spb.ru/bin/edit/B4/ByteBlasterMV?topicparent=B4.QuartusAdvancedUsageArticle" title="Create this topic"><sup>?</sup></a></span>.
+</p><p>
+Команда quartus_pgm с ключом -a позволяет посмотреть список микросхем доступных для прошивки 
+(в листинге приведен пример выполнения quartus_pgm в системе linux):
+</p><pre>$ quartus_pgm -a
+Info: Command: quartus_pgm -a
+Info: Using programming cable "ByteBlasterMV [/dev/byteblaster0]"
+1) ByteBlasterMV [/dev/byteblaster0]
+  020820DD   EP1C6
+  170640DD   EPM3064A/7064AE
+
+Info: Quartus II Programmer was successful. 0 errors, 0 warnings
+    Info: Processing ended: Thu Mar  9 11:15:10 2006
+    Info: Elapsed time: 00:00:01
+</pre>
+<p>
+Как видно из листинга, к цепи JTAG поключены 2 микросхемы: </p><ol>
+<li> EP1C6 (Cyclone)
+</li> <li> EPM3064A (Max3000)
+</li></ol> 
+<p>
+Чтобы запрограммировать микросхему Cyclone, нужно запустить команду:
+</p><pre>$ quartus_pgm -o p\;test_decoder.sof\@1 -m JTAG
+Info: Command: quartus_pgm -o p;test_decoder.sof@1 -m JTAG
+Info: Using programming cable "ByteBlasterMV [/dev/byteblaster0]"
+Info: Started Programmer operation at Thu Mar  9 11:24:11 2006
+Info: Configuring device index 1
+Info: Device 1 contains JTAG ID code 0x020820DD
+Info: Configuration succeeded -- 1 device(s) configured
+Info: Successfully performed operation(s)
+Info: Ended Programmer operation at Thu Mar  9 11:24:14 2006
+Info: Quartus II Programmer was successful. 0 errors, 0 warnings
+    Info: Processing ended: Thu Mar  9 11:24:14 2006
+    Info: Elapsed time: 00:00:04
+</pre>
+, где:  <ul>
+<li> строка <pre>-o p\;my.sof\@1</pre> означает, что файл (my.sof) должен быть запрограммирован (p) в первую (@1) микросхему из тех, что подключены к JTAG цепи.
+</li> <li> строка <pre>-m JTAG</pre> означает, что режим програмирования - JTAG.
+</li></ul> 
+<p>
+</p><h1><a name="Использование утилиты make"></a> Использование утилиты make </h1>
+<p>
+Итак, мы кратко (в необходимом для примера объеме) рассмотрели программы пакета quartus.
+Каким образом можно автоматизировать компиляцию и сопуствующие процедуры, используя эти программы?
+Для этого можно использовать утилиту make, хорошо знакомую пользователям linux [1,2].
+</p><p>
+Суть использования make проста. В директории, в которой находится проект,
+должен находиться файл с названием <strong>Makefile</strong>, в котором прописаны правила 
+выполнения какой-либо операции. Правило может запускать одну или несколько
+программ (команд). Кроме правил, в Makefile можно описать зависимости между файлами и правилами.
+При этом отслеживание изменений файлов будет выполнять make: при изменении файла, 
+от которого зависит другой файл, зависимый файл будет обновлен прописанной в Makefile'e командой.
+Например, если в Makefile прописано правило rule, то
+для выполнения этого правила нужно вызвать
+</p><pre>$ make rule
+</pre>
+Правилу можно передавать параметры при вызове make:
+<pre>$ make rule PARAM=1
+</pre>
+<p>
+Утилиту make можно использовать и в операционной системе windows.
+Для этого нужно установить систему cygwin [3], включающую в себя - помимо самой make -
+большое количество GNU-утилит, которые могут помочь обработать данные, 
+выводимые программами пакета quartus. Пример таких GNU-утилит приведен в описании файлов *qmsg выше.
+</p><p>
+Для автоматизации работы с quartus могут потребоваться следующие программы
+пакета cygwin: cd, ls, make, cat, grep, tee, sed.
+</p><p>
+</p><p>
+</p><h1><a name="Пример: компиляция проекта с исп"></a> Пример: компиляция проекта с использованием make </h1>
+<p>
+Рассмотрим пример совместного использования подпрограмм quartus и утилиты make.
+Для этого создадим примитивный тестовый проект "test". 
+Проект после компиляции будет размещаться в микросхеме EP1C6T144C8. И допустим, что 
+для прошивки прибора используется файл test.rpd, который получается из test.pof путем конвертирования.
+</p><p>
+</p><h2><a name="Тестовый проект: test.tdf + test"></a> Тестовый проект: test.tdf + test.qsf + Makefile </h2>
+<p>
+Вот как выглядит файл test.qsf для данного проекта:
+</p><pre># Project-Wide Assignments
+# ========================
+set_global_assignment -name AHDL_FILE test.tdf
+
+# Analysis &amp; Synthesis Assignments
+# ================================
+set_global_assignment -name FAMILY "Cyclone"
+set_global_assignment -name TOP_LEVEL_ENTITY test
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name DEVICE EP1C6T144C8
+</pre>
+<p>
+Программа test.tdf примитивная:
+</p><pre>SUBDESIGN test
+(
+  a, b, c : INPUT;
+  d, e, f : OUTPUT;
+)
+BEGIN
+ d = a &amp; b &amp; c;
+ e = a;
+ f = !b;
+END;
+</pre>
+<p>
+Теперь самое главное - Makefile:
+</p><pre>PROJECT = test # название нашего проекта
+SOURCES = $(PROJECT).tdf # исходный текст проекта, когда этот текст изменяется 
+                # должна происходить перекомпиляция проекта
+</pre>
+<p>
+Главная цель сборки нашего проекта - файл test.rpd. Для получения этого файла необходим файл test.pof. 
+Поэтому наш Makefile должен содержать зависимость файла test.rpd от test.pof.
+А для получения файла test.pof необходимы два файла test.tdf и test.qsf. При любом изменении этих файлов
+файл test.pof должен создаваться заново.
+</p><pre># когда файл rpd создан, выводим результат компиляции из файла flow.rpt
+all: $(PROJECT).rpd
+        cat $(PROJECT).flow.rpt | grep -A 16 -B 1 \;\ Flow\ Summary
+
+# зависимость pof от rpd
+$(PROJECT).rpd: $(PROJECT).pof
+        quartus_cpf -c $&lt; $@
+
+# pof файл зависит от исходных текстов и файла настройки
+$(PROJECT).pof: $(SOURCES) $(PROJECT).qsf
+        quartus_map $(PROJECT) -c $(PROJECT) 
+        quartus_fit $(PROJECT) -c $(PROJECT)
+        quartus_asm $(PROJECT) -c $(PROJECT)
+</pre>
+<p>
+Для очистки директории проекта от всех файлов, кроме исходников и настроек,
+Makefile содержит правило clean.
+</p><pre>clean:
+        rm -rf $(PROJECT).rpd $(PROJECT)*.rpt $(PROJECT).pof
+        rm -rf $(PROJECT)*.pin $(PROJECT)*.qpf  
+        rm -rf db/$(PROJECT)* 
+        rm -rf $(PROJECT)*.summary $(PROJECT)*smsg
+</pre>
+<p>
+</p><h2><a name="Запускаем"></a> Запускаем </h2>
+<p>
+Итак, мы создали простой проект, состоящий из двух файлов: test.qsf и test.tdf.
+Для сборки проекта и получения файла test.rpd мы имеем Makefile.
+Что нужно, чтобы провести компиляцию?
+Ответ прост: нужно запустить make в директории, где лежат указанные три файла.
+</p><pre>$ make
+</pre>
+<p>
+Если компиляция пройдет успешно, то в результате выполнения команды будет получен такой результат:
+</p><pre>+--------------------------------------------------------------------+
+; Flow Summary                                                       ;
++-------------------------+------------------------------------------+
+; Flow Status             ; Successful - Tue Oct 31 18:19:57 2006    ;
+; Quartus II Version      ; 6.0 Build 178 04/27/2006 SJ Full Version ;
+; Revision Name           ; test                                     ;
+; Top-level Entity Name   ; test                                     ;
+; Family                  ; Cyclone                                  ;
+; Device                  ; EP1C6T144C8                              ;
+; Timing Models           ; Final                                    ;
+; Met timing requirements ; N/A                                      ;
+; Total logic elements    ; 1 / 5,980 ( &lt; 1 % )                      ;
+; Total pins              ; 6 / 98 ( 6 % )                           ;
+; Total virtual pins      ; 0                                        ;
+; Total memory bits       ; 0 / 92,160 ( 0 % )                       ;
+; Total PLLs              ; 0 / 2 ( 0 % )                            ;
++-------------------------+------------------------------------------+
+</pre>
+<p>
+В директории будет лежать файл test.rpd.
+Всю необходимую информацию о скомпилированном проекте, распиновке и т.п.
+можно узнать из вышеописанных файлов, которые появятся в директории после компиляции.
+</p><p>
+Что необходимо сделать, чтобы очистить директорию от файлов отчета?
+Запустить:
+</p><pre>$ make clean
+
+rm -rf test.rpd test*.rpt test.pof
+rm -rf test*.pin test*.qpf  
+rm -rf db/test* 
+rm -rf test*.summary test*smsg
+</pre>
+<p>
+</p><h2><a name="Расширение возможностей"></a> Расширение возможностей </h2>
+<p>
+Допустим, что для файла test.tdf нужно создавать include файл test.inc.
+Для этого в Makefile нужно добавить зависимость:
+</p><pre>%.inc: %.tdf
+        quartus_map $(PROJECT) --generate_inc_file=$&lt;
+</pre>
+<p>
+Тогда, вызвав в командной строке:
+</p><pre>$ make test.inc
+
+quartus_map test --generate_inc_file=test.tdf
+Info: Command: quartus_map test --generate_inc_file=test.tdf
+Info: Quartus II Analysis &amp; Synthesis was successful. 0 errors, 0 warnings
+    Info: Processing ended: Tue Oct 31 18:27:00 2006
+    Info: Elapsed time: 00:00:01
+</pre>
+<p>
+Мы получим test.inc в директории проекта.
+Здесь необходимо заметить, что при увеличении количества файлов в 
+проекте описанная зависимость не будет изменяться, поскольку она описывает "закон преобразования файлов".
+</p><p>
+</p><h1><a name="Заключение"></a> Заключение </h1>
+<p>
+Большинство рутинных операций, которые многие пользователи quartus выполняют в графической оболочке,
+доступны для выполнения в командной строке в виде подпрограмм.
+Использование утилиты make делает использование этих подпрограмм прозрачным, удобным и интеллектуальным.
+В чем плюсы такого подхода?
+Их несколько: </p><ul>
+<li> отсутствие графической оболочки: это облегчает процесс сборки большого количества проектов
+</li> <li> make позволяет автоматически отслеживать построенные зависимости и обновлять необходимые файлы
+</li> <li> make позволяет автоматически после успешной сборки проекта конвертировать файлы прошивок
+</li> <li> у разработчика появляется больше времени на творчество <img src="QuartusAdvancedUsageArticle_files/wink.gif" alt="wink" title="wink" border="0">
+</li></ul> 
+<p>
+Надеюсь, что данная статья поможет облегчить и без того не легкий труд аппаратчиков - плисоводов <img src="QuartusAdvancedUsageArticle_files/smile.gif" alt="smile" title="smile" border="0">
+</p><p>
+Павел Курочкин,
+НТЦ Метротек, Санкт-Петербург.
+</p><p>
+</p><h1><a name="Литература, ссылки"></a> Литература, ссылки </h1>
+<p> </p><ol>
+<li> Перевод Makefile Mini HOWTO (make), <a href="http://www.opennet.ru/base/dev/mini_make.txt.html" target="_top">http://www.opennet.ru/base/dev/mini_make.txt.html</a>
+</li> <li> Мини-руководство по созданию Makefile-ов, <a href="http://gazette.linux.ru.net/lg83/heriyanto.html" target="_top">http://gazette.linux.ru.net/lg83/heriyanto.html</a>
+</li> <li> <a href="http://www.cygwin.com/" target="_top">http://www.cygwin.com</a>
+</li></ol> 
+<p>
+</p><h1><a name="Тексты тестового проекта"></a> Тексты тестового проекта </h1> <ul>
+<li> <a href="http://b4open.spb.ru/pub/B4/QuartusAdvancedUsageArticle/Makefile" target="_top">Makefile</a>: Makefile тестового проекта
+</li> <li> <a href="http://b4open.spb.ru/pub/B4/QuartusAdvancedUsageArticle/test.qsf" target="_top">test.qsf</a>: Quartus Settings File для тестового проекта
+</li> <li> <a href="http://b4open.spb.ru/pub/B4/QuartusAdvancedUsageArticle/test.tdf" target="_top">test.tdf</a>: Text Design File тестового проекта
+</li></ul> <a name="TopicEnd"></a>
+</div><div class="twikiHidden"><hr>End of topic<br><a href="#Actions">Skip to actions</a> | <a href="#PageTop">Back to top</a><hr></div>
+<div class="twikiAttachments">  
+<span id="attachmentsshow" class="twistyVisible"><a href="#" class="twistyTrigger"><img alt="toggleopen" src="QuartusAdvancedUsageArticle_files/toggleopen.gif" align="top" border="0" height="16" width="16"><span class="twikiLinkLabel" id="attachmentsshowlink">Show attachments (3)</span></a></span><span id="attachmentshide" class="twistyHidden twistyVisible"><a href="#" class="twistyTrigger"><img alt="toggleclose" src="QuartusAdvancedUsageArticle_files/toggleclose.gif" align="top" border="0" height="16" width="16"><span class="twikiLinkLabel" id="attachmentshidelink">Hide attachments (3)</span></a></span>
+<div id="attachmentstoggle" class="twistyRememberSetting twistyHidden">
+<table summary="Topic attachments" id="twikiAttachmentsTable" class="twikiTable" border="0" cellpadding="0" cellspacing="0"><caption>Topic attachments</caption><tbody><tr><th class="twikiFirstCol" bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=0;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">I</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=1;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Attachment</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=2;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Action</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=3;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Size</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=4;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Date</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=5;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Who</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="http://b4open.spb.ru/bin/view/B4/QuartusAdvancedUsageArticle?sortcol=6;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Comment</font></a> </th></tr>
+<tr><td class="twikiFirstCol" bgcolor="#ffffff"> <img alt="else" src="QuartusAdvancedUsageArticle_files/else.gif" align="top" border="0" height="16" width="16"><span class="twikiHidden">EXT</span> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/viewfile/B4/QuartusAdvancedUsageArticle?rev=1;filename=Makefile">Makefile</a> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/attach/B4/QuartusAdvancedUsageArticle?filename=Makefile&amp;revInfo=1" title="change, update, previous revisions, move, delete..." rel="nofollow">manage</a> </td><td align="right" bgcolor="#ffffff"> 0.6&nbsp;K </td><td bgcolor="#ffffff"> 03 Nov 2006 - 11:44 </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/view/Main/PavelKurochkin" class="twikiLink">PavelKurochkin</a> </td><td bgcolor="#ffffff"> Makefile тестового проекта </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#ffffff"> <img alt="else" src="QuartusAdvancedUsageArticle_files/else.gif" align="top" border="0" height="16" width="16"><span class="twikiHidden">qsf</span> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/viewfile/B4/QuartusAdvancedUsageArticle?rev=1;filename=test.qsf">test.qsf</a> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/attach/B4/QuartusAdvancedUsageArticle?filename=test.qsf&amp;revInfo=1" title="change, update, previous revisions, move, delete..." rel="nofollow">manage</a> </td><td align="right" bgcolor="#ffffff"> 0.3&nbsp;K </td><td bgcolor="#ffffff"> 03 Nov 2006 - 11:44 </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/view/Main/PavelKurochkin" class="twikiLink">PavelKurochkin</a> </td><td bgcolor="#ffffff"> Quartus Settings File для тестового проекта </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#ffffff"> <img alt="else" src="QuartusAdvancedUsageArticle_files/else.gif" align="top" border="0" height="16" width="16"><span class="twikiHidden">tdf</span> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/viewfile/B4/QuartusAdvancedUsageArticle?rev=1;filename=test.tdf">test.tdf</a> </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/attach/B4/QuartusAdvancedUsageArticle?filename=test.tdf&amp;revInfo=1" title="change, update, previous revisions, move, delete..." rel="nofollow">manage</a> </td><td align="right" bgcolor="#ffffff"> 0.1&nbsp;K </td><td bgcolor="#ffffff"> 03 Nov 2006 - 11:45 </td><td bgcolor="#ffffff"> <a href="http://b4open.spb.ru/bin/view/Main/PavelKurochkin" class="twikiLink">PavelKurochkin</a> </td><td bgcolor="#ffffff"> Text Design File тестового проекта </td></tr>
+</tbody></table>
+</div></div>
+<script type="text/javascript">
+//<![CDATA[
+	renderAttachmentCount("twikiAttachmentsTable");
+//]]>
+</script>
+</div><!-- /patternContent -->
+<p>
+</p><div class="patternMoved twikiGrayText"></div><!-- /patternMoved-->
+</div><!-- /patternMainContents--></td></tr></tbody></table><!-- /patternColumnWrapper-->
+</div><!--end patternPage--></div><!--end patternPageShadow--><div id="patternBottomBar"><div class="patternBottomBarContents">© b4open, 2006
+</div><!-- /patternBottomBarContents--></div><!-- /patternBottomBar--></div><!--end patternScreen--></body></html>

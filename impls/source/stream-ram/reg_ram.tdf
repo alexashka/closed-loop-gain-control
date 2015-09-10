@@ -1,0 +1,59 @@
+include "m_cell";
+include "74138";
+constant DATA_WIDTH = 6;
+constant LEN_LINE = 8;
+constant ADDR_WIDTH = 3;
+subdesign reg_ram(
+	clk : input;
+	sel : input;
+	d[DATA_WIDTH-1..0] : input;
+	a[ADDR_WIDTH-1..0] : input;
+	wr : input;
+	
+	q[DATA_WIDTH-1..0] : output;
+)
+variable
+	m_cell_array[LEN_LINE-1..0][DATA_WIDTH-1..0] : m_cell;
+	cpu_bit_grid[LEN_LINE-1..0][DATA_WIDTH-1..0] : node;
+
+	dmux[DATA_WIDTH..0] : 74138;	-- набор однобитный демультиплексоров
+		-- нужно заменить на lpm_dec или типо того 
+begin
+    m_cell_array[][].clk = clk;
+    m_cell_array[][].sel = sel;
+	dmux[].a = a[0]; dmux[].b = a[1]; dmux[].c = a[2];	-- выбор канала
+	dmux[].g1 = vcc;
+	for i in 0 to DATA_WIDTH-1 generate dmux[i].g2an = !d[i]; end generate;
+	dmux[DATA_WIDTH].g2an = !wr; -- примешиваем
+	dmux[].g2bn = GND;
+
+	-- подключаем выходы демультиплексора
+	m_cell_array[0][].cpu_bit= !dmux[DATA_WIDTH-1..0].y0n;
+	m_cell_array[0][].wr= !dmux[DATA_WIDTH].y0n;
+	m_cell_array[1][].cpu_bit= !dmux[DATA_WIDTH-1..0].y1n;
+	m_cell_array[1][].wr = !dmux[DATA_WIDTH].y1n;
+	m_cell_array[2][].cpu_bit= !dmux[DATA_WIDTH-1..0].y2n;
+	m_cell_array[2][].wr = !dmux[DATA_WIDTH].y2n;
+	m_cell_array[3][].cpu_bit= !dmux[DATA_WIDTH-1..0].y3n;
+	m_cell_array[3][].wr = !dmux[DATA_WIDTH].y3n;
+	
+	m_cell_array[4][].cpu_bit= !dmux[DATA_WIDTH-1..0].y4n;
+	m_cell_array[4][].wr = !dmux[DATA_WIDTH].y4n;
+	m_cell_array[5][].cpu_bit= !dmux[DATA_WIDTH-1..0].y5n;
+	m_cell_array[5][].wr = !dmux[DATA_WIDTH].y5n;
+	m_cell_array[6][].cpu_bit= !dmux[DATA_WIDTH-1..0].y6n;
+	m_cell_array[6][].wr = !dmux[DATA_WIDTH].y6n;
+	m_cell_array[7][].cpu_bit= !dmux[DATA_WIDTH-1..0].y7n;
+	m_cell_array[7][].wr = !dmux[DATA_WIDTH].y7n;
+	
+	-- сетка для сдвига
+	-- dbg : m_cell_array[][].grid_bit = gnd;
+	m_cell_array[LEN_LINE-1][].grid_bit = gnd;	-- первый
+	for i in 1 to LEN_LINE-1 generate 
+		m_cell_array[LEN_LINE-1-i][].grid_bit = m_cell_array[LEN_LINE-i][].q; 
+	end generate;
+
+	-- Оконченый слой
+	-- Выходные данные
+	q[] = m_cell_array[0][].q;
+end;

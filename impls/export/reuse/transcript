@@ -1,0 +1,458 @@
+# do try.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# -- Compiling module register_pe_new
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# ** Warning: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(8): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module stage_wrapper_tb
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb4
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x80
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb5
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x81
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb4
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbb
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x8f
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x87
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x82
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb5
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbd
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb8
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x8f
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb8
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb7
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbf
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbc
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x8f
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x82
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb8
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbc
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x81
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xba
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb8
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x80
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb7
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x80
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb5
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x88
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb5
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xbd
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd0
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "syntax error, unexpected non-printable character 0xb8
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): near "": syntax error, unexpected non-printable character 0xd1
+# ** Error: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(102): syntax error, unexpected non-printable character 0x8f
+# ** Warning: ../../src/reuse_units/rtl_vlog/vconst.v(5): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# ** Error: /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+# Error in macro ./try.do line 1
+# /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog -reportprogress 300 -work local_lib ../../src/reuse_units/rtl_vlog/*.v +incdir+../../src/reuse_units/rtl_vlog"
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# -- Compiling module register_pe_new
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# ** Warning: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(8): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module stage_wrapper_tb
+# ** Warning: ../../src/reuse_units/rtl_vlog/vconst.v(5): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# 
+# Top level modules:
+# 	full_adder
+# 	sm_control
+# 	counter_load_dbus
+# 	counter_load_out
+# 	counter_load_out_collaps_free
+# 	counters_mod_rtl
+# 	counters_mod_nocarry_rtl
+# 	counters_mod_speed_rtl
+# 	counter_load_down
+# 	counter_load_down_2
+# 	counter_load_down_set
+# 	dffe_flag
+# 	register_pe_new
+# 	rom_init_rtl
+# 	single_clock_wr_ram
+# 	mux2bus
+# 	pxor_4w21w
+# 	shift_reg_width
+# 	v_shift_registers
+# 	sm_control_v3
+# 	stage_wrapper_tb
+# 	sum_tb
+# 	zero_detect
+# 	zero_detect_owire
+# 	zero_detect_owire_not
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# -- Compiling module register_pe_new
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# ** Warning: ../../src/reuse_units/rtl_vlog/stage_wrapper_tb.v(8): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module stage_wrapper_tb
+# -- Compiling module sum_tb
+# ** Warning: ../../src/reuse_units/rtl_vlog/vconst_lib.v(5): (vlog-2263) Redefinition of macro: WIDTH.
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# 
+# Top level modules:
+# 	full_adder
+# 	sm_control
+# 	counter_load_dbus
+# 	counter_load_out
+# 	counter_load_out_collaps_free
+# 	counters_mod_rtl
+# 	counters_mod_nocarry_rtl
+# 	counters_mod_speed_rtl
+# 	counter_load_down
+# 	counter_load_down_2
+# 	counter_load_down_set
+# 	dffe_flag
+# 	register_pe_new
+# 	rom_init_rtl
+# 	single_clock_wr_ram
+# 	mux2bus
+# 	pxor_4w21w
+# 	shift_reg_width
+# 	v_shift_registers
+# 	sm_control_v3
+# 	stage_wrapper_tb
+# 	sum_tb
+# 	zero_detect
+# 	zero_detect_owire
+# 	zero_detect_owire_not
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# ** Error: ../../src/reuse_units/rtl_vlog/arif_lib.v(18): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/arif_lib.v(19): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module adder_signed
+# ** Error: ../../src/reuse_units/rtl_vlog/arif_lib.v(33): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/arif_lib.v(34): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(77): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(78): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(81): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module register_pe_new
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(110): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(111): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(114): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(47): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(48): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(50): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(50): near "*": syntax error, unexpected '*'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(51): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(51): near "*": syntax error, unexpected '*'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(54): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(64): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(64): (vlog-2730) Undefined variable: 'dfload'.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(68): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(68): (vlog-2730) Undefined variable: 'doutbig'.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): near ")": syntax error, unexpected ')'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): near ")": syntax error, unexpected ')'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(39): Identifier must be declared with a port mode: dfload.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(42): Identifier must be declared with a port mode: doutbig.
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# -- Compiling module stage_wrapper_tb
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# ** Error: /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+# Error in macro ./try.do line 1
+# /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog -reportprogress 300 -work local_lib ../../src/reuse_units/rtl_vlog/*.v +incdir+../../src/reuse_units/rtl_vlog"
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(77): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(78): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(81): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module register_pe_new
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(110): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(111): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(114): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(47): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(48): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(50): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(50): near "*": syntax error, unexpected '*'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(51): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(51): near "*": syntax error, unexpected '*'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(54): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(64): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(64): (vlog-2730) Undefined variable: 'dfload'.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(68): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(68): (vlog-2730) Undefined variable: 'doutbig'.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): near ")": syntax error, unexpected ')'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(79): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): near ")": syntax error, unexpected ')'
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(82): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(39): Identifier must be declared with a port mode: dfload.
+# ** Error: ../../src/reuse_units/rtl_vlog/shift_reg_lib.v(42): Identifier must be declared with a port mode: doutbig.
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# -- Compiling module stage_wrapper_tb
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# ** Error: /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+# Error in macro ./try.do line 1
+# /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog -reportprogress 300 -work local_lib ../../src/reuse_units/rtl_vlog/*.v +incdir+../../src/reuse_units/rtl_vlog"
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(77): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(78): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(81): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module register_pe_new
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(110): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(111): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: ../../src/reuse_units/rtl_vlog/ff_lib.v(114): (vlog-2163) Macro `WIDTH is undefined.
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# -- Compiling module stage_wrapper_tb
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# ** Error: /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+# Error in macro ./try.do line 1
+# /home/zaqwes/opt/altera/13.1/modelsim_ase/linux/vlog failed.
+#     while executing
+# "vlog -reportprogress 300 -work local_lib ../../src/reuse_units/rtl_vlog/*.v +incdir+../../src/reuse_units/rtl_vlog"
+do try.do
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module full_adder
+# -- Compiling module adder_signed
+# -- Compiling module sm_control
+# -- Compiling module counter_load_dbus
+# -- Compiling module counter_load
+# -- Compiling module counter_load_out
+# -- Compiling module counter_load_out_collaps_free
+# -- Compiling module counters_mod_rtl
+# -- Compiling module counters_mod_nocarry_rtl
+# -- Compiling module counters_mod_speed_rtl
+# -- Compiling module counter_load_down
+# -- Compiling module counter_load_down_2
+# -- Compiling module counter_load_down_set
+# -- Compiling module a_dff
+# -- Compiling module dffe_flag
+# -- Compiling module register_pe
+# -- Compiling module register_pe_new
+# -- Compiling module rom_init_rtl
+# -- Compiling module single_clock_wr_ram
+# -- Compiling module mux2bus
+# -- Compiling module pxor_4w21w
+# -- Compiling module shift_reg_width
+# -- Compiling module v_shift_registers
+# -- Compiling module sm_control_v3
+# -- Compiling module stage_wrapper_tb
+# -- Compiling module sum_tb
+# -- Compiling module zero_detect
+# -- Compiling module zero_detect_owire
+# -- Compiling module zero_detect_owire_not
+# 
+# Top level modules:
+# 	full_adder
+# 	sm_control
+# 	counter_load_dbus
+# 	counter_load_out
+# 	counter_load_out_collaps_free
+# 	counters_mod_rtl
+# 	counters_mod_nocarry_rtl
+# 	counters_mod_speed_rtl
+# 	counter_load_down
+# 	counter_load_down_2
+# 	counter_load_down_set
+# 	dffe_flag
+# 	register_pe_new
+# 	rom_init_rtl
+# 	single_clock_wr_ram
+# 	mux2bus
+# 	pxor_4w21w
+# 	shift_reg_width
+# 	v_shift_registers
+# 	sm_control_v3
+# 	stage_wrapper_tb
+# 	sum_tb
+# 	zero_detect
+# 	zero_detect_owire
+# 	zero_detect_owire_not

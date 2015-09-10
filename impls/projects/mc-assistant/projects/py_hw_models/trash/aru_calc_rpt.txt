@@ -1,0 +1,17 @@
+#ifdef HIGH_TERMO_RESOLUTION
+    ; Value : 7.94
+    #define _kRefARU0 0x81
+    #define _kRefARU1 0x7E
+    #define _kRefARU2 0x14
+    #define _kRefARU3 0x7A
+    ; Mchip format : 0x81, 0x7E, 0x14, 0x7A
+    #define _kLenFIRLine 10
+#else
+    ; Value : 7.94
+    #define _kRefARU0 0x81
+    #define _kRefARU1 0x7E
+    #define _kRefARU2 0x14
+    #define _kRefARU3 0x7A
+    ; Mchip format : 0x81, 0x7E, 0x14, 0x7A
+    #define _kLenFIRLine 20
+#endif  ; HIGH_TERMO_RESOLUTION

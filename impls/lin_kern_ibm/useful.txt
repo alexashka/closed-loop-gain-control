@@ -1,0 +1,58 @@
+SUMMARY
+http://www.ibm.com/developerworks/ru/library/l-linux_kernel_12/
+
+https://onebitbug.me/2011/03/04/introducing-linux-kernel-symbols/
+
+# exported names
+# not all exported really
+# dynamic table
+cat /proc/kallsyms | grep T | grep ' printk'
+
+# static table - form on compile kernel
+cat /boot/System.map-`uname -r` | grep T | grep ' printk'
+
+# sym mod analyse
+nm md1.ko | grep ' md'
+
+objdump
+readelf
+
+modinfo md2.o // not working
+modinfo md2.ko
+
+# not all exported really
+cat Module.symvers 
+cat /lib/modules/`uname -r`/build/Module.symvers | grep 'printk'
+
+# log levels
+cat /proc/sys/kernel/printk
+
+# Typical errors
+http://www.ibm.com/developerworks/ru/library/l-linux_kernel_04/
+
+# Sys calls
+head -n6 /usr/include/asm/unistd_32.h
+
+apt-get source linux-image-$(uname -r)
+ls /usr/src/linux-`uname -r`/arch 
+
+# in kern sources
+# not see it if install kern sources
+cat /lib/modules/`uname -r`/build/include/asm-generic/errno-base.h | head -n20 
+
+# User -> kern chain
+
+# Kern -> user chain
+# calls for u/k data exchange
+cat /proc/kallsyms | grep put_user 
+
+# Mod loading
+#instead insmod
+modprobe 
+cat /lib/modules/`uname -r`/modules.dep 
+
+# Loading
+ls -l /lib/modules/`uname -r` | grep ^d 
+
+# FIXME: where is misc catalog?
+

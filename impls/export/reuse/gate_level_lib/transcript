@@ -1,0 +1,146 @@
+# Reading G:/usr/msim81/modelsim_ae/tcl/vsim/pref.tcl 
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# ** Error: top_avalonst_tb.v(94): (vlog-2163) Macro `WIDTH is undefined.
+# ** Error: G:/usr/msim81/modelsim_ae/win32aloem/vlog failed.
+# Error in macro ./full_ava.do line 4
+# G:/usr/msim81/modelsim_ae/win32aloem/vlog failed.
+#     while executing
+# "vlog top_avalonst_tb.v"
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+# ** Error: (vsim-3584) top_avalonst_tb.v(98): Module parameter 'LEN' not found for override.
+#         Region: /top_avalonst_tb
+# Error loading design
+# Error: Error loading design 
+#        Pausing macro execution 
+# MACRO ./full_ava.do PAUSED at line 6
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
+# ** Error: No Design Loaded!
+# Error in macro ./full_ava.do line 27
+# No Design Loaded!
+#     while executing
+# "run 8000"
+do full_ava.do
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module v_shift_registers
+# 
+# Top level modules:
+# 	v_shift_registers
+# Model Technology ModelSim ALTERA vlog 6.3g_p1 Compiler 2008.08 Aug 13 2008
+# -- Compiling module top_avalonst_tb
+# 
+# Top level modules:
+# 	top_avalonst_tb
+# vsim -t ns work.top_avalonst_tb 
+# Loading work.top_avalonst_tb
+# Loading work.v_shift_registers
+# ** Warning: (vsim-3009) [TSCALE] - Module 'v_shift_registers' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /top_avalonst_tb/labdll
