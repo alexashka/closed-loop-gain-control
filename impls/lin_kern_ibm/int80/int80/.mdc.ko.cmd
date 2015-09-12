@@ -1,1 +1,0 @@
-cmd_/home/zaqwes/work/emb-dsp-soc/lin_kern_ibm/int80/int80/mdc.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/zaqwes/work/emb-dsp-soc/lin_kern_ibm/int80/int80/mdc.ko /home/zaqwes/work/emb-dsp-soc/lin_kern_ibm/int80/int80/mdc.o /home/zaqwes/work/emb-dsp-soc/lin_kern_ibm/int80/int80/mdc.mod.o

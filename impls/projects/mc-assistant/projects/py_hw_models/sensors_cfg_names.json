@@ -1,5 +1,0 @@
-{
-    "Current notes" : "разрешение разное для ЦАП и АЦП, так же \r\nразные делители снятого напряжения важно",
-    "I" : "sensors_cfgs/current_sensor_cfg_template.json"
-
-}
