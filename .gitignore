@@ -1,5 +1,7 @@
-*.pdf
-*.djvu
-*.wav
 *.pyc
+*~
+*.o
+*.obj
+*~*
 
+#*.wav
